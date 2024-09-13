@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spartan Gear | Artigos esportivos</title>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">  <!-- Link para o arquivo CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="{% static '/images/favicon.svg' %}" type="image/svg+xml">
+</head>
+
+<body>
+    <div class="principal-sequencia-compra">
+        <div class="central-sequencia-compra">
+            {% include 'spartangear/partials/_parte_superior_compra.html' %}
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div class="resumo-compra-sequencia">
+            {% include 'spartangear/partials/_resumo_compra.html' %}
+        </div>
+    </div>
+    <script>
+        // Função para controlar o comportamento de expandir/recolher o campo de cupom
+        document.getElementById("iconeAcrescentarCupom").addEventListener("click", function() {
+            let conteudoExtra = document.querySelector(".conteudo-extra-cupom");
+            conteudoExtra.classList.toggle("show"); // Alterna o colapso
+        });
+        
+        // Função para alternar o texto do botão e limpar o input ao clicar em "REMOVER"
+        document.getElementById("OKabreDesconto").addEventListener("click", function() {
+            let OKdesconto = document.querySelector(".inform-resumo-compra-esp");
+            let cupomButton = document.getElementById("OK-cupom");
+            let cupomInput = document.getElementById("cupom");
+        
+            // Alterna a exibição do campo de desconto
+            OKdesconto.classList.toggle("show");
+        
+            // Verifica o estado atual do botão e executa as ações necessárias
+            if (cupomButton.innerHTML === "OK") {
+                // Se o botão exibe "OK", altera para "REMOVER" e mantém o valor do input
+                cupomButton.innerHTML = "REMOVER";
+            } else {
+                // Se o botão exibe "REMOVER", altera para "OK" e limpa o input
+                cupomButton.innerHTML = "OK";
+                cupomInput.value = ""; // Limpa o campo de input
+            }
+        });
+
+    </script>
+</body>

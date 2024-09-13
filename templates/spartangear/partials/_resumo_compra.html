@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spartan Gear | Artigos esportivos</title>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">  <!-- Link para o arquivo CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="{% static '/images/favicon.svg' %}" type="image/svg+xml">
+</head>
+
+
+<div class="resumo-da-compra-geral">
+    <div class="resumo-inform">
+        <div class="seguranca" style="padding-top: 40px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11.998 2C8.98997 2 7.03997 4.019 4.73397 4.755C3.79597 5.055 3.32697 5.204 3.13697 5.415C2.94697 5.625 2.89197 5.934 2.78097 6.55C1.59097 13.146 4.19097 19.244 10.391 21.618C11.056 21.873 11.389 22 12.001 22C12.613 22 12.947 21.872 13.613 21.617C19.812 19.244 22.409 13.146 21.219 6.55C21.108 5.934 21.052 5.625 20.862 5.414C20.672 5.203 20.204 5.054 19.266 4.755C16.959 4.019 15.006 2 11.998 2Z" stroke="#C20000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9 13C9 13 10 13 11 15C11 15 14.177 10 17 9" stroke="#C20000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h1 class="text-Site-Seguro" style="color:#c20000; font-size: 18px;">Site Seguro</h1>
+        </div>
+        <div class="titulo-resumo-compra">
+            <h1 class="texto-titulo-resumo-compra">RESUMO DA COMPRA</h1>
+        </div>
+        <div class="inform-resumo-compra">
+            <h1 class="texto-inform-resumo-compra">Subtotal</h1>
+            <h1 class="valores-menores-resumo">R$ 2.138,20</h1>
+        </div>
+        <div class="inform-resumo-compra" style="border-bottom: none;">
+            <h1 class="texto-inform-resumo-compra">Cupom</h1>
+            <a href="javascript:void(0);" id="iconeAcrescentarCupom">
+                <div class="icone-acrescentar-cupom">
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.28571 5.71429H5.71429V9.28571C5.71429 9.47515 5.63903 9.65684 5.50508 9.79079C5.37112 9.92475 5.18944 10 5 10C4.81056 10 4.62888 9.92475 4.49492 9.79079C4.36097 9.65684 4.28571 9.47515 4.28571 9.28571V5.71429H0.714286C0.524845 5.71429 0.343164 5.63903 0.20921 5.50508C0.075255 5.37112 0 5.18944 0 5C0 4.81056 0.075255 4.62888 0.20921 4.49492C0.343164 4.36097 0.524845 4.28571 0.714286 4.28571H4.28571V0.714286C4.28571 0.524845 4.36097 0.343164 4.49492 0.209209C4.62888 0.0752547 4.81056 0 5 0C5.18944 0 5.37112 0.0752547 5.50508 0.209209C5.63903 0.343164 5.71429 0.524845 5.71429 0.714286V4.28571H9.28571C9.47515 4.28571 9.65684 4.36097 9.79079 4.49492C9.92475 4.62888 10 4.81056 10 5C10 5.18944 9.92475 5.37112 9.79079 5.50508C9.65684 5.63903 9.47515 5.71429 9.28571 5.71429Z" fill="#1E1E1E"/>
+                    </svg>
+                </div>
+            </a>
+        </div>       
+        <div class="conteudo-extra-cupom collapse mt-3">
+            <div class="caixa-toda-cupom">
+                <div class="caixinha-cupom">
+                    <input type="string" class="texto-dentro-caixinha-cupom" id="cupom" placeholder="Digite o cupom de desconto" style="border:none; width: 100%;height: 100%;"required>
+                </div>
+                <a href="javascript:void(0);" id="OKabreDesconto" style="all: unset; cursor: pointer;">
+                    <div class="confirmar-cupom">
+                        <h1 class="OK-cupom" id="OK-cupom">OK</h1>
+                    </div>
+                </a>
+            </div>
+        </div>     
+        <div class="inform-resumo-compra-esp collapse mt-3">
+            <h1 class="texto-inform-resumo-compra">Desconto</h1>
+            <h1 class="valores-menores-resumo">R$ 574,79</h1>
+        </div>
+    </div>
+    <div class="resumo-final">
+        <div class="total-resumo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 14.3L11.333 15.5L14 12.5" stroke="#1E1E1E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8.99982 6V5C8.99982 4.20435 9.31589 3.44129 9.8785 2.87868C10.4411 2.31607 11.2042 2 11.9998 2C12.7955 2 13.5585 2.31607 14.1211 2.87868C14.6838 3.44129 14.9998 4.20435 14.9998 5V6M20.2238 12.526C19.6378 9.405 19.3458 7.844 18.2338 6.922C17.1248 6 15.5368 6 12.3598 6H11.6398C8.46382 6 6.87582 6 5.76482 6.922C4.65382 7.844 4.36182 9.405 3.77582 12.526C2.95282 16.915 2.54182 19.109 3.74182 20.555C4.94182 22.001 7.17382 22 11.6388 22H12.3608C16.8258 22 19.0588 22 20.2578 20.555C20.9538 19.715 21.1078 18.625 20.9538 17" stroke="#1E1E1E" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <h1 class="texto-total-resumo">Total</h1>
+        </div>
+        <h1 class="valor-total-resumo">R$ 1.563,41</h1>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static '/js/script.js' %}"></script>
+</html>

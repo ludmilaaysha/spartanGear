@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spartan Gear | Artigos esportivos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">  <!-- Link para o arquivo CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="{% static '/images/favicon.svg' %}" type="image/svg+xml">
+</head>
+
+<body>
+    {% include 'spartangear/header.html' %}
+    <div class="pagina-produto">
+        <div class="principal-pagina-produto">
+            <div class="imagens-produto">
+                <div class="image-container">
+                    <img id="mainImage" src="{% static 'images/imagem_tenis.jpg' %}" alt="Imagem principal" class="main-image">
+                </div>
+                <div style="width: 100%; overflow-x: auto;">
+                    <div class="carousel">
+                        <!-- {% for imagem in imagens %}
+                            <img src="{{ imagem.imagem_url }}" alt="Imagem do produto" onclick="changeImage(this)">
+                        {% endfor %} -->
+                        <div class="geral-imagem-pag-produto">
+                            <img src="{% static '/images/imagem_produto.jpg' %}" alt="Imagem 1" onclick="changeImage(this)">
+                        </div>
+                        <div class="geral-imagem-pag-produto">
+                            <img src="{% static '/images/imagem_tenis.jpg' %}" alt="Imagem 2" onclick="changeImage(this)">
+                        </div>
+                        <div class="geral-imagem-pag-produto">
+                            <img src="{% static '/images/shirt-product.jpg' %}" alt="Imagem 3" onclick="changeImage(this)">
+                        </div>
+                        <div class="geral-imagem-pag-produto">
+                            <img src="{% static '/images/imagem_produto.jpg' %}" alt="Imagem 4" onclick="changeImage(this)">
+                        </div>
+                        <div class="geral-imagem-pag-produto">
+                            <img src="{% static '/images/imagem_tenis.jpg' %}" alt="Imagem 5" onclick="changeImage(this)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="apresentacao-acoes-produtos">
+                <div class="box-nome-produto">
+                    <p class="nome-produto">
+                        Tênis Nike Invincible 3 - Masculino
+                    </p>
+                    <div class="section-preco-produto">
+                        <p class="preco-produto-anterior">
+                            R$ 239,99
+                        </p>
+                        <p class="preco-produto" style="text-align: start; font-size: 32;">
+                            R$ 219,99
+                        </p>
+                    </div>
+                    <span class="referencia-pagina-produto">
+                        Ref.: 12345678
+                    </span>
+                </div>
+                <div class="acoes-produto">
+                    <div class="variacoes-pagina-produto">
+                        <div class="variacao-cor-pag-prod">
+                            <span class="label-variacaoqtd-produto">Cor</span>
+                            <select class="form-select-produto" aria-label="Default select example">
+                                <option selected>Selecione a cor</option>
+                                <option value="Preto">Preto</option>
+                                <option value="Branco">Branco</option>
+                                <option value="Azul">Azul</option>
+                            </select>
+                        </div>
+                        <div class="variacao-cor-pag-prod">
+                            <span class="label-variacaoqtd-produto">Tamanho</span>
+                            <select class="form-select-produto" aria-label="Default select example">
+                                <option selected>Selecione o tamanho</option>
+                                <option value="36">36</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="40">41</option>
+                                <option value="41">42</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="secao-quantidade-pagina-produto">
+                        <span class="label-variacaoqtd-produto">Quantidade</span>
+                        <div class="secao-quantidade-pag-produto">
+                            <button class="increase-decrease-qtd-produto">
+                                -
+                            </button>
+                            <input type="number" class="qtd-produto-pagina" value="1">
+                            <button class="increase-decrease-qtd-produto">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn-produto">
+                        Adicionar ao carrinho
+                    </button>
+                    <div class="secao-calculo-frete-pagina-produto">
+                        <span class="label-variacaoqtd-produto">Calcule o frete</span>
+                        <div class="campo-frete">
+                            <input type="text" placeholder="12345-678">
+                            <button class="botao-calcular-frete-produto">
+                                Calcular
+                            </button>
+                        </div>
+                        <div class="titulo-calculo-frete">
+                            <span class="prazo-pag-produto">Chega em 4 a 7 dias úteis</span>
+                            <span class="valor-frete">Valor: R$ 12,99</span> <!--aparecer apenas quando o frete estiver preenchido-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="secao-descricao-produto">
+            <div class="titulo-descricao-produto" style="display: flex; gap: 8px; flex-direction: row;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M7 4.00001C6.059 4.00001 5.086 4.35501 4.312 5.03101C3.54 5.70701 3 6.74601 3 8.00001C3 9.06301 3.445 9.96901 4 10.688C4.555 11.406 5.227 11.973 5.844 12.531C7.078 13.648 8 14.566 8 16C8 16.152 7.852 16.52 7.656 16.813C7.46 17.106 7.281 17.281 7.281 17.281L8.719 18.688C8.719 18.688 9.039 18.368 9.344 17.906C9.605 17.512 9.891 17.004 9.969 16.344C10.082 16.668 10.191 17 10.313 17.312C11 19.086 11.793 20.676 12.687 21.875C13.012 22.313 13.347 22.699 13.719 23.031C11.652 23.18 10 24.898 10 27V28H22V27C22 24.875 20.316 23.148 18.219 23.031C18.61 22.6814 18.9658 22.2942 19.281 21.875C20.18 20.68 20.961 19.085 21.656 17.312C21.786 16.98 21.91 16.625 22.031 16.282C22.098 16.969 22.387 17.5 22.656 17.906C22.961 18.367 23.281 18.688 23.281 18.688L24.719 17.281C24.719 17.281 24.539 17.105 24.344 16.813C24.148 16.52 24 16.152 24 16C24 14.566 24.922 13.648 26.156 12.531C26.773 11.973 27.446 11.406 28 10.687C28.555 9.96901 29 9.06301 29 8.00001C29 6.74601 28.46 5.70701 27.687 5.03101C26.9444 4.37552 25.9905 4.0095 25 4.00001C24.0315 3.99763 23.0964 4.35385 22.375 5.00001H9.625C8.90358 4.35385 7.96849 3.99763 7 4.00001ZM7 6.00001C7.473 6.00001 7.777 6.14801 8 6.28101C8.027 8.32101 8.379 10.633 8.938 12.906C8.406 12.187 7.742 11.59 7.156 11.062C6.523 10.492 5.946 9.96501 5.563 9.46901C5.18 8.97301 5 8.54301 5 8.00001C5 7.30001 5.273 6.86701 5.656 6.53101C6.04 6.19501 6.566 6.00001 7 6.00001ZM25 6.00001C25.434 6.00001 25.96 6.19501 26.344 6.53101C26.727 6.86701 27 7.30101 27 8.00001C27 8.54301 26.82 8.97301 26.437 9.46901C26.054 9.96501 25.477 10.492 24.844 11.063C24.246 11.602 23.57 12.223 23.031 12.969C23.605 10.679 23.973 8.34801 24 6.28101C24.2994 6.09325 24.6466 5.99569 25 6.00001ZM10.125 7.00001H21.875C21.723 9.97301 20.953 13.598 19.781 16.594C19.133 18.25 18.383 19.687 17.656 20.656C16.93 21.625 16.266 22 15.969 22C15.676 22 15.035 21.625 14.313 20.656C13.59 19.688 12.832 18.254 12.187 16.594C11.023 13.594 10.277 9.95701 10.125 7.00001ZM15 10V15H17V10H15ZM14 25H18C18.719 25 19.21 25.441 19.563 26H12.438C12.789 25.441 13.281 25 14 25Z" fill="#1E1E1E"/>
+                </svg>
+                <span>Descrição</span>
+            </div>
+            <p class="descricao-produto">
+                O Nike Invincible 3 foi projetado para corredores que buscam conforto, estabilidade e desempenho. Com amortecimento aprimorado através da tecnologia Nike ZoomX, ele proporciona uma corrida mais suave e responsiva. O cabedal em mesh respirável mantém os pés frescos, enquanto o suporte reforçado nas laterais oferece estabilidade. Ideal para longas distâncias, seu design inovador garante máxima proteção contra impactos e maior durabilidade. O Invincible 3 é a escolha perfeita para atletas de alto desempenho e amadores exigentes.
+            </p>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static '/js/script.js' %}"></script>
+
+    <script>
+    function changeImage(image) {
+    var mainImage = document.getElementById('mainImage');
+    mainImage.src = image.src;
+}
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spartan Gear | Artigos esportivos</title>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">  <!-- Link para o arquivo CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="{% static '/images/favicon.svg' %}" type="image/svg+xml">
+</head>
+
+<body style="background-color: #1e1e1e;">
+    <!-- <header>
+        <div class="cima">
+            <a href="{%  url 'index' %}">
+                <div class="logo-branca">
+                    <div class="espartano-branco">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <g clip-path="url(#clip0_196_108)">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M8.78807 15.7922C8.78807 15.7922 7.29849 20.1486 7.49845 24.2455C7.69841 28.3155 8.73078 32.6415 8.73078 33.7593C8.73078 34.8478 8.04216 38.7458 8.04216 38.7458L11.8548 36.4812C11.8548 36.4812 10.5652 34.7613 10.1934 32.6404C9.79123 30.4914 10.308 28.1425 12.5423 28.0852C14.7486 27.9987 18.1591 26.5664 18.1591 26.5664C18.1591 26.5664 17.4716 29.9466 16.0394 31.1508C14.5779 32.3258 13.0018 32.3258 13.0018 32.3258C13.0018 32.3258 13.632 36.9103 12.2289 41.151C10.8225 45.4209 9.04644 48.0001 9.04644 48.0001C9.04644 48.0001 15.7226 44.4469 21.309 44.8771C21.309 44.8771 17.2121 34.4748 28.1862 34.4748C27.7279 32.6404 27.0404 29.7758 25.9519 27.3404C25.379 27.8268 24.605 28.1425 23.7748 28.1425C21.9112 28.1425 20.3935 26.6237 20.3935 24.7611C20.3935 23.9883 20.68 23.2424 21.1383 22.6694C19.4768 22.784 14.2319 22.5549 8.78807 15.7922Z" fill="#FEFEFE"/>
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4819 16.8807C18.1873 11.0931 30.852 13.0702 32.5146 24.9902C33.5739 32.6133 38.5313 37.4269 38.5313 37.4269C38.5313 37.4269 33.6604 39.9477 32.8876 40.0634C32.0271 40.2342 29.9646 34.6477 23.3738 37.054C24.5769 36.0508 26.3541 35.7643 28.1874 35.7643H29.8489L29.4478 34.1602C28.7592 31.5517 27.8718 27.7121 26.1238 24.8756C26.0665 26.136 25.0353 27.1392 23.7749 27.1392C22.4572 27.1392 21.3956 26.0787 21.3956 24.7599C21.3956 23.4703 22.456 22.411 23.7749 22.411C23.8602 22.411 23.9456 22.411 24.0321 22.411C21.7113 20.6046 20.7092 21.8088 18.0435 21.036C15.5507 20.3193 13.3445 18.7443 11.4819 16.8807Z" fill="#FEFEFE"/>
+                              <mask id="mask0_196_108" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="6" y="0" width="36" height="30">
+                                <path d="M6 0H41.5824V29.9083H6V0Z" fill="white"/>
+                              </mask>
+                              <g mask="url(#mask0_196_108)">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.0516 15.5924L6.00879 1.03585C24.9778 -3.72045 41.7125 9.88905 41.4834 29.8905L36.1249 29.203C35.8374 16.9393 26.5258 6.30778 13.4589 10.262L14.7204 13.4714C14.4048 13.586 14.1183 13.7298 13.8319 13.8444C12.8287 14.3308 11.912 14.9037 11.0516 15.5924Z" fill="#FEFEFE"/>
+                              </g>
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_196_108">
+                                <rect width="48" height="48" fill="white"/>
+                              </clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="nome-site">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="24" viewBox="0 0 100 24" fill="none">
+                            <path d="M7.84422 11.4365C7.84422 11.007 7.6632 10.6325 7.3047 10.3148C6.94443 9.9936 6.47767 9.69721 5.9062 9.42745C5.33296 9.15414 4.72777 8.87196 4.08886 8.58267C3.44995 8.29517 2.84299 7.96506 2.27152 7.59591C1.69828 7.22322 1.23152 6.78308 0.873019 6.2755C0.512745 5.7697 0.333496 5.15741 0.333496 4.43687C0.333496 3.82635 0.464827 3.25488 0.731039 2.71891C1.0008 2.18471 1.36995 1.71618 1.83848 1.31331C2.30701 0.906896 2.84299 0.587441 3.44995 0.354949C4.06046 0.118908 4.70292 0 5.38087 0C5.95234 0 6.45992 0.0674401 6.90006 0.198772C7.34374 0.326553 7.75549 0.459659 8.13528 0.596315C8.5133 0.734745 8.88067 0.802185 9.23562 0.802185C9.84614 0.802185 10.2739 0.535973 10.5205 0L10.7761 5.16096C10.5951 4.5753 10.2437 4.03755 9.71836 3.54949C9.19658 3.05789 8.58607 2.66567 7.88682 2.37106C7.19112 2.07823 6.47767 1.93092 5.75002 1.93092C5.19098 1.93092 4.74906 2.02676 4.42251 2.21488C4.09596 2.40478 3.93268 2.66922 3.93268 3.00997C3.93268 3.37557 4.11016 3.69857 4.46511 3.98253C4.8236 4.26294 5.29036 4.52915 5.86361 4.78472C6.4404 5.03673 7.04914 5.30649 7.68805 5.594C8.32695 5.87796 8.93214 6.20984 9.50539 6.58786C10.0769 6.96765 10.5454 7.41667 10.911 7.93667C11.2801 8.45844 11.4647 9.09025 11.4647 9.8321C11.4647 10.6556 11.2322 11.4116 10.769 12.0967C10.304 12.7782 9.69173 13.3248 8.93037 13.7365C8.16723 14.1483 7.32955 14.3541 6.41733 14.3541C5.84408 14.3541 5.31166 14.2849 4.82006 14.1483C4.332 14.0116 3.87589 13.875 3.44995 13.7365C3.02756 13.5999 2.62824 13.5307 2.25022 13.5307C1.61131 13.5307 1.16053 13.8058 0.901415 14.3541L0.645851 9.19319C0.839299 9.7753 1.20667 10.3131 1.74619 10.8047C2.28927 11.2927 2.92818 11.6832 3.66292 11.976C4.40121 12.2706 5.16258 12.4161 5.94879 12.4161C6.53446 12.4161 6.99589 12.3292 7.3331 12.1535C7.67385 11.9795 7.84422 11.7399 7.84422 11.4365Z" fill="#FEFEFE"/>
+                            <path d="M19.0448 14.0204H13.0249C13.2698 13.9547 13.4721 13.8056 13.6283 13.5731C13.7845 13.3371 13.907 13.062 13.9975 12.7496C14.0915 12.4373 14.1536 12.1249 14.182 11.8126C14.214 11.5002 14.2317 11.2376 14.2317 11.0246V3.30089C14.2317 3.09325 14.214 2.83768 14.182 2.5342C14.1536 2.22717 14.0915 1.91659 13.9975 1.60423C13.907 1.28833 13.7845 1.01147 13.6283 0.773652C13.4721 0.532287 13.2698 0.383208 13.0249 0.326416H20.6705C21.5171 0.326416 22.2855 0.537611 22.9777 0.958226C23.6681 1.37529 24.2165 1.93434 24.6246 2.63359C25.0364 3.32929 25.2423 4.10663 25.2423 4.96205C25.2423 5.81393 25.0364 6.59305 24.6246 7.29762C24.2165 7.99864 23.6681 8.55769 22.9777 8.97298C22.2855 9.39005 21.5171 9.59769 20.6705 9.59769H17.8522V11.0246C17.8522 11.2376 17.8682 11.5002 17.9019 11.8126C17.9339 12.1249 17.9942 12.4373 18.0794 12.7496C18.1646 13.062 18.2853 13.3371 18.4414 13.5731C18.5976 13.8056 18.7982 13.9547 19.0448 14.0204ZM19.6341 2.08696H17.8522V7.83714H19.6341C19.9322 7.83714 20.2038 7.70759 20.4504 7.4467C20.7007 7.18759 20.8977 6.83974 21.0397 6.40315C21.1816 5.96833 21.2526 5.48738 21.2526 4.96205C21.2526 4.42786 21.1816 3.9469 21.0397 3.52096C20.8977 3.09147 20.7007 2.7454 20.4504 2.48451C20.2038 2.22007 19.9322 2.08696 19.6341 2.08696Z" fill="#FEFEFE"/>
+                            <path d="M34.1953 8.70322L32.7329 4.22376L31.2421 8.70322H34.1953ZM30.6387 14.0204H26.2161C26.4894 13.9547 26.7432 13.8074 26.9757 13.5802C27.2117 13.3531 27.4318 13.0833 27.6359 12.7709C27.8382 12.4586 28.0086 12.1498 28.147 11.841C28.2836 11.5339 28.3901 11.2766 28.4664 11.0672L31.2279 3.18731C31.3025 2.96546 31.3735 2.70458 31.4409 2.40642C31.5066 2.10471 31.5439 1.803 31.5545 1.50485C31.5687 1.20314 31.535 0.944028 31.4551 0.731058C31.3788 0.518089 31.2297 0.383208 31.0079 0.326416H35.0188L38.8168 11.1879C38.9303 11.486 39.0901 11.8445 39.2995 12.2598C39.5125 12.6769 39.7627 13.0549 40.052 13.3956C40.3448 13.7329 40.6625 13.9405 41.0033 14.0204H34.8271C35.1111 13.9405 35.2779 13.7399 35.3312 13.4169C35.3826 13.0904 35.3738 12.7266 35.3028 12.3237C35.2318 11.9173 35.1501 11.5641 35.0614 11.266L34.7845 10.4638H30.66L30.4258 11.1879C30.3441 11.4062 30.2714 11.667 30.2057 11.9688C30.1436 12.2669 30.1063 12.5633 30.0921 12.8561C30.0779 13.1507 30.1081 13.4063 30.1844 13.6228C30.2643 13.8358 30.4151 13.9689 30.6387 14.0204Z" fill="#FEFEFE"/>
+                            <path d="M48.3905 14.0204H42.3706C42.6155 13.9547 42.8178 13.8056 42.974 13.5731C43.1302 13.3371 43.2509 13.062 43.3361 12.7496C43.4213 12.4373 43.4798 12.1249 43.5135 11.8126C43.5455 11.5002 43.5632 11.2376 43.5632 11.0246V3.30089C43.5632 3.09325 43.5455 2.83768 43.5135 2.5342C43.4798 2.22717 43.4213 1.91481 43.3361 1.59713C43.2509 1.27591 43.1302 0.999045 42.974 0.766553C42.8178 0.530512 42.6155 0.383208 42.3706 0.326416H50.2505C51.0065 0.326416 51.6916 0.514539 52.3021 0.887236C52.9161 1.26171 53.406 1.75864 53.7716 2.37802C54.1354 2.99386 54.3182 3.68779 54.3182 4.45803C54.3182 5.25311 54.1123 5.97721 53.7006 6.63031C53.2888 7.27987 52.7582 7.77325 52.1104 8.114L53.6509 11.4008C53.8213 11.7132 54.0307 12.061 54.2827 12.4444C54.5383 12.8277 54.8222 13.172 55.1346 13.4737C55.4505 13.7719 55.7664 13.9547 56.0787 14.0204H49.9381C50.16 13.9547 50.2966 13.8056 50.3499 13.5731C50.4013 13.3371 50.3942 13.062 50.3286 12.7496C50.2611 12.4373 50.1724 12.1249 50.0588 11.8126C49.9488 11.5002 49.8423 11.2376 49.7394 11.0246L48.568 8.56124H47.1979V11.0246C47.1979 11.2376 47.2139 11.5002 47.2476 11.8126C47.2796 12.1249 47.3399 12.4373 47.4251 12.7496C47.5103 13.062 47.631 13.3371 47.7871 13.5731C47.9433 13.8056 48.1439 13.9547 48.3905 14.0204ZM48.9798 2.08696H47.1979V6.80069H48.9798C49.3578 6.80069 49.6772 6.57175 49.9381 6.11209C50.1972 5.64888 50.3286 5.09693 50.3286 4.45803C50.3286 3.80492 50.1972 3.24765 49.9381 2.78267C49.6772 2.31946 49.3578 2.08696 48.9798 2.08696Z" fill="#FEFEFE"/>
+                            <path d="M56.6565 4.80588L56.9547 0.326416H69.101L69.3708 4.80588C69.3317 4.6639 69.2448 4.44738 69.1081 4.15277C68.9697 3.85994 68.7549 3.55645 68.4621 3.2441C68.1675 2.93174 67.7806 2.66198 67.2979 2.43481C66.8151 2.2041 66.2082 2.08696 65.4805 2.08696H64.8345V11.0246C64.8345 11.2376 64.8505 11.5002 64.8842 11.8126C64.9162 12.1249 64.9765 12.4373 65.0617 12.7496C65.1469 13.062 65.2676 13.3371 65.4237 13.5731C65.5799 13.8056 65.7805 13.9547 66.0272 14.0204H60.0001C60.2504 13.9547 60.4545 13.8056 60.6106 13.5731C60.7668 13.3371 60.8893 13.062 60.9798 12.7496C61.0685 12.4373 61.1306 12.1249 61.1644 11.8126C61.1963 11.5002 61.214 11.2376 61.214 11.0246V2.08696H60.568C59.8386 2.08696 59.2334 2.2041 58.7507 2.43481C58.268 2.66198 57.8793 2.93174 57.5865 3.2441C57.2919 3.55645 57.0753 3.85994 56.9334 4.15277C56.7914 4.44738 56.6991 4.6639 56.6565 4.80588Z" fill="#FEFEFE"/>
+                            <path d="M77.9297 8.70322L76.4673 4.22376L74.9765 8.70322H77.9297ZM74.3731 14.0204H69.9504C70.2238 13.9547 70.4775 13.8074 70.71 13.5802C70.9461 13.3531 71.1661 13.0833 71.3702 12.7709C71.5726 12.4586 71.7429 12.1498 71.8814 11.841C72.018 11.5339 72.1245 11.2766 72.2008 11.0672L74.9623 3.18731C75.0369 2.96546 75.1079 2.70458 75.1753 2.40642C75.241 2.10471 75.2782 1.803 75.2889 1.50485C75.3031 1.20314 75.2694 0.944028 75.1895 0.731058C75.1132 0.518089 74.9641 0.383208 74.7423 0.326416H78.7532L82.5511 11.1879C82.6647 11.486 82.8244 11.8445 83.0339 12.2598C83.2468 12.6769 83.4971 13.0549 83.7864 13.3956C84.0792 13.7329 84.3969 13.9405 84.7376 14.0204H78.5615C78.8455 13.9405 79.0123 13.7399 79.0655 13.4169C79.117 13.0904 79.1081 12.7266 79.0371 12.3237C78.9662 11.9173 78.8845 11.5641 78.7958 11.266L78.5189 10.4638H74.3944L74.1601 11.1879C74.0785 11.4062 74.0057 11.667 73.9401 11.9688C73.878 12.2669 73.8407 12.5633 73.8265 12.8561C73.8123 13.1507 73.8425 13.4063 73.9188 13.6228C73.9986 13.8358 74.1495 13.9689 74.3731 14.0204Z" fill="#FEFEFE"/>
+                            <path d="M90.2298 14.0204H85.9065C86.1514 13.9689 86.3537 13.8322 86.5099 13.6086C86.6661 13.3868 86.7868 13.1241 86.872 12.8206C86.9571 12.5136 87.0175 12.2066 87.0565 11.8978C87.0991 11.5907 87.1204 11.3334 87.1204 11.124V3.2228C87.1204 3.00096 87.0991 2.74007 87.0565 2.44191C87.0175 2.14376 86.9571 1.84205 86.872 1.53324C86.7868 1.22621 86.6661 0.96355 86.5099 0.745256C86.3537 0.523413 86.1514 0.383208 85.9065 0.326416H90.9539L96.1929 9.02977V3.2228C96.1929 3.00096 96.1734 2.74007 96.1361 2.44191C96.0971 2.14376 96.0367 1.84205 95.9516 1.53324C95.8664 1.22621 95.7457 0.96355 95.5895 0.745256C95.4333 0.523413 95.2292 0.383208 94.979 0.326416H99.3023C99.0556 0.383208 98.855 0.530512 98.6989 0.766553C98.5427 0.999045 98.422 1.27591 98.3368 1.59713C98.2516 1.91481 98.1913 2.22717 98.1593 2.5342C98.1256 2.83768 98.1096 3.09325 98.1096 3.30089V14.0204H94.766L89.0371 4.45803V11.2447C89.0513 11.5428 89.0886 11.8978 89.1507 12.3095C89.2164 12.7212 89.3371 13.0904 89.5128 13.4169C89.6867 13.7399 89.9263 13.9405 90.2298 14.0204Z" fill="#FEFEFE"/>
+                            <path d="M36.5505 21.6716H37.1682V23.4321C36.9445 23.6167 36.6854 23.7587 36.3873 23.8581C36.0927 23.9521 35.7856 24.0001 35.4644 24.0001C35.0101 24.0001 34.6001 23.9007 34.2363 23.7019C33.8707 23.5031 33.5849 23.2298 33.3773 22.8784C33.1679 22.5288 33.0649 22.1366 33.0649 21.7C33.0649 21.2599 33.1679 20.8659 33.3773 20.5145C33.5849 20.1595 33.8707 19.8862 34.2363 19.691C34.6054 19.4922 35.0189 19.3928 35.4786 19.3928C35.8371 19.3928 36.1636 19.4532 36.4583 19.5703C36.7511 19.6892 37.0013 19.8614 37.2107 20.0885L36.8061 20.4861C36.4458 20.1418 36.011 19.9678 35.4999 19.9678C35.1591 19.9678 34.8503 20.0424 34.577 20.1879C34.3073 20.3352 34.0943 20.5411 33.9381 20.8055C33.7819 21.0717 33.7039 21.3699 33.7039 21.7C33.7039 22.023 33.7819 22.3158 33.9381 22.5803C34.0943 22.8465 34.3073 23.0541 34.577 23.205C34.8503 23.3576 35.1556 23.4321 35.4928 23.4321C35.8992 23.4321 36.2524 23.3363 36.5505 23.1411V21.6716Z" fill="#FEFEFE"/>
+                            <path d="M46.8219 23.3894V23.9502H43.5493V19.4424H46.7297V20.0032H44.1953V21.3875H46.4528V21.9341H44.1953V23.3894H46.8219Z" fill="#FEFEFE"/>
+                            <path d="M55.8908 22.8215H53.4914L53.0015 23.9502H52.3342L54.3787 19.4424H55.0105L57.0622 23.9502H56.3877L55.8908 22.8215ZM55.6637 22.3104L54.6911 20.1026L53.7185 22.3104H55.6637Z" fill="#FEFEFE"/>
+                            <path d="M65.8972 23.9502L64.9246 22.5659C64.8004 22.5766 64.7063 22.5801 64.6407 22.5801H63.5261V23.9502H62.8801V19.4424H64.6407C65.2228 19.4424 65.6807 19.5826 66.0179 19.8612C66.3533 20.1416 66.5219 20.525 66.5219 21.0113C66.5219 21.3627 66.4332 21.6608 66.2592 21.9057C66.0889 22.1471 65.844 22.3246 65.528 22.4382L66.6 23.9502H65.8972ZM64.6194 22.0335C65.0258 22.0335 65.3364 21.9466 65.5493 21.7709C65.7659 21.5916 65.8759 21.3378 65.8759 21.0113C65.8759 20.6847 65.7659 20.4362 65.5493 20.2659C65.3364 20.0919 65.0258 20.0032 64.6194 20.0032H63.5261V22.0335H64.6194Z" fill="#FEFEFE"/>
+                        </svg>
+                    </div>       
+                </div>
+            </a>
+            <div class="seguranca">
+                <div class="icones-24x24">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M11.998 2C8.98997 2 7.03997 4.019 4.73397 4.755C3.79597 5.055 3.32697 5.204 3.13697 5.415C2.94697 5.625 2.89197 5.934 2.78097 6.55C1.59097 13.146 4.19097 19.244 10.391 21.618C11.056 21.873 11.389 22 12.001 22C12.613 22 12.947 21.872 13.613 21.617C19.812 19.244 22.409 13.146 21.219 6.55C21.108 5.934 21.052 5.625 20.862 5.414C20.672 5.203 20.204 5.054 19.266 4.755C16.959 4.019 15.006 2 11.998 2Z" stroke="#FEFEFE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 13C9 13 10 13 11 15C11 15 14.177 10 17 9" stroke="#FEFEFE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="text-Site-Seguro">
+                    <h1>Site seguro</h1>
+                </div>
+            </div>
+        </div>
+    </header> -->
+    <div class="pagina-cadastro">
+        <div class="principal-cadastro">
+            <div class="apresenta-cadastro">
+                <div class="divs-mesma-medida">
+                    <h1 class="text-pronto-jogo">Pronto para elevar seu jogo?</h1>
+                    <h1 class="text-crie-conta">Crie sua conta e monte seu arsenal</h1>
+                </div>
+                <div class="não-tem-ou-tem-conta">
+                    <h1 class="text-ja-tem">Já tem uma conta?</h1>
+                    <a href="{%  url 'login' %}" class="text-faça-login-verm">Faça seu login</a>
+                </div>
+            </div>
+            <form class="caixas-cadastro" action="{% url 'cadastro' %}" method="POST">
+                {% csrf_token %}
+                <button type="button" onclick="window.open('https://accounts.google.com', '_blank')"  class="botao-google">
+                    <span class="svg-container">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21.8055 10.0415H21V10H12V14H17.6515C16.827 16.3285 14.6115 18 12 18C8.6865 18 6 15.3135 6 12C6 8.6865 8.6865 6 12 6C13.5295 6 14.921 6.577 15.9805 7.5195L18.809 4.691C17.023 3.0265 14.634 2 12 2C6.4775 2 2 6.4775 2 12C2 17.5225 6.4775 22 12 22C17.5225 22 22 17.5225 22 12C22 11.3295 21.931 10.675 21.8055 10.0415Z" fill="#FFC107"/>
+                            <path d="M3.15308 7.3455L6.43858 9.755C7.32758 7.554 9.48058 6 12.0001 6C13.5296 6 14.9211 6.577 15.9806 7.5195L18.8091 4.691C17.0231 3.0265 14.6341 2 12.0001 2C8.15908 2 4.82808 4.1685 3.15308 7.3455Z" fill="#FF3D00"/>
+                            <path d="M11.9999 22C14.5829 22 16.9299 21.0115 18.7044 19.404L15.6094 16.785C14.5719 17.5745 13.3037 18.0014 11.9999 18C9.39891 18 7.19041 16.3415 6.35841 14.027L3.09741 16.5395C4.75241 19.778 8.11341 22 11.9999 22Z" fill="#4CAF50"/>
+                            <path d="M21.8055 10.0415H21V10H12V14H17.6515C17.2571 15.1082 16.5467 16.0766 15.608 16.7855L15.6095 16.7845L18.7045 19.4035C18.4855 19.6025 22 17 22 12C22 11.3295 21.931 10.675 21.8055 10.0415Z" fill="#1976D2"/>
+                        </svg>
+                    </span>
+                    <span class="text-google-cadastro"> Cadastre-se com o google</span>
+
+              
+                </button>                
+                <div class="ou">
+                    <div class="linhas-ou"></div>
+                    <div class="text-ou">
+                        <h1>ou</h1>
+                    </div>
+                    <div class="linhas-ou"></div>
+                </div>
+                <div class="divis2-mesmo-tamanho">
+                    <div class="divis2-mesmo-tamanho">
+                        <div class="duas-mini-caixas">
+                            <div class="divs-caixas-menores-cadastro">
+                                <label class="textos-geral-cadastro" for="nome-completo">Nome*</label>
+                                <input type="text" id="nome-completo" name="nome-completo" class="caixa-digitavel" placeholder="Ex.: José Maria Sousa da Silva" style="border:none" required>
+                            </div>
+                            <div class="divs-caixas-menores-cadastro">
+                                <label class="textos-geral-cadastro" for="nome-completo">Sobrenome*</label>
+                                <input type="text" id="nome-completo" name="nome-completo" class="caixa-digitavel" placeholder="Ex.: José Maria Sousa da Silva" style="border:none" required>
+                            </div>
+                        </div>
+                        <div class="duas-mini-caixas">
+                            <div class="divs-caixas-menores-cadastro">
+                                <label class="textos-geral-cadastro" for="data-nascimento">Data de nascimento*</label>
+                                <input type="date" id="data-nascimento" name="data-nascimento" class="caixa-digitavel-menor" style="border:none" required>
+                            </div>
+                            <div class="divs-caixas-menores-cadastro">
+                                <label class="textos-geral-cadastro" for="telefone">Número de telefone*</label>
+                                <input type="tel" id="telefone" name="telefone" class="caixa-digitavel-menor" placeholder="(99) 99999-9999" style="border:none" required>
+                            </div>
+                        </div>
+                        <div class="divs-mesma-medida">
+                            <label class="textos-geral-cadastro" for="email">E-mail*</label>
+                            <input type="email" id="email" name="email" class="caixa-digitavel" placeholder="Ex.: jose@gmail.com" style="border:none" required>
+                        </div>
+                        <div class="divs-mesma-medida">
+                            <label class="textos-geral-cadastro" for="senha">Senha*</label>
+                            <input type="password" id="senha" name="senha" class="caixa-digitavel" placeholder="Digite sua senha" style="border:none" required>
+                        </div>
+                        <div class="divs-mesma-medida">
+                            <label class="textos-geral-cadastro" for="confirmar-senha">Confirmar senha*</label>
+                            <input type="password" id="confirmar-senha" name="confirmar-senha" class="caixa-digitavel" placeholder="Digite sua senha" style="border:none" required>
+                        </div>
+                        <div class="divs-mesma-medida">
+                            <span class="textos-geral-cadastro">Gênero*</span>
+                            <div class="generos-cadastro">
+                                <div class="opcao">
+                                    <input type="radio" id="genero-masculino" name="genero" value="Masculino" style="border:none" required>
+                                    <label class="texto-generos" for="genero-masculino">Masculino</label>
+                                </div>
+                                <div class="opcao">
+                                    <input type="radio" id="genero-feminino" name="genero" value="Feminino" style="border:none">
+                                    <label class="texto-generos" for="genero-feminino">Feminino</label>
+                                </div>
+                                <div class="opcao">
+                                    <input type="radio" id="genero-nao-informar" name="genero" value="Prefiro não informar" style="border:none">
+                                    <label class="texto-generos" for="genero-nao-informar">Prefiro não informar</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="termos">
+                        <div class="div-termos">
+                                <input type="checkbox" id="aceito-termos" name="aceito-termos" required>
+                                <label class="texto-termos" for="aceito-termos" onclick="window.open('https://docs.google.com/document/d/1zskGzdMZAzZRj4ll-jRTRz1gGwci_SxvkniGu5s56Bk/edit?usp=sharing', '_blank')" style="cursor:pointer">Li e aceito os termos de uso*</label>
+                        </div>
+                        <div class="div-termos">
+                            <input type="checkbox" id="aceito-privacidade" name="aceito-privacidade" required>
+                                <label class="texto-termos" for="aceito-privacidade" onclick="window.open('https://docs.google.com/document/d/18RA6TANieEHlpoXiUU5HNP2czOjhG--K93e-lrxuirU/edit?usp=sharing', '_blank')" style="cursor: pointer;">Li e aceito a Política de Privacidade*</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="botao-criar-conta" id="botao-criar-conta" style="border: none" disabled>
+                        <h1 class="text-criar-conta">Criar conta</h1>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        // Verifica se todos os campos estão preenchidos
+        function verificarCampos() {
+            const camposObrigatorios = document.querySelectorAll('input[required]');
+            const botaoCriarConta = document.getElementById('botao-criar-conta');
+            let todosPreenchidos = true;
+    
+            camposObrigatorios.forEach((campo) => {
+                if (!campo.value) {
+                    todosPreenchidos = false;
+                }
+            });
+    
+            botaoCriarConta.disabled = !todosPreenchidos;  // Ativa ou desativa o botão
+        }
+    
+        // Adiciona eventos de input para todos os campos
+        document.querySelectorAll('input').forEach((campo) => {
+            campo.addEventListener('input', verificarCampos);
+        });
+    
+        // Redireciona ao clicar no botão "Criar conta"
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Impede o comportamento padrão do submit
+    
+            // Aqui você define para onde a pessoa será redirecionada após o preenchimento
+            window.location.href = "{%  url 'index' %}"; // Redireciona para a página desejada
+
+            alert("Conta criada com sucesso, seja bem-vindo ao nosso time!")
+        });
+    </script>
+</body>
+</html>
+

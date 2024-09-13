@@ -1,0 +1,355 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spartan Gear | Artigos esportivos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}"> <!-- Link para o arquivo CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="{% static '/images/favicon.svg' %}" type="image/svg+xml">
+</head>
+
+<style>
+    .tela-recuperacao{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    padding-inline: 25%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    flex-shrink: 0;
+}
+
+.texto-titulo-nova-senha{
+    align-self: stretch;
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.conteudo-recuperacao-senha {
+    display: flex;
+    min-height: 200px;
+    padding: 40px;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    align-self: stretch;
+    border-radius: 16px;
+    background: #F1F1F1;
+    box-shadow: 0 0 20px rgba(150, 150, 150, 0.2), 0 0 30px rgba(150, 150, 150, 0.15), 0 0 40px rgba(150, 150, 150, 0.1); /* Efeito de luz cinza suave */
+    transition: box-shadow 0.3s ease;
+}
+
+.conteudo-recuperacao-senha:hover {
+    box-shadow: 0 0 30px rgba(100, 100, 100, 0.4), 0 0 40px rgba(100, 100, 100, 0.3), 0 0 50px rgba(100, 100, 100, 0.2); /* Efeito de luz cinza mais intenso ao passar o mouse */
+}
+
+
+.trecho-recuperacao-senha{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    align-self: stretch;
+}
+
+.senhas-caixas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    align-self: stretch;
+}
+
+.caixa-nova-senha{
+    display: flex;
+    min-width: 200px;
+    padding: 8px 0px;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+    border-bottom: 1px solid #1E1E1E;
+}
+
+.texto-senha{
+    display: flex;
+    height: 32px;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1 0 0;
+    color: #A1A1A1;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: normal;
+    border:none;
+    outline: none;
+    background-color: #F1F1F1;
+}
+
+.dicas-senhas{
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 32px;
+    align-self: stretch;
+    flex-wrap: wrap;
+}
+
+.alertas-senhas{
+    display: flex;
+    min-width: 200px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    flex: 1 0 0;
+}
+
+.alerta-individual-senha{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+}
+
+.obrig-senha{
+    color: #A1A1A1;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: normal;
+    flex: 1 0 0;
+}
+
+.seguranca-senha{
+    display: flex;
+    min-width: 200px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex: 1 0 0;
+}
+
+.dica-individual-título {
+    align-self: stretch;
+    color: #A1A1A1;
+    leading-trim: both;
+    text-edge: cap;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 600;
+}
+
+.dica-individual{
+    color: #A1A1A1;
+    leading-trim: both;
+    text-edge: cap;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 300;
+    align-self: stretch;
+}
+
+.botao-salvar-senha{
+    all: unset;
+    display: flex;
+    padding: 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 8px;
+    background: #3F3F3F;
+}
+
+.botao-salvar-senha:focus{
+    outline: none;
+}
+
+.texto-botao-salvar-senha{
+    color: #FEFEFE;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+</style>
+
+
+<body class="tela-recuperacao" style="background-color: #1e1e1e;">
+        <h1 class="texto-titulo-nova-senha">CRIE UMA NOVA SENHA</h1>
+        <form id="passwordForm" class="conteudo-principal">
+            {% csrf_token %}
+            <div class="conteudo-central">
+                <!-- <div class="mb-3" style="align-self: stretch;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M10 12C10 13.0609 9.57857 14.0783 8.82843 14.8284C8.07828 15.5786 7.06087 16 6 16C4.93913 16 3.92172 15.5786 3.17157 14.8284C2.42143 14.0783 2 13.0609 2 12C2 10.9391 2.42143 9.92172 3.17157 9.17157C3.92172 8.42143 4.93913 8 6 8C7.06087 8 8.07828 8.42143 8.82843 9.17157C9.57857 9.92172 10 10.9391 10 12ZM10 12H22V15M18 12V15" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <input type="password" class="form-control" id="currentPassword" placeholder="Digite sua senha atual" required>
+                </div> -->
+                <div style="gap: 16px; flex-direction: column; width: 100%;">
+                    <div class="nova-senha">
+                        <div class="mb-3" style="flex: 1 0 0;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M10 12C10 13.0609 9.57857 14.0783 8.82843 14.8284C8.07828 15.5786 7.06087 16 6 16C4.93913 16 3.92172 15.5786 3.17157 14.8284C2.42143 14.0783 2 13.0609 2 12C2 10.9391 2.42143 9.92172 3.17157 9.17157C3.92172 8.42143 4.93913 8 6 8C7.06087 8 8.07828 8.42143 8.82843 9.17157C9.57857 9.92172 10 10.9391 10 12ZM10 12H22V15M18 12V15" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <input type="password" class="form-control" id="newPassword" placeholder="Digite sua nova senha" required>
+                        </div>
+                        <div class="mb-3" style="flex: 1 0 0;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M10 12C10 13.0609 9.57857 14.0783 8.82843 14.8284C8.07828 15.5786 7.06087 16 6 16C4.93913 16 3.92172 15.5786 3.17157 14.8284C2.42143 14.0783 2 13.0609 2 12C2 10.9391 2.42143 9.92172 3.17157 9.17157C3.92172 8.42143 4.93913 8 6 8C7.06087 8 8.07828 8.42143 8.82843 9.17157C9.57857 9.92172 10 10.9391 10 12ZM10 12H22V15M18 12V15" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirme sua nova senha" required>
+                        </div>
+                    </div>
+                    <div id="passwordFeedback" class="form-text text-danger"></div> <!-- Feedback em tempo real -->
+                </div>
+                <div class="dicas-senhas">
+                    <div class="alertas-senhas" id="alertas-senhas"">
+                        <div class="requisito-senha" id="lengthRequirement">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                <path d="M6.3 10.5H7.7V6.3H6.3V10.5ZM7 4.9C7.19833 4.9 7.36458 4.83292 7.49875 4.69875C7.63292 4.56458 7.7 4.39833 7.7 4.2C7.7 4.00167 7.63292 3.83542 7.49875 3.70125C7.36458 3.56708 7.19833 3.5 7 3.5C6.80167 3.5 6.63542 3.56708 6.50125 3.70125C6.36708 3.83542 6.3 4.00167 6.3 4.2C6.3 4.39833 6.36708 4.56458 6.50125 4.69875C6.63542 4.83292 6.80167 4.9 7 4.9ZM7 14C6.03167 14 5.12167 13.8163 4.27 13.4488C3.41833 13.0813 2.6775 12.5825 2.0475 11.9525C1.4175 11.3225 0.91875 10.5817 0.55125 9.73C0.18375 8.87833 0 7.96833 0 7C0 6.03167 0.18375 5.12167 0.55125 4.27C0.91875 3.41833 1.4175 2.6775 2.0475 2.0475C2.6775 1.4175 3.41833 0.91875 4.27 0.55125C5.12167 0.18375 6.03167 0 7 0C7.96833 0 8.87833 0.18375 9.73 0.55125C10.5817 0.91875 11.3225 1.4175 11.9525 2.0475C12.5825 2.6775 13.0813 3.41833 13.4488 4.27C13.8163 5.12167 14 6.03167 14 7C14 7.96833 13.8163 8.87833 13.4488 9.73C13.0813 10.5817 12.5825 11.3225 11.9525 11.9525C11.3225 12.5825 10.5817 13.0813 9.73 13.4488C8.87833 13.8163 7.96833 14 7 14ZM7 12.6C8.56333 12.6 9.8875 12.0575 10.9725 10.9725C12.0575 9.8875 12.6 8.56333 12.6 7C12.6 5.43667 12.0575 4.1125 10.9725 3.0275C9.8875 1.9425 8.56333 1.4 7 1.4C5.43667 1.4 4.1125 1.9425 3.0275 3.0275C1.9425 4.1125 1.4 5.43667 1.4 7C1.4 8.56333 1.9425 9.8875 3.0275 10.9725C4.1125 12.0575 5.43667 12.6 7 12.6Z" fill="#A1A1A1"/>
+                            </svg>
+                            <p id="lengthRequirement">Mínimo de 8 caracteres</p>
+                        </div>
+                        <div class="requisito-senha" id="lowercaseRequirement">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                <path d="M6.3 10.5H7.7V6.3H6.3V10.5ZM7 4.9C7.19833 4.9 7.36458 4.83292 7.49875 4.69875C7.63292 4.56458 7.7 4.39833 7.7 4.2C7.7 4.00167 7.63292 3.83542 7.49875 3.70125C7.36458 3.56708 7.19833 3.5 7 3.5C6.80167 3.5 6.63542 3.56708 6.50125 3.70125C6.36708 3.83542 6.3 4.00167 6.3 4.2C6.3 4.39833 6.36708 4.56458 6.50125 4.69875C6.63542 4.83292 6.80167 4.9 7 4.9ZM7 14C6.03167 14 5.12167 13.8163 4.27 13.4488C3.41833 13.0813 2.6775 12.5825 2.0475 11.9525C1.4175 11.3225 0.91875 10.5817 0.55125 9.73C0.18375 8.87833 0 7.96833 0 7C0 6.03167 0.18375 5.12167 0.55125 4.27C0.91875 3.41833 1.4175 2.6775 2.0475 2.0475C2.6775 1.4175 3.41833 0.91875 4.27 0.55125C5.12167 0.18375 6.03167 0 7 0C7.96833 0 8.87833 0.18375 9.73 0.55125C10.5817 0.91875 11.3225 1.4175 11.9525 2.0475C12.5825 2.6775 13.0813 3.41833 13.4488 4.27C13.8163 5.12167 14 6.03167 14 7C14 7.96833 13.8163 8.87833 13.4488 9.73C13.0813 10.5817 12.5825 11.3225 11.9525 11.9525C11.3225 12.5825 10.5817 13.0813 9.73 13.4488C8.87833 13.8163 7.96833 14 7 14ZM7 12.6C8.56333 12.6 9.8875 12.0575 10.9725 10.9725C12.0575 9.8875 12.6 8.56333 12.6 7C12.6 5.43667 12.0575 4.1125 10.9725 3.0275C9.8875 1.9425 8.56333 1.4 7 1.4C5.43667 1.4 4.1125 1.9425 3.0275 3.0275C1.9425 4.1125 1.4 5.43667 1.4 7C1.4 8.56333 1.9425 9.8875 3.0275 10.9725C4.1125 12.0575 5.43667 12.6 7 12.6Z" fill="#A1A1A1"/>
+                            </svg>
+                            <p id="lowercaseRequirement">Pelo menos uma letra minúscula</p>
+                        </div>
+                        <div class="requisito-senha" id="uppercaseRequirement">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                <path d="M6.3 10.5H7.7V6.3H6.3V10.5ZM7 4.9C7.19833 4.9 7.36458 4.83292 7.49875 4.69875C7.63292 4.56458 7.7 4.39833 7.7 4.2C7.7 4.00167 7.63292 3.83542 7.49875 3.70125C7.36458 3.56708 7.19833 3.5 7 3.5C6.80167 3.5 6.63542 3.56708 6.50125 3.70125C6.36708 3.83542 6.3 4.00167 6.3 4.2C6.3 4.39833 6.36708 4.56458 6.50125 4.69875C6.63542 4.83292 6.80167 4.9 7 4.9ZM7 14C6.03167 14 5.12167 13.8163 4.27 13.4488C3.41833 13.0813 2.6775 12.5825 2.0475 11.9525C1.4175 11.3225 0.91875 10.5817 0.55125 9.73C0.18375 8.87833 0 7.96833 0 7C0 6.03167 0.18375 5.12167 0.55125 4.27C0.91875 3.41833 1.4175 2.6775 2.0475 2.0475C2.6775 1.4175 3.41833 0.91875 4.27 0.55125C5.12167 0.18375 6.03167 0 7 0C7.96833 0 8.87833 0.18375 9.73 0.55125C10.5817 0.91875 11.3225 1.4175 11.9525 2.0475C12.5825 2.6775 13.0813 3.41833 13.4488 4.27C13.8163 5.12167 14 6.03167 14 7C14 7.96833 13.8163 8.87833 13.4488 9.73C13.0813 10.5817 12.5825 11.3225 11.9525 11.9525C11.3225 12.5825 10.5817 13.0813 9.73 13.4488C8.87833 13.8163 7.96833 14 7 14ZM7 12.6C8.56333 12.6 9.8875 12.0575 10.9725 10.9725C12.0575 9.8875 12.6 8.56333 12.6 7C12.6 5.43667 12.0575 4.1125 10.9725 3.0275C9.8875 1.9425 8.56333 1.4 7 1.4C5.43667 1.4 4.1125 1.9425 3.0275 3.0275C1.9425 4.1125 1.4 5.43667 1.4 7C1.4 8.56333 1.9425 9.8875 3.0275 10.9725C4.1125 12.0575 5.43667 12.6 7 12.6Z" fill="#A1A1A1"/>
+                            </svg>
+                            <p id="uppercaseRequirement">Pelo menos uma letra maiúscula</p>
+                        </div>
+                        <div class="requisito-senha" id="numberRequirement">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                <path d="M6.3 10.5H7.7V6.3H6.3V10.5ZM7 4.9C7.19833 4.9 7.36458 4.83292 7.49875 4.69875C7.63292 4.56458 7.7 4.39833 7.7 4.2C7.7 4.00167 7.63292 3.83542 7.49875 3.70125C7.36458 3.56708 7.19833 3.5 7 3.5C6.80167 3.5 6.63542 3.56708 6.50125 3.70125C6.36708 3.83542 6.3 4.00167 6.3 4.2C6.3 4.39833 6.36708 4.56458 6.50125 4.69875C6.63542 4.83292 6.80167 4.9 7 4.9ZM7 14C6.03167 14 5.12167 13.8163 4.27 13.4488C3.41833 13.0813 2.6775 12.5825 2.0475 11.9525C1.4175 11.3225 0.91875 10.5817 0.55125 9.73C0.18375 8.87833 0 7.96833 0 7C0 6.03167 0.18375 5.12167 0.55125 4.27C0.91875 3.41833 1.4175 2.6775 2.0475 2.0475C2.6775 1.4175 3.41833 0.91875 4.27 0.55125C5.12167 0.18375 6.03167 0 7 0C7.96833 0 8.87833 0.18375 9.73 0.55125C10.5817 0.91875 11.3225 1.4175 11.9525 2.0475C12.5825 2.6775 13.0813 3.41833 13.4488 4.27C13.8163 5.12167 14 6.03167 14 7C14 7.96833 13.8163 8.87833 13.4488 9.73C13.0813 10.5817 12.5825 11.3225 11.9525 11.9525C11.3225 12.5825 10.5817 13.0813 9.73 13.4488C8.87833 13.8163 7.96833 14 7 14ZM7 12.6C8.56333 12.6 9.8875 12.0575 10.9725 10.9725C12.0575 9.8875 12.6 8.56333 12.6 7C12.6 5.43667 12.0575 4.1125 10.9725 3.0275C9.8875 1.9425 8.56333 1.4 7 1.4C5.43667 1.4 4.1125 1.9425 3.0275 3.0275C1.9425 4.1125 1.4 5.43667 1.4 7C1.4 8.56333 1.9425 9.8875 3.0275 10.9725C4.1125 12.0575 5.43667 12.6 7 12.6Z" fill="#A1A1A1"/>
+                            </svg>
+                            <p id="numberRequirement">Pelo menos um número</p>
+                        </div>
+                        <div class="requisito-senha" id="specialCharRequirement">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                <path d="M6.3 10.5H7.7V6.3H6.3V10.5ZM7 4.9C7.19833 4.9 7.36458 4.83292 7.49875 4.69875C7.63292 4.56458 7.7 4.39833 7.7 4.2C7.7 4.00167 7.63292 3.83542 7.49875 3.70125C7.36458 3.56708 7.19833 3.5 7 3.5C6.80167 3.5 6.63542 3.56708 6.50125 3.70125C6.36708 3.83542 6.3 4.00167 6.3 4.2C6.3 4.39833 6.36708 4.56458 6.50125 4.69875C6.63542 4.83292 6.80167 4.9 7 4.9ZM7 14C6.03167 14 5.12167 13.8163 4.27 13.4488C3.41833 13.0813 2.6775 12.5825 2.0475 11.9525C1.4175 11.3225 0.91875 10.5817 0.55125 9.73C0.18375 8.87833 0 7.96833 0 7C0 6.03167 0.18375 5.12167 0.55125 4.27C0.91875 3.41833 1.4175 2.6775 2.0475 2.0475C2.6775 1.4175 3.41833 0.91875 4.27 0.55125C5.12167 0.18375 6.03167 0 7 0C7.96833 0 8.87833 0.18375 9.73 0.55125C10.5817 0.91875 11.3225 1.4175 11.9525 2.0475C12.5825 2.6775 13.0813 3.41833 13.4488 4.27C13.8163 5.12167 14 6.03167 14 7C14 7.96833 13.8163 8.87833 13.4488 9.73C13.0813 10.5817 12.5825 11.3225 11.9525 11.9525C11.3225 12.5825 10.5817 13.0813 9.73 13.4488C8.87833 13.8163 7.96833 14 7 14ZM7 12.6C8.56333 12.6 9.8875 12.0575 10.9725 10.9725C12.0575 9.8875 12.6 8.56333 12.6 7C12.6 5.43667 12.0575 4.1125 10.9725 3.0275C9.8875 1.9425 8.56333 1.4 7 1.4C5.43667 1.4 4.1125 1.9425 3.0275 3.0275C1.9425 4.1125 1.4 5.43667 1.4 7C1.4 8.56333 1.9425 9.8875 3.0275 10.9725C4.1125 12.0575 5.43667 12.6 7 12.6Z" fill="#A1A1A1"/>
+                            </svg>
+                            <p id="specialCharRequirement">Pelo menos um caractere especial (“?-#$!).</p>
+                        </div>
+                    </div>
+                    <div class="conselhos-senhas">
+                        <p style="font-weight: 600;">Dicas de segurança:</p>
+                        <p>Não use seu nome, sobrenome ou e-mail</p>
+                        <p>Não use caracteres iguais em sequência (ex.: AAAA)</p>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" id="submitButton" disabled style="display: flex; padding: 12px; justify-content: center; align-items: center; gap: 10px; align-self: stretch; border-radius: 4px; background: #3F3F3F; color: #FEFEFE; font-family: Inter; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal; text-transform: uppercase;">
+                Alterar Senha
+            </button>
+        </form>
+    <script>
+        function salvarSenha() {
+            // Seleciona os inputs de senha
+            const inputsSenha = document.querySelectorAll('.texto-senha');
+            
+            // Verifica se todos os campos estão preenchidos
+            for (const input of inputsSenha) {
+                if (input.value.trim() === '') { // trim() remove espaços em branco
+                    alert('Por favor, preencha todos os campos.');
+                    return; // Sai da função se algum campo estiver vazio
+                }
+            }
+
+            // Se todos os campos estiverem preenchidos, limpa os valores dos inputs
+            inputsSenha.forEach(input => input.value = '');
+
+            // Mostra um alerta de sucesso
+            alert('Senha alterada com sucesso!');
+        }
+
+        const newPassword = document.getElementById('newPassword');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const passwordFeedback = document.getElementById('passwordFeedback');
+        const submitButton = document.getElementById('submitButton');
+        const alertsDiv = document.getElementById('alertas-senhas');
+
+        // Função para validar a força da senha e atualizar os requisitos
+        function updatePasswordAlerts(password) {
+            const lengthRequirement = document.getElementById('lengthRequirement');
+            const uppercaseRequirement = document.getElementById('uppercaseRequirement');
+            const lowercaseRequirement = document.getElementById('lowercaseRequirement');
+            const numberRequirement = document.getElementById('numberRequirement');
+            const specialCharRequirement = document.getElementById('specialCharRequirement');
+            
+            // Validações para cada critério
+            const lengthValid = password.length >= 8;
+            const uppercaseValid = /[A-Z]/.test(password);
+            const lowercaseValid = /[a-z]/.test(password);
+            const numberValid = /\d/.test(password);
+            const specialCharValid = /[\W_]/.test(password);
+
+            // Atualiza a cor dos requisitos (verde se atendido, vermelho caso contrário)
+            lengthRequirement.style.color = lengthValid ? 'green' : 'red';
+            uppercaseRequirement.style.color = uppercaseValid ? 'green' : 'red';
+            lowercaseRequirement.style.color = lowercaseValid ? 'green' : 'red';
+            numberRequirement.style.color = numberValid ? 'green' : 'red';
+            specialCharRequirement.style.color = specialCharValid ? 'green' : 'red';
+        }
+
+        // Função para validar a força da senha
+        function isPasswordStrong(password) {
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+            return regex.test(password);
+        }
+
+        function validatePasswords() {
+            const allFilled = newPassword.value !== '' && confirmPassword.value !== '';
+
+            // Atualiza os alertas da senha
+            updatePasswordAlerts(newPassword.value);
+
+            if (newPassword.value !== confirmPassword.value) {
+                passwordFeedback.textContent = "As senhas não coincidem.";
+                passwordFeedback.style.color = "red";
+                submitButton.disabled = true;
+            } else if (!isPasswordStrong(newPassword.value)) {
+                passwordFeedback.textContent = "A nova senha não atende aos requisitos.";
+                passwordFeedback.style.color = "red";
+                submitButton.disabled = true;
+            } else {
+                passwordFeedback.textContent = '';
+            }
+
+            submitButton.disabled = !allFilled || (newPassword.value !== confirmPassword.value) || !isPasswordStrong(newPassword.value);
+        }
+
+        if (newPassword && confirmPassword && passwordFeedback && submitButton) {
+            newPassword.addEventListener('input', validatePasswords);
+            confirmPassword.addEventListener('input', validatePasswords);
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <!-- <script src="{% static '/js/script.js' %}"></script> -->
+</body>
+</html>
