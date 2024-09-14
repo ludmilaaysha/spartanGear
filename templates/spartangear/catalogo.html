@@ -220,9 +220,11 @@
           </div>
           <div class="listagem-produtos-catalogo">
               <!--AQUI INICIAM OS PRODUTOS-->
+              {% for produto_id , info in produtos.items %}
               <!--AQUI INICIA O CARD DO PRODUTO-->
-              {% include 'spartangear/partials/_card_produto.html' %}
+                {% include 'spartangear/partials/_card_produto.html' with produto=info %}
               <!--AQUI FINALIZA O CARD DO PRODUTO-->
+              {% endfor %}
               <!--AQUI FINALIZAM OS PRODUTOS-->
           </div>
           <div class="paginacao-catalogo">

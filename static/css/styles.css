@@ -625,7 +625,7 @@ a.opcao-menu:active .opcao-icon2 svg path{
 .generos{
     display: flex;
     padding: 32px 24px;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     gap: 16px;
     align-self: stretch;
@@ -1567,12 +1567,12 @@ a.opcao-menu:active .opcao-icon2 svg path{
     display: flex;
     align-items: flex-start;
     align-content: flex-start;
-    gap: 32px;
+    gap: 16px;
     align-self: stretch;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 32px;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 240px));
 }
+
 
 /* ///// card produto ///// */
 
@@ -2543,7 +2543,47 @@ a.opcao-menu:active .opcao-icon2 svg path{
     line-height: normal;
 }
 
+input:not(:placeholder-shown) {
+    background-color: none;
+    outline: none;
+    border: none;
+}
 
+
+/* *=*=*=*=*=*=*=*=**=*= pagamento *=*=*=*==*=*=*=*=*=*=*=*=*=*/
+.card {
+    width: 300px;
+    height: 200px;
+    perspective: 1000px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.card.flip .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 
 

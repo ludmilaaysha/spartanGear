@@ -14,13 +14,13 @@
 </head>
 
 <body>
-<div class="card-produto">
+  <div class="card-produto">
     <div class="cima-card-produto">
       <div class="miniatura-card-produto">
         <img src="{% static '/images/imagem_tenis.jpg' %}" class="imagem-produto-card">
       </div>
       <p class="nome-produto-card">
-        Tênis adidas Grand Court 2.0
+        {{ produto.nome }}
       </p>
     </div>
     <div class="preco-card-produto">
@@ -28,7 +28,7 @@
         R$ 399,99
       </span>
       <span class="preco-produto">
-        R$ 259,99
+        R$ {{ produto.preco }}
       </span>
     </div>
   </div>

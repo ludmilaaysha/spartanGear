@@ -659,5 +659,116 @@ document.addEventListener('DOMContentLoaded', function() {
     atualizarCarrinho();
 });
 
- 
+document.addEventListener('DOMContentLoaded', function () {
+    const cardNumber = document.getElementById('card-number');
+    const cardName = document.getElementById('card-name');
+    const cardExpiry = document.getElementById('card-expiry');
+    const cardCvv = document.getElementById('card-cvv');
+    const card = document.getElementById('card');
+
+    const cvvInput = document.getElementById('cvv');
+    const numberInput = document.getElementById('NCartao');
+    const nameInput = document.getElementById('Nome');
+    const expiryInput = document.getElementById('dataExp');
+
+    const creditCardNumber = document.querySelector('card-number');
+    const creditCardCvv = document.querySelector('card-cvv');
+    const creditCardInner = document.querySelector('.card-inner');
+    const creditCardCvvElement = document.querySelector('cvv');
+
+    creditCardCvv.addEventListener('focus', () => {
+    creditCardInner.classList.add("card-flip");
+    })
+
+    creditCardCvv.addEventListener("focusout", () => {
+    creditCardInner.classList.remove("card-flip");
+    });
+
+    creditCardNumber.addEventListener('input', event => {
+    if (isNaN(Number(event.target.value))) {
+        event.target.value = event.target.value.substr(0, event.target.value.length - 1);
+        return;
+    }
+
+    let cardNumber = [];
+    if (event.target.value.length > 0) {
+        cardNumber = event.target.value.match(/[0-9]{1,4}/g);
+    } 
+
+    const cardNo1 = document.querySelector('#cardNo1');
+    const cardNo2 = document.querySelector('#cardNo2');
+    const cardNo3 = document.querySelector('#cardNo3');
+    const cardNo4 = document.querySelector('#cardNo4');
+
+    cardNo1.textContent = cardNumber[0] ?? '1234';
+    cardNo2.textContent = cardNumber[1] ?? '5678';
+    cardNo3.textContent = cardNumber[2] ?? '9012';
+    cardNo4.textContent = cardNumber[3] ?? '3456';
+
+    if (event.target.value.length === 17) {
+        event.target.value = event.target.value.substr(
+            0,
+            event.target.value.length - 1
+        );
+    }
+
+    })
+
+    creditCardCvv.addEventListener('input', event => {
+    if (isNaN(Number(event.target.value))) {
+        event.target.value = event.target.value.substr(
+        0,
+        event.target.value.length - 1
+        );
+        return;
+    }
+
+        if (event.target.value.length === 0) {
+        creditCardCvvElement.textContent = 123;
+        return;
+        }
+    
+    
+    if (event.target.value.length === 4) {
+        event.target.value = event.target.value.substr(
+        0,
+        event.target.value.length - 1
+        );
+        return;
+    }
+
+    creditCardCvvElement.textContent = event.target.value;
+    })
+
+
+    
+    numberInput.addEventListener('input', function () {
+        const value = this.value.replace(/\s+/g, '').replace(/(.{4})/g, '$1 ').trim();
+        cardNumber.textContent = value || '**** **** **** ****';
+    });
+    
+    nameInput.addEventListener('input', function () {
+        cardName.textContent = this.value || 'John Doe';
+    });
+    
+    expiryInput.addEventListener('input', function () {
+        cardExpiry.textContent = this.value || 'MM/YY';
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+
+    cvvInput.addEventListener('focus', function () {
+        card.classList.add('flip');
+    });
+    
+    cvvInput.addEventListener('blur', function () {
+        card.classList.remove('flip');
+    });
+    
+    cvvInput.addEventListener('input', function () {
+        cardCvv.textContent = this.value || '***';
+    });
+});
+})
 

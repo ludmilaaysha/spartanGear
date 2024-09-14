@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     return render(request, 'spartangear/index.html')
@@ -14,7 +16,16 @@ def recuperarsenha(request):
     return render(request, 'spartangear/recuperarsenha.html')
 
 def catalogo(request):
-    return render(request, 'spartangear/catalogo.html')
+    dados_produto = {
+        1: {"nome": "Tênis Gamma Force Nike Feminino", 
+            "preco": 600.00},
+            
+        2: {"nome": "Tênis Puma Carina Feminino", 
+            "preco": 300.00}
+    }
+
+
+    return render(request, 'spartangear/catalogo.html', {"produtos": dados_produto})
 
 def produto(request):
     return render(request, 'spartangear/paginaproduto.html')
@@ -22,26 +33,49 @@ def produto(request):
 def carrinho(request):
     return render(request, 'spartangear/carrinho.html')
 
+@login_required
 def entrega(request):
-    return render(request, 'spartangear/entrega.html')
+    if request.user.is_authenticated:
+        return render(request, 'spartangear/entrega.html')
+    else:
+        messages.warning(request, "Realize o login para finalizar sua compra")
 
+@login_required
 def pagamento(request):
-    return render(request, 'spartangear/pagamento.html')
+    if request.user.is_authenticated:
+        return render(request, 'spartangear/pagamento.html')
+    else:
+        messages.warning(request, "Realize o login para realizar pagamento")
 
+@login_required
 def meucadastro(request):
-    return render(request, 'spartangear/meucadastro.html')
+    if request.user.is_authenticated:
+        return render(request, 'spartangear/meucadastro.html')
+    else:
+        messages.warning(request, "Realize o login para acessar seus dados")
 
+@login_required
 def meuspedidos(request):
-    return render(request, 'spartangear/meuspedidos.html')
+    if request.user.is_authenticated:
+        return render(request, 'spartangear/meuspedidos.html')
+    else:
+        messages.warning(request, "Realize o login para visualizar seus pedidos")
 
+@login_required
 def pedido(request):
-    return render(request, 'spartangear/paginapedido.html')
-
+    if request.user.is_authenticated:
+        # O usuário está autenticado
+        return render(request, 'spartangear/paginapedido.html')
+    else:
+        messages.warning(request, "Realize o login para visualizar o pedido")
+    
+@login_required
 def alterarsenha(request):
-    return render(request, 'spartangear/alterarsenha.html')
+    if request.user.is_authenticated:
+        # O usuário está autenticado
+        return render(request, 'spartangear/alterarsenha.html')
+    else:
+        messages.warning(request, "Realize o login para alterar a senha")
 
 def ajudaeatendimento(request):
     return render(request, 'spartangear/ajudaeatendimento.html')
-
-def sequenciacompras(request):
-    return render(request, 'spartangear/sequencia_compras_fixo.html')

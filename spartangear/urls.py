@@ -1,6 +1,6 @@
 from django.urls import path
 from spartangear import views
-from spartangear.views import index, login, cadastro, recuperarsenha, catalogo, produto, carrinho, entrega, pagamento, meucadastro, meuspedidos, pedido, alterarsenha, ajudaeatendimento, sequenciacompras
+from spartangear.views import index, login, cadastro, recuperarsenha, catalogo, produto, carrinho, entrega, pagamento, meucadastro, meuspedidos, pedido, alterarsenha, ajudaeatendimento
 urlpatterns = [
     path('', views.index, name='index'),
     # path('login', login, name='login'),
@@ -16,7 +16,6 @@ urlpatterns = [
     path('pedido', pedido, name='pedido'),
     path('alterarsenha', alterarsenha, name='alterarsenha'),
     path('ajudaeatendimento', ajudaeatendimento, name='ajudaeatendimento'),
-    path('cimasequencia', sequenciacompras)
 
 
 
