@@ -17,6 +17,9 @@ def index(request):
 def login(request):
     return render(request, 'spartangear/login.html')
 
+def paginapedido(request):
+    return render(request, 'spartangear/paginapedido.html')
+
 def cadastro(request):
     return render(request, 'spartangear/cadastro.html')
 

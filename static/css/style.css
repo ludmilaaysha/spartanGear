@@ -1682,6 +1682,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .botao-finalizar{
+    width: 100%;
     display: flex;
     padding: 16px;
     justify-content: center;
@@ -1703,6 +1704,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .botao-comprar-mais{
+    width: 100%;
     display: flex;
     padding: 16px;
     justify-content: center;

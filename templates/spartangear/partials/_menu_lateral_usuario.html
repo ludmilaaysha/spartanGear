@@ -11,6 +11,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="icon" href="{% static '/images/favicon.svg' %}" type="image/svg+xml">
+    <style>
+        /* Seu arquivo styles.css */
+    .opcao-menu.active .opcao-texto {
+        font-weight: bold; /* Adiciona o estilo de negrito ao texto */
+}
+
+    </style>
 </head>
 
 <body>
@@ -56,5 +63,23 @@
             <p class="opcao-texto">Sair</p>
         </a>
     </div>
+
+    <script>
+        // Aguarda o carregamento do DOM
+        document.addEventListener('DOMContentLoaded', function () {
+            // Obtém o caminho da URL atual
+            const currentPath = window.location.pathname;
+    
+            // Seleciona todos os itens de menu
+            const menuItems = document.querySelectorAll('.opcoes-menu a');
+    
+            // Percorre todos os itens de menu para encontrar o correspondente à URL atual
+            menuItems.forEach(function (item) {
+                if (item.getAttribute('href') === currentPath) {
+                    item.classList.add('active'); // Adiciona a classe 'active' ao item de menu correspondente
+                }
+            });
+        });
+    </script>
 </body>
 </html>
