@@ -11,15 +11,799 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="icon" href="{% static '/images/favicon.svg' %}" type="image/svg+xml">
+    <style>
+        .principal-pagina-inicial{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 80px;
+          align-self: stretch;
+      }
+      
+      .carrossel-e-infos{
+          display: flex;
+          padding-top: 32px;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 80px;
+          align-self: stretch;
+      }
+      
+      .carrossel{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          align-self: stretch;
+      }
+      
+      .imagens-carrossel{
+          display: flex;
+          align-items: center;
+          position: absolute;
+      
+      }
+      
+      .img-carrossel{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #FEFEFE;
+          width: 100vw; /* Certifique-se de que as imagens ocupem a largura total */
+          height: auto; /* Mantenha a proporção da imagem */
+      }
+      
+      .icones-carrossel{
+          display: flex;
+          height: 400px;
+          padding-bottom: 16px;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          flex: 1 0 0;
+          background: linear-gradient(180deg, rgba(30, 30, 30, 0.00) 50%, #1E1E1E 122.75%);
+      }
+      
+      .setas-carrossel{
+          display: flex;
+          padding: 0px 40px;
+          justify-content: space-between;
+          align-items: center;
+          flex: 1 0 0;
+          align-self: stretch;
+      }
+      
+      .bolinhas-carrossel{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 12px;
+      }
+      
+      .ball-carrossel{
+          width: 12px;
+          height: 12px;
+          border-radius: 12px;
+          border: 3px solid #FEFEFE;
+      }
+      
+      .info-embaixo-carrossel{
+          display: flex;
+          padding: 0px 80px;
+          align-items: flex-start;
+          align-content: flex-start;
+          gap: 32px;
+          align-self: stretch;
+          flex-wrap: wrap;
+      }
+      
+      .info-carrossel{
+          padding: 0px 80px;
+          display: flex;
+          min-width: 200px;
+          align-items: flex-start;
+          gap: 16px;
+          flex: 1 0 0;
+      }
+      
+      .informacoes-carrossel{
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 4px;
+          flex: 1 0 0;
+      }
+      
+      .titulo-info-carro{
+          align-self: stretch;
+          color: #1E1E1E;
+          font-family: Inter;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: normal;
+      }
+      
+      .texto-info-carro{
+          color: #909090;
+          font-family: Inter;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          align-self: stretch;
+      }
+      
+      .icone-fone-carrossel{
+          display: flex;
+          width: 32px;
+          height: 32px;
+          justify-content: center;
+          align-items: center;
+      }
+      
+      .secao-espostes-cor{
+          display: flex;
+          padding: 0px 80px;
+          flex-direction: column;
+          gap: 26px;
+          align-self: stretch;
+      }
+      
+      .titutlo-da-secao-cor{
+          color: #1E1E1E;
+          font-family: Inter;
+          font-size: 32px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+          padding: 0px 80px;
+      }
+      
+      .esportes-cor{
+          display: flex;
+          padding: 0px 80px;
+          align-items: center;
+          gap: 26px;
+          align-self: stretch;
+      }
+      
+      .cada-esporte-cor{
+          display: flex;
+          min-width: 232px;
+          padding: 32px;
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
+          flex: 1 0 0;
+          border-radius: 16px 40px;
+          border: 1px solid rgba(196, 196, 196, 0.20);
+          background: #FEFEFE;
+          box-shadow: 0px 30px 48px 0px rgba(30, 30, 30, 0.10);
+          overflow: hidden;
+      }
+      
+      .cada-esporte-cor:hover{
+          transform: scale(1.1); /* Aumenta o tamanho em 10% */
+          box-shadow: 0px 30px 48px 0px rgba(30, 30, 30, 0.15);
+      }
+      
+      .nome-cada-esporte{
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 24px;
+          align-self: stretch;
+      }
+      
+      .nome-em-si-esporte{
+          align-self: stretch;
+          color: #1E1E1E;
+          font-family: Inter;
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+      }
+      
+      .botao-expandir{
+          display: flex; /* Define o contêiner como flex */
+          padding: 8px 24px; /* Mantém o espaçamento interno */
+          justify-content: center; /* Centraliza horizontalmente */
+          align-items: center; /* Centraliza verticalmente */
+          gap: 10px; /* Espaço entre elementos dentro do botão */
+          border-radius: 24px; /* Define bordas arredondadas */
+          background: #00594F; /* Cor de fundo */
+          border: none; /* Remove borda */
+          cursor: pointer; /* Indica um botão */
+}
+      
+      .texto-dentro-botao-expandir{
+        color: #FEFEFE; /* Cor do texto */
+        text-align: center; /* Garante que o texto esteja centralizado */
+        font-family: Inter; /* Fonte */
+        font-size: 12px; /* Tamanho da fonte */
+        font-style: normal; /* Estilo da fonte */
+        font-weight: 500; /* Peso da fonte */
+        line-height: normal; /* Altura da linha */
+        margin: 0; /* Remove qualquer margem extra */
+      }
+      
+      .imagem-esporte-cor{
+          display: flex;
+          width: 200px;
+          height: 120px;
+          align-items: center; 
+          position:relative;
+      }
+      
+      .img-esp-cor{
+          width: 220px;
+          height: 220px;
+          position: absolute;
+          position: absolute;
+          right: -20px;
+          top: -50px;
+      }
+      
+      .outros-produtos-inicio{
+          display: flex;
+          min-width: 480px;
+          padding: 0px 80px;
+          justify-content: center;
+          align-items: flex-start;
+          align-content: flex-start;
+          gap: 48px;
+          align-self: stretch;
+          flex-wrap: wrap;
+      }
+      
+      .esses-produtos{
+          display: flex;
+          min-width: 480px;
+          justify-content: center;
+          align-items: flex-start;
+          align-content: flex-start;
+          gap: 24px;
+          flex: 1 0 0;
+          flex-wrap: wrap;
+          padding: 0px 80px;
+      }
+      
+      .produto-inicio{
+          display: flex;
+          height: 280px;
+          min-width: 200px;
+          max-width: 400px;
+          flex-direction: column;
+          align-items: center;
+          gap: 8px;
+          flex: 1 0 0;
+          border-radius: 8px;
+          background: #279905;
+      }
+      
+      .banner-inicial{
+          position: relative; /* Define o contêiner como relativo para posicionamento absoluto dos elementos internos */
+          width: 100%;
+          height: 400px; /* Altura do banner */
+          background-color: #000; /* Cor de fundo caso a imagem não carregue */
+          overflow: hidden; /* Oculta partes excedentes */
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white; /* Cor do texto */
+          text-align: center; /* Alinhamento do texto */
+      }
+
+      .texto-banner-preto{
+        display: flex;
+        height: 230px;
+        min-width: 400px;
+        padding: 0px 64px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex: 1 0 0;
+      }
+
+      .txt-ban-pret{
+        color: #FEFEFE;
+        font-family: Inter;
+        font-size: 39.216px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+        text-transform: uppercase;
+      }
+
+      .imagem-banner-ia{
+        display: flex;
+        width: 720px;
+        height: 310px;
+        min-width: 400px;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        gap: 10px;
+        background-size: cover;
+        background-position: center;
+        -webkit-mask-image: radial-gradient(circle, black 60%, transparent 100%);
+        mask-image: radial-gradient(circle, black 60%, transparent 100%);
+      }
+      
+      .produtos-best-seller{
+          display: flex;
+          padding: 0px 160px;
+          flex-direction: column;
+          align-items: center;
+          gap: 40px;
+          align-self: stretch;
+      }
+      
+      .titulo-best{
+          color: #1E1E1E;
+          text-align: center;
+          font-family: Inter;
+          font-size: 32px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+          align-self: stretch;
+      }
+      
+      .produtos-best{
+          display: flex;
+          align-items: flex-start;
+          align-content: flex-start;
+          gap: 32px;
+          align-self: stretch;
+          flex-wrap: wrap;
+      }
+      
+      .sobre-projeto-e-final{
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          align-self: stretch;
+      }
+      
+      .projeto-SG{
+          display: flex;
+          padding: 80px;
+          flex-direction: column;
+          align-items: center;
+          gap: 40px;
+          align-self: stretch;
+          background: #F5F5F5;
+      }
+      
+      .sobre-projeto{
+          display: flex;
+          min-width: 336px;
+          align-items: flex-end;
+          align-content: flex-end;
+          gap: 16px;
+          align-self: stretch;
+          flex-wrap: wrap;
+      }
+      
+      .descricao-SG{
+          display: flex;
+          min-width: 336px;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 32px;
+          flex: 1 0 0;
+          padding: 0px 80px;
+      }
+      
+      .descreve-site{
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
+          align-self: stretch;
+      }
+      
+      .titulo-proj{
+          color: #1E1E1E;
+          font-family: Inter;
+          font-size: 32px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+      }
+      
+      .corpo-proj{
+          color: #3F3F3F;
+          text-align: justify;
+          font-family: Inter;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: normal;
+      }
+      
+      .botao-git{
+        display: flex; /* Definindo o contêiner como flex */
+        align-items: center; /* Alinha verticalmente */
+        justify-content: center; /* Alinha horizontalmente */
+        padding: 12px 16px;
+        gap: 10px; /* Ajuste o espaçamento entre o ícone e o texto */
+        border-radius: 8px;
+        background: #1E1E1E;
+        box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.25);
+        cursor: pointer; /* Cursor para indicar um botão */
+        border:none
+      }
+      
+      .texto-botao-git{
+        color: #FEFEFE;
+        font-family: Inter;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-align: center; /* Centraliza o texto */
+        margin: 0; /* Remove qualquer margem adicional */
+
+
+      }
+      
+      .foto-fundo-pagina-projeto{
+        display: flex;
+        height: 220px;
+        min-width: 336px;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 10px;
+        flex: 1 0 0;
+      }
+
+      .logo-no-inicio-projeto{
+        display: flex;
+        width: 533px;
+        padding-bottom: 20.219px;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .sobre-idealizadoras{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 40px;
+          align-self: stretch;
+      }
+      
+      .titulo-idealizadoras{
+          display: flex;
+          align-items: flex-start;
+          gap: 16px;
+      }
+      
+      .texto-idealizadoras{
+          color: #1E1E1E;
+          font-family: Inter;
+          font-size: 32px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+      }
+      
+      .MeL{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          align-content: center;
+          gap: 56px;
+          align-self: stretch;
+          flex-wrap: wrap;
+      }
+      
+      .individual-ideali{
+          display: flex;
+          min-width: 336px;
+          max-width: 612px;
+          align-items: flex-start;
+          gap: 16px;
+          flex: 1 0 0;
+      }
+      
+      .individual-foto{
+          border-radius: 200px;
+          width: 120px;
+          height: 120px;
+      }
+      
+      .individual-descricao{
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 11px;
+          flex: 1 0 0;
+      }
+      
+      .titulo-individual-pessoa{
+          color: #3F3F3F;
+          font-family: Inter;
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 800;
+          line-height: normal;
+          align-self: stretch;
+      }
+      
+      .corpo-individual-pessoa{
+          color: #3F3F3F;
+          text-align: justify;
+          font-family: Inter;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          align-self: stretch;
+      }
+      
+      .linkedin-individual{
+          display: flex;
+          padding: 4px 0px;
+          align-items: flex-start;
+          gap: 4px;
+      }
+      
+      .txt-linkedin-ind{
+          color: #909090;
+          font-family: Inter;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+      }
+    
+        
+      .div-a-sem-linha{
+          text-decoration: none;
+      }
+    </style>
 </head>
 
-<body style="position: relative;">
+<body>
     {% include 'spartangear/partials/_header.html' %}
-
-    {% for message in messages %}
-        {% include 'users/partials/_messages.html' %}
-    {% endfor %}
-    
+    <div class="principal-pagina-inicial">
+      <div class="carrossel-e-infos">
+        <div class="carrossel">
+          <div class="imagens-carrossel">
+            <img class="img-carrossel" src="{% static '/images/carrossel1.jpg' %}">
+          </div>
+          <div class="icones-carrossel">
+            <div class="setas-carrossel">
+            </div>
+            <div class="bolinhas-carrossel">
+            </div>
+          </div>
+        </div>
+        <div class="info-embaixo-carrossel">
+          <div class="info-carrossel">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21.5007 14.4048L10.5007 8.11904M17.5595 5.86718L25.4167 10.3568C25.8979 10.6317 26.2979 11.0289 26.5761 11.5083C26.8543 11.9877 27.0008 12.5321 27.0007 13.0863V20.4375C27.0008 20.9917 26.8543 21.5361 26.5761 22.0155C26.2979 22.4949 25.8979 22.8921 25.4167 23.167L17.5595 27.6566C17.0848 27.9278 16.5474 28.0705 16.0007 28.0705C15.4539 28.0705 14.9166 27.9278 14.4418 27.6566L6.58467 23.167C6.10341 22.8921 5.70341 22.4949 5.42523 22.0155C5.14704 21.5361 5.00057 20.9917 5.00067 20.4375V13.0863C5.00057 12.5321 5.14704 11.9877 5.42523 11.5083C5.70341 11.0289 6.10341 10.6317 6.58467 10.3568L14.4418 5.86718C14.9166 5.59598 15.4539 5.45334 16.0007 5.45334C16.5474 5.45334 17.0848 5.59598 17.5595 5.86718Z" stroke="#C20000" stroke-width="1.57143" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5.78571 12.0476L14.5103 16.7462C14.9681 16.9927 15.48 17.1217 16 17.1217C16.52 17.1217 17.0318 16.9927 17.4897 16.7462L26.2143 12.0476M16 17.5476V27.7619" stroke="#C20000" stroke-width="1.57143" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="informacoes-carrossel">
+              <h1 class="titulo-info-carro">Frete grátis*</h1>
+              <h1 class="texto-info-carro">Em compras acima de R$ 299</h1>
+            </div>
+          </div>
+          <div class="info-carrossel">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M28.2325 12.8525C27.7612 12.36 27.2738 11.8525 27.09 11.4063C26.92 10.9975 26.91 10.32 26.9 9.66378C26.8813 8.44378 26.8612 7.06128 25.9 6.10003C24.9387 5.13878 23.5562 5.11878 22.3363 5.10003C21.68 5.09003 21.0025 5.08003 20.5938 4.91003C20.1488 4.72628 19.64 4.23878 19.1475 3.76753C18.285 2.93878 17.305 2.00003 16 2.00003C14.695 2.00003 13.7162 2.93878 12.8525 3.76753C12.36 4.23878 11.8525 4.72628 11.4062 4.91003C11 5.08003 10.32 5.09003 9.66375 5.10003C8.44375 5.11878 7.06125 5.13878 6.1 6.10003C5.13875 7.06128 5.125 8.44378 5.1 9.66378C5.09 10.32 5.08 10.9975 4.91 11.4063C4.72625 11.8513 4.23875 12.36 3.7675 12.8525C2.93875 13.715 2 14.695 2 16C2 17.305 2.93875 18.2838 3.7675 19.1475C4.23875 19.64 4.72625 20.1475 4.91 20.5938C5.08 21.0025 5.09 21.68 5.1 22.3363C5.11875 23.5563 5.13875 24.9388 6.1 25.9C7.06125 26.8613 8.44375 26.8813 9.66375 26.9C10.32 26.91 10.9975 26.92 11.4062 27.09C11.8512 27.2738 12.36 27.7613 12.8525 28.2325C13.715 29.0613 14.695 30 16 30C17.305 30 18.2837 29.0613 19.1475 28.2325C19.64 27.7613 20.1475 27.2738 20.5938 27.09C21.0025 26.92 21.68 26.91 22.3363 26.9C23.5562 26.8813 24.9387 26.8613 25.9 25.9C26.8612 24.9388 26.8813 23.5563 26.9 22.3363C26.91 21.68 26.92 21.0025 27.09 20.5938C27.2738 20.1488 27.7612 19.64 28.2325 19.1475C29.0613 18.285 30 17.305 30 16C30 14.695 29.0613 13.7163 28.2325 12.8525ZM26.7887 17.7638C26.19 18.3888 25.57 19.035 25.2412 19.8288C24.9262 20.5913 24.9125 21.4625 24.9 22.3063C24.8875 23.1813 24.8738 24.0975 24.485 24.485C24.0963 24.8725 23.1862 24.8875 22.3062 24.9C21.4625 24.9125 20.5913 24.9263 19.8288 25.2413C19.035 25.57 18.3888 26.19 17.7638 26.7888C17.1388 27.3875 16.5 28 16 28C15.5 28 14.8562 27.385 14.2362 26.7888C13.6163 26.1925 12.965 25.57 12.1713 25.2413C11.4088 24.9263 10.5375 24.9125 9.69375 24.9C8.81875 24.8875 7.9025 24.8738 7.515 24.485C7.1275 24.0963 7.1125 23.1863 7.1 22.3063C7.0875 21.4625 7.07375 20.5913 6.75875 19.8288C6.43 19.035 5.81 18.3888 5.21125 17.7638C4.6125 17.1388 4 16.5 4 16C4 15.5 4.615 14.8563 5.21125 14.2363C5.8075 13.6163 6.43 12.965 6.75875 12.1713C7.07375 11.4088 7.0875 10.5375 7.1 9.69378C7.1125 8.81878 7.12625 7.90253 7.515 7.51503C7.90375 7.12753 8.81375 7.11253 9.69375 7.10003C10.5375 7.08753 11.4088 7.07378 12.1713 6.75878C12.965 6.43003 13.6112 5.81003 14.2362 5.21128C14.8612 4.61253 15.5 4.00003 16 4.00003C16.5 4.00003 17.1438 4.61503 17.7638 5.21128C18.3838 5.80753 19.035 6.43003 19.8288 6.75878C20.5913 7.07378 21.4625 7.08753 22.3062 7.10003C23.1812 7.11253 24.0975 7.12628 24.485 7.51503C24.8725 7.90378 24.8875 8.81378 24.9 9.69378C24.9125 10.5375 24.9262 11.4088 25.2412 12.1713C25.57 12.965 26.19 13.6113 26.7887 14.2363C27.3875 14.8613 28 15.5 28 16C28 16.5 27.385 17.1438 26.7887 17.7638ZM21.7075 12.2925C21.8005 12.3854 21.8742 12.4957 21.9246 12.6171C21.9749 12.7385 22.0008 12.8686 22.0008 13C22.0008 13.1314 21.9749 13.2616 21.9246 13.383C21.8742 13.5044 21.8005 13.6147 21.7075 13.7075L14.7075 20.7075C14.6146 20.8005 14.5043 20.8743 14.3829 20.9246C14.2615 20.9749 14.1314 21.0008 14 21.0008C13.8686 21.0008 13.7385 20.9749 13.6171 20.9246C13.4957 20.8743 13.3854 20.8005 13.2925 20.7075L10.2925 17.7075C10.1049 17.5199 9.99944 17.2654 9.99944 17C9.99944 16.7347 10.1049 16.4802 10.2925 16.2925C10.4801 16.1049 10.7346 15.9995 11 15.9995C11.2654 15.9995 11.5199 16.1049 11.7075 16.2925L14 18.5863L20.2925 12.2925C20.3854 12.1996 20.4957 12.1258 20.6171 12.0755C20.7385 12.0251 20.8686 11.9992 21 11.9992C21.1314 11.9992 21.2615 12.0251 21.3829 12.0755C21.5043 12.1258 21.6146 12.1996 21.7075 12.2925Z" fill="#C20000"/>
+            </svg>
+            <div class="informacoes-carrossel">
+              <h1 class="titulo-info-carro">Compra segura</h1>
+              <h1 class="texto-info-carro">Receba o produto ou seu dinheiro de volta</h1>
+            </div>
+          </div>
+          <div class="info-carrossel">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M25.3333 26.6667H6.66667C5.95942 26.6667 5.28115 26.3857 4.78105 25.8856C4.28095 25.3855 4 24.7073 4 24V12C4 11.2928 4.28095 10.6145 4.78105 10.1144C5.28115 9.61429 5.95942 9.33334 6.66667 9.33334H25.3333C26.0406 9.33334 26.7189 9.61429 27.219 10.1144C27.719 10.6145 28 11.2928 28 12V24C28 24.7073 27.719 25.3855 27.219 25.8856C26.7189 26.3857 26.0406 26.6667 25.3333 26.6667Z" stroke="#C20000" stroke-width="2"/>
+              <path d="M22 18.6667C21.8232 18.6667 21.6536 18.5964 21.5286 18.4714C21.4036 18.3464 21.3333 18.1768 21.3333 18C21.3333 17.8232 21.4036 17.6536 21.5286 17.5286C21.6536 17.4036 21.8232 17.3333 22 17.3333C22.1768 17.3333 22.3464 17.4036 22.4714 17.5286C22.5964 17.6536 22.6667 17.8232 22.6667 18C22.6667 18.1768 22.5964 18.3464 22.4714 18.4714C22.3464 18.5964 22.1768 18.6667 22 18.6667Z" fill="#C20000" stroke="#C20000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M24 9.33334V7.47067C23.9999 7.06201 23.9059 6.65884 23.7252 6.2923C23.5445 5.92575 23.2819 5.60564 22.9578 5.35669C22.6338 5.10773 22.2568 4.93659 21.8561 4.85649C21.4553 4.77638 21.0415 4.78944 20.6467 4.89467L5.98 8.80534C5.41207 8.95668 4.91005 9.29142 4.55199 9.75751C4.19392 10.2236 3.99987 10.7949 4 11.3827V12" stroke="#C20000" stroke-width="2"/>
+            </svg>
+            <div class="informacoes-carrossel">
+              <h1 class="titulo-info-carro">Pagamento simplificado</h1>
+              <h1 class="texto-info-carro">Todas as bandeiras aceitas</h1>
+            </div>
+          </div>
+          <div class="info-carrossel">
+            <div class="icone-fone-carrossel">
+              <svg width="32" height="31" viewBox="0 0 32 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21.9998 15.766C21.9998 15.3508 21.9998 15.1432 22.0622 14.9584C22.2434 14.4208 22.7222 14.2132 23.2022 13.9948C23.7398 13.7488 24.0086 13.6264 24.2762 13.6048C24.5786 13.5808 24.8822 13.6456 25.1414 13.7908C25.4846 13.9828 25.7246 14.35 25.9694 14.6476C27.1009 16.0228 27.6673 16.7104 27.8737 17.4675C28.0417 18.0795 28.0417 18.7203 27.8737 19.3311C27.5725 20.4375 26.6186 21.3639 25.9118 22.223C25.5506 22.661 25.3694 22.8806 25.1414 23.009C24.8777 23.1552 24.5766 23.22 24.2762 23.195C24.0086 23.1734 23.7398 23.051 23.201 22.805C22.721 22.5866 22.2434 22.379 22.0622 21.8415C21.9998 21.6567 21.9998 21.4491 21.9998 21.0351V15.766ZM10.0001 15.766C10.0001 15.2428 9.98568 14.7736 9.56329 14.4064C9.40969 14.2732 9.2057 14.1808 8.79891 13.9948C8.26012 13.75 7.99132 13.6264 7.72373 13.6048C6.92334 13.54 6.49255 14.0872 6.03176 14.6488C4.89898 16.0228 4.33259 16.7104 4.125 17.4687C3.95797 18.0787 3.95797 18.7223 4.125 19.3323C4.42739 20.4375 5.38257 21.3651 6.08816 22.223C6.53335 22.763 6.95934 23.2562 7.72373 23.195C7.99132 23.1734 8.26012 23.051 8.79891 22.805C9.2069 22.6202 9.40969 22.5266 9.56329 22.3934C9.98568 22.0262 10.0001 21.5571 10.0001 21.0351V15.766Z" stroke="#C20000" stroke-width="1.79996" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M25.5995 14.2V12.4C25.5995 7.76094 21.3012 4.00021 15.9997 4.00021C10.6982 4.00021 6.39987 7.76094 6.39987 12.4V14.2M25.5995 22.5998C25.5995 27.9997 20.7996 27.9997 15.9997 27.9997" stroke="#C20000" stroke-width="1.79996" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>  
+            <div class="informacoes-carrossel">
+              <h1 class="titulo-info-carro">Suporte online</h1>
+              <h1 class="texto-info-carro">Em compras acima de R$ 299</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="secao-espostes-cor">
+        <h1 class="titutlo-da-secao-cor">Navegue por esportes</h1>
+        <div class="esportes-cor">
+          <div class="cada-esporte-cor">
+            <div class="nome-cada-esporte">
+              <h1 class="nome-em-si-esporte">Futebol</h1>
+              <a href="{% url 'catalogo' %}" class="div-a-sem-linha">
+                <button type="button" class="botao-expandir">
+                  <h1 class="texto-dentro-botao-expandir">Explorar</h1>
+                </button>
+              </a>
+            </div>
+            <div class="imagem-esporte-cor">
+              <img src="{% static '/images/bola.png' %}" class="img-esp-cor">
+            </div>
+          </div>
+          <div class="cada-esporte-cor">
+            <div class="nome-cada-esporte">
+              <h1 class="nome-em-si-esporte">Tênis</h1>
+              <a href="{% url 'catalogo' %}" class="div-a-sem-linha">
+                <button type="button" class="botao-expandir" style="background-color: #C20000;">
+                  <h1 class="texto-dentro-botao-expandir">Explorar</h1>
+                </button>
+                </a>
+            </div>
+            <div class="imagem-esporte-cor" style="position:relative">
+              <img src="{% static '/images/raquete.png' %}" class="img-esp-cor" style="width: 232px; height: 242px; flex-shrink: 0;">
+            </div>
+          </div>
+          <div class="cada-esporte-cor">
+            <div class="nome-cada-esporte">
+              <h1 class="nome-em-si-esporte">Vôlei</h1>
+              <a href="{% url 'catalogo' %}" class="div-a-sem-linha">
+                <button type="button" class="botao-expandir" style="background-color: #590B00;">
+                  <h1 class="texto-dentro-botao-expandir">Explorar</h1>
+                </button>
+              </a>
+            </div>
+            <div class="imagem-esporte-cor">
+              <img src="{% static '/images/bolavolei.png' %}" class="img-esp-cor" style="width: 245px;height: 200px; right: -35px; top: -43px;">
+            </div>
+          </div>
+          <div class="cada-esporte-cor">
+            <div class="nome-cada-esporte">
+              <h1 class="nome-em-si-esporte">Natação</h1>
+              <a href="{% url 'catalogo' %}" class="div-a-sem-linha">
+                <button type="button" class="botao-expandir" style="background-color: #00278B;">
+                  <h1 class="texto-dentro-botao-expandir">Explorar</h1>
+                </button>
+              </a>
+            </div>
+              <div class="imagem-esporte-cor">
+                <img src="{% static '/images/oculosnadar.png' %}" class="img-esp-cor" style="flex-shrink: 0;">
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="outros-produtos-inicio">
+        <div class="esses-produtos">
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+        </div>
+      </div>
+      <div class="banner-inicial" style="background-color: black;">
+        <div class="texto-banner-preto">
+          <h1 class="txt-ban-pret">Onde os </h1><h1 class="txt-ban-pret" style="color:#c20000">campeões</h1><h1 class="txt-ban-pret"> encontram seu arsenal.</h1>
+        </div>
+        <img class="imagem-banner-ia" src="{% static '/images/campeao.png' %}"></img>
+      </div>
+      <div class="produtos-best-seller">
+        <h1 class="titulo-best">Produtos Best-Seller</h1>
+        <div class="produtos-best">
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+          <div class="produto-inicio">card do produto é no lugar desta div</div>
+        </div>
+      </div>
+      <div class="sobre-projeto-e-final">
+        <div class="projeto-SG">
+          <div class="sobre-projeto">
+            <div class="descricao-SG">
+              <div class="descreve-site">
+                <h1 class="titulo-proj">O Projeto</h1>
+                <h1 class="corpo-proj"><b>Spartans Gear</b> é o resultado de um projeto acadêmico focado em utilizar os conceitos de <b>Orientação a Objetos</b>. Com o objetivo de criar uma plataforma robusta, segura e fácil de usar, este projeto combina o melhor da <b>tecnologia</b> com a paixão pelo <b>esporte</b>.</h1>
+              </div>
+              <a href="https://github.com/ludmilaaysha/spartanGear.git" class="div-a-sem-linha">
+                <button type="button" class="botao-git" >
+                  <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2.3999C10.6868 2.3999 9.38642 2.65856 8.17317 3.16111C6.95991 3.66365 5.85752 4.40025 4.92893 5.32883C3.05357 7.2042 2 9.74774 2 12.3999C2 16.8199 4.87 20.5699 8.84 21.8999C9.34 21.9799 9.5 21.6699 9.5 21.3999V19.7099C6.73 20.3099 6.14 18.3699 6.14 18.3699C5.68 17.2099 5.03 16.8999 5.03 16.8999C4.12 16.2799 5.1 16.2999 5.1 16.2999C6.1 16.3699 6.63 17.3299 6.63 17.3299C7.5 18.8499 8.97 18.3999 9.54 18.1599C9.63 17.5099 9.89 17.0699 10.17 16.8199C7.95 16.5699 5.62 15.7099 5.62 11.8999C5.62 10.7899 6 9.8999 6.65 9.1899C6.55 8.9399 6.2 7.8999 6.75 6.5499C6.75 6.5499 7.59 6.2799 9.5 7.5699C10.29 7.3499 11.15 7.2399 12 7.2399C12.85 7.2399 13.71 7.3499 14.5 7.5699C16.41 6.2799 17.25 6.5499 17.25 6.5499C17.8 7.8999 17.45 8.9399 17.35 9.1899C18 9.8999 18.38 10.7899 18.38 11.8999C18.38 15.7199 16.04 16.5599 13.81 16.8099C14.17 17.1199 14.5 17.7299 14.5 18.6599V21.3999C14.5 21.6699 14.66 21.9899 15.17 21.8999C19.14 20.5599 22 16.8199 22 12.3999C22 11.0867 21.7413 9.78632 21.2388 8.57307C20.7362 7.35981 19.9997 6.25742 19.0711 5.32883C18.1425 4.40025 17.0401 3.66365 15.8268 3.16111C14.6136 2.65856 13.3132 2.3999 12 2.3999Z" fill="#FEFEFE"/>
+                  </svg>
+                  <h1 class="texto-botao-git">Acesse nosso GitHub</h1>
+                </button>
+              </a>
+            </div>
+            <div class="foto-fundo-pagina-projeto">
+              <div class="logo-no-inicio-projeto">
+                <svg width="534" height="361" viewBox="0 0 534 361" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M240.289 -71.0788C240.289 -71.0788 193.198 -40.392 164.305 0.507721C135.615 41.1482 113.003 90.5127 104.595 101.261C96.4076 111.728 60.4658 144.032 60.4658 144.032L114.163 150.933C114.163 150.933 114.698 124.695 127.076 101.503C139.372 77.8137 162.01 59.113 183.926 75.3683C205.792 91.1316 249.361 103.012 249.361 103.012C249.361 103.012 217.325 130.344 194.494 131.151C171.602 131.457 156.447 119.603 156.447 119.603C156.447 119.603 128.024 168.427 82.6351 198.651C36.9938 229.132 0.515259 240.575 0.515259 240.575C0.515259 240.575 91.4389 256.623 141.922 302.781C141.922 302.781 180.77 171.936 286.297 254.48C295.687 233.393 310.623 200.676 318.474 169.069C309.306 169.437 299.489 166.651 291.507 160.407C273.586 146.389 270.416 120.369 284.425 102.459C290.238 95.0269 298.604 90.0089 307.32 87.9471C290.482 76.552 241.77 34.8972 240.289 -71.0788Z" fill="#FEFEFE"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M258.005 -40.3491C366.016 -45.5665 472.929 68.7061 399.258 195.834C352.105 277.106 363.569 360.681 363.569 360.681C363.569 360.681 297.77 348.284 289.468 343.583C279.909 338.753 302.096 269.52 220.62 243.084C239.735 242.488 258.979 253.1 276.608 266.89L292.584 279.387L300.794 260.945C313.792 230.683 334.139 187.085 338.666 146.662C328.635 158.351 311.173 160.241 299.053 150.761C286.382 140.849 284.15 122.667 294.07 109.985C303.77 97.5844 321.935 95.3743 334.617 105.294C335.438 105.936 336.259 106.578 337.091 107.229C328.36 72.4023 309.667 76.4452 289.846 48.9624C271.267 23.3209 261.898 -8.41878 258.005 -40.3491Z" fill="#FEFEFE"/>
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M263.557 -55.976L324.556 -233.881C542.738 -136.938 601.291 119.804 448.643 310.414L402.287 263.498C491.766 143.408 482.194 -28.8632 326.8 -89.1251L314.79 -48.7742C310.893 -50.0468 307.057 -50.8187 303.44 -51.8715C290.135 -54.7397 277.011 -56.1254 263.557 -55.976Z" fill="#FEFEFE"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="sobre-idealizadoras">
+            <div class="titulo-idealizadoras">
+              <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.51625 3.40747L6.75625 5.16497L9.375 7.78247L11.1325 6.02497L8.51625 3.40747ZM31.485 3.40747L28.8663 6.02497L30.625 7.78247L33.2425 5.16622L31.485 3.40747ZM20 4.18747C19.5875 4.1908 19.1708 4.21747 18.75 4.26747H18.7125C13.6425 4.84872 9.6075 8.94497 8.90625 13.9925C8.34625 18.055 10.0212 21.7387 12.8125 24.1112C13.9541 25.0858 14.7263 26.4229 15 27.8987V35.3987H17.85C18.285 36.145 19.0788 36.6487 20 36.6487C20.9212 36.6487 21.715 36.145 22.15 35.3987H25V30.3987H25.1175V28.9137C25.1175 27.0812 26.07 25.2337 27.6175 23.7975C29.6875 21.725 31.25 18.7812 31.25 15.4C31.25 9.22497 26.1675 4.12997 20 4.18747ZM20 6.68747C24.8312 6.61997 28.75 10.575 28.75 15.4C28.75 18.0175 27.5375 20.3225 25.8587 22L25.8988 22.04C24.2311 23.5789 23.1525 25.6512 22.8487 27.9H17.3812C17.1062 25.7575 16.1875 23.6837 14.4513 22.1962C12.2425 20.3212 10.9263 17.4962 11.3663 14.3062C11.9125 10.3687 15.1075 7.20247 19.0225 6.76872C19.3458 6.72389 19.6713 6.69718 19.9975 6.68872L20 6.68747ZM2.5 15.4V17.9H6.25V15.4H2.5ZM33.75 15.4V17.9H37.5V15.4H33.75ZM9.375 25.5175L6.7575 28.1337L8.51625 29.8925L11.1312 27.275L9.375 25.5175ZM30.625 25.5175L28.8675 27.275L31.4837 29.8925L33.2425 28.1337L30.625 25.5175ZM17.5 30.4H22.5V32.9H17.5V30.4Z" fill="#C20000"/>
+              </svg>
+              <h1 class="texto-idealizadoras">As Idealizadoras</h1>
+            </div>
+            <div class="MeL">
+              <div class="individual-ideali">
+                <img src="{% static '/images/lud.jpg' %}" class="individual-foto">
+                <div class="individual-descricao">
+                  <h1 class="titulo-individual-pessoa">Ludmila Nunes</h1>
+                  <h1 class="corpo-individual-pessoa">Ludmila é uma designer dedicada, especializada em criar interfaces intuitivas e atraentes. Sua visão de usabilidade foi essencial para o desenvolvimento do frontend da Spartans Gear, garantindo uma experiência de usuário fluida e visualmente impactante.</h1>
+                  <div class="linkedin-individual">
+                    <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g clip-path="url(#clip0_38_285)">
+                        <path d="M0 2.0459C0 1.4129 0.526 0.899902 1.175 0.899902H14.825C15.474 0.899902 16 1.4129 16 2.0459V15.7539C16 16.3869 15.474 16.8999 14.825 16.8999H1.175C0.526 16.8999 0 16.3869 0 15.7539V2.0459ZM4.943 14.2939V7.0689H2.542V14.2939H4.943ZM3.743 6.0819C4.58 6.0819 5.101 5.5279 5.101 4.8339C5.086 4.1249 4.581 3.5859 3.759 3.5859C2.937 3.5859 2.4 4.1259 2.4 4.8339C2.4 5.5279 2.921 6.0819 3.727 6.0819H3.743ZM8.651 14.2939V10.2589C8.651 10.0429 8.667 9.8269 8.731 9.6729C8.904 9.2419 9.299 8.7949 9.963 8.7949C10.832 8.7949 11.179 9.4569 11.179 10.4289V14.2939H13.58V10.1499C13.58 7.9299 12.396 6.8979 10.816 6.8979C9.542 6.8979 8.971 7.5979 8.651 8.0909V8.1159H8.635L8.651 8.0909V7.0689H6.251C6.281 7.7469 6.251 14.2939 6.251 14.2939H8.651Z" fill="#006699"/>
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_38_285">
+                          <rect width="16" height="16" fill="white" transform="translate(0 0.899902)"/>
+                        </clipPath>
+                      </defs>
+                    </svg>
+                    <a class="div-a-sem-linha" href="https://www.linkedin.com/in/ludmilaysha/"><h1 class="txt-linkedin-ind">/ludmilaysha</h1></a>
+                  </div>
+                </div>
+              </div>
+              <div class="individual-ideali">
+                <img src="{% static '/images/mah.png' %}" class="individual-foto">
+                <div class="individual-descricao">
+                  <h1 class="titulo-individual-pessoa">Marina Galdi</h1>
+                  <h1 class="corpo-individual-pessoa">Marina é uma desenvolvedora apaixonada por tecnologia, com foco em arquitetura de sistemas e programação orientada a objetos. Sua expertise técnica garantiu que o backend da Spartans Gear fosse eficiente e seguro, traduzindo conceitos complexos em soluções práticas para o projeto.</h1>
+                  <div class="linkedin-individual">
+                    <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g clip-path="url(#clip0_38_285)">
+                        <path d="M0 2.0459C0 1.4129 0.526 0.899902 1.175 0.899902H14.825C15.474 0.899902 16 1.4129 16 2.0459V15.7539C16 16.3869 15.474 16.8999 14.825 16.8999H1.175C0.526 16.8999 0 16.3869 0 15.7539V2.0459ZM4.943 14.2939V7.0689H2.542V14.2939H4.943ZM3.743 6.0819C4.58 6.0819 5.101 5.5279 5.101 4.8339C5.086 4.1249 4.581 3.5859 3.759 3.5859C2.937 3.5859 2.4 4.1259 2.4 4.8339C2.4 5.5279 2.921 6.0819 3.727 6.0819H3.743ZM8.651 14.2939V10.2589C8.651 10.0429 8.667 9.8269 8.731 9.6729C8.904 9.2419 9.299 8.7949 9.963 8.7949C10.832 8.7949 11.179 9.4569 11.179 10.4289V14.2939H13.58V10.1499C13.58 7.9299 12.396 6.8979 10.816 6.8979C9.542 6.8979 8.971 7.5979 8.651 8.0909V8.1159H8.635L8.651 8.0909V7.0689H6.251C6.281 7.7469 6.251 14.2939 6.251 14.2939H8.651Z" fill="#006699"/>
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_38_285">
+                          <rect width="16" height="16" fill="white" transform="translate(0 0.899902)"/>
+                        </clipPath>
+                      </defs>
+                    </svg>
+                    <a class="div-a-sem-linha" href="https://www.linkedin.com/in/marina-galdi/"><h1 class="txt-linkedin-ind">/marina-galdi</h1></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

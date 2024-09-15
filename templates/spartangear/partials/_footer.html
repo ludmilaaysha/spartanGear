@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Cadastro Usuário</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">  <!-- Link para o arquivo CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="{% static '/images/favicon.svg' %}" type="image/svg+xml">
+    <style>
+        .final-da-pag-inicio{
+            display: flex;
+            min-width: 400px;
+            padding: 104px 80px;
+            align-items: flex-start;
+            align-content: flex-start;
+            gap: 56px;
+            align-self: stretch;
+            flex-wrap: wrap;
+            background: #1E1E1E;
+        }
+        
+        .textos-fim-pagina{
+            display: flex;
+            align-items: flex-start;
+            align-content: flex-start;
+            gap: 64px;
+            flex: 1 0 0;
+            flex-wrap: wrap;
+        }
+        
+        .conteudo-deste-final{
+            display: flex;
+            min-width: 200px;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .titulo-fim-pag{
+            align-self: stretch;
+            color: #FEFEFE;
+            font-family: Inter;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+        }
+        
+        .opcoes-texto-corpo-fim{
+            display: flex;
+            height: 17px;
+            justify-content: center;
+            align-items: center;
+            align-self: stretch;
+            flex-direction: column;
+            padding-top: 16px;
+        }
+        
+        .opcao-fim{
+            width: 200px;
+            align-self: stretch;
+            color: #FEFEFE;
+            font-family: Inter;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+        
+        .formas-pagamento-fim-pag{
+            display: flex;
+            min-width: 200px;
+            max-width: 496px;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            flex: 1 0 0;
+        }
+        
+        .bandeiras-fim-pag{
+            display: flex;
+            min-width: 200px;
+            max-width: 480px;
+            padding: 8px 12px;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            gap: 8px;
+            align-self: stretch;
+            flex-wrap: wrap;
+            border-radius: 8px;
+            background: #FEFEFE;
+        }
+        
+        .div-a-sem-linha{
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="final-da-pag-inicio">
+        <div class="textos-fim-pagina">
+          <div class="conteudo-deste-final">
+            <h1 class="titulo-fim-pag">Ajuda e Atendimento</h1>
+            <div class="opcoes-texto-corpo-fim">
+              <h1 class="opcao-fim">Acompanhe seu pedido</h1>
+              <h1 class="opcao-fim">Dúvidas frequentes</h1>
+              <h1 class="opcao-fim">Fale com a gente</h1>
+            </div>
+          </div>
+          <div class="conteudo-deste-final">
+            <h1 class="titulo-fim-pag">Políticas e regulamentos</h1>
+            <div class="opcoes-texto-corpo-fim">
+              <h1 class="opcao-fim">Política de cookies</h1>
+              <h1 class="opcao-fim">Política de privacidade</h1>
+              <h1 class="opcao-fim">Regulamentos</h1>
+              <h1 class="opcao-fim">Segurança</h1>
+              <h1 class="opcao-fim">Termos e condições</h1>
+            </div>
+          </div>
+          <div class="conteudo-deste-final">
+            <h1 class="titulo-fim-pag">Nossos produtos</h1>
+            <div class="opcoes-texto-corpo-fim">
+              <h1 class="opcao-fim">Catálogo de produtos</h1>
+              <h1 class="opcao-fim">Tênis mais vendidos</h1>
+              <h1 class="opcao-fim">Mais vendidos em feminino</h1>
+              <h1 class="opcao-fim">Mais vendidos em masculino</h1>
+              <h1 class="opcao-fim">Mais vendidos em infantil</h1>
+            </div>
+          </div>
+          <div class="formas-pagamento-fim-pag">
+            <h1 class="titulo-fim-pag">Formas de pagamento</h1>
+            <div class="bandeiras-fim-pag">
+              <img src="{% static '/images/bandeira1.jpg' %}">
+              <img src="{% static '/images/bandeira2.jpg' %}">
+              <img src="{% static '/images/bandeira3.jpg' %}">
+              <img src="{% static '/images/bandeira4.jpg' %}">
+              <img src="{% static '/images/bandeira5.jpg' %}">
+              <img src="{% static '/images/bandeira6.jpg' %}">
+              <img src="{% static '/images/bandeira7.jpg' %}">
+              <img src="{% static '/images/bandeira8.jpg' %}">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>

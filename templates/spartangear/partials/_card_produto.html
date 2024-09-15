@@ -17,7 +17,7 @@
   <div class="card-produto">
     <div class="cima-card-produto">
       <div class="miniatura-card-produto">
-        <img src="{% static '/images/imagem_tenis.jpg' %}" class="imagem-produto-card">
+        <img src="{{ produto.fotos.url }}" class="imagem-produto-card" alt="imagem"> <!-- Use produto.fotos.url -->
       </div>
       <p class="nome-produto-card">
         {{ produto.nome }}
@@ -32,6 +32,7 @@
       </span>
     </div>
   </div>
+  
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>

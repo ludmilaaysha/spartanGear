@@ -4,7 +4,15 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 def index(request):
-    return render(request, 'spartangear/index.html')
+    dados_produto = {
+        1: {"nome": "Tênis Gamma Force Nike Feminino", 
+            "preco": 600.00},
+            
+        2: {"nome": "Tênis Puma Carina Feminino", 
+            "preco": 300.00},
+    }
+    
+    return render(request, 'spartangear/index.html', {"produtos": dados_produto})
 
 def login(request):
     return render(request, 'spartangear/login.html')
