@@ -48,5 +48,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static '/js/script.js' %}"></script>
+    <script >
+        function process_geral(quant){
+        var classValue = parseInt(document.querySelector('.quanti').value);
+        classValue+=quant;
+        if(classValue < 1){
+            document.querySelector("input.quanti").value = 1;
+        }else{ 
+            document.querySelector("input.quanti").value = classValue;    
+        }
+    }  
+            </script>
 </body>
 </html>

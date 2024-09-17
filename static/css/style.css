@@ -2176,17 +2176,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 32px;
+    gap: 64px;
     align-self: stretch;
 }
 
 .opcoes-pagamento-bandeiras{
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    /* gap: 32px; */
-    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
 }
 
 .metodos-pagamento{
@@ -2214,7 +2212,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-weight: 500;
     line-height: normal;
     cursor: pointer;
-    margin: 0;
 }
 
 .texto-metodo:active{
@@ -2254,7 +2251,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     align-self: stretch;
 }
 
-.card-pagamento{
+.cartao{
     display: flex;
     width: 400px;
     height: 240px;
@@ -2269,6 +2266,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .dados-no-cartao{
     display: flex;
+    width: 170px;
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
@@ -2293,7 +2291,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-weight: 600;
     line-height: normal;
     align-self: stretch;
-    margin: 0;
 }
 
 .baixo-cartao-fake{
@@ -2312,6 +2309,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .campos-pagamento{
+    display: flex;
+    padding: 8px 0px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+    align-self: stretch;
+    border-bottom: 3px solid #E0E0E0;
+    background: #FEFEFE;
+    width: 100%;
+}
+
+.campos-pagamento-parcelas{
     display: flex;
     padding: 8px 0px;
     flex-direction: column;
@@ -2558,12 +2568,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     
 }
 
-
 .criada-para-add-parcelamento{
     display: flex;
     flex-direction: column;
     padding-right: 8px;
-    gap:10px
+    gap:10px;
+    height: 100%;
 }
 
 
@@ -2573,50 +2583,4 @@ input:not(:placeholder-shown) {
     border: none;
 }
 
-/* *=*=*=**=*=*pagamento *=*=*=*=*=*=*=* */
-.card {
-    width: 400px;
-    height: 240px;
-    cursor: pointer;
-    perspective: 1000px;
-  }
   
-  .card-inner {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transition: transform 1s;
-    transform-style: preserve-3d;
-  }
-  
-  .card-pagamento,
-  .card-pagamento-back {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    padding: 40px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 32px;
-    border-radius: 16px;
-    background: linear-gradient(240deg, #494949 8.94%, #1E1E1E 97.33%);
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    z-index: 1;
-    backface-visibility: hidden;
-  }
-  
-  .card-pagamento-back {
-    transform: rotateY(180deg);
-  }
-  
-  /* .card:hover .card-inner {
-    transform: rotateY(-180deg);
-  } */
-  
-  .card-flip {
-    transform: rotateY(-180deg);
-  }

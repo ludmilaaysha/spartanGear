@@ -3,8 +3,8 @@ from spartangear import views
 from spartangear.views import index, login, cadastro, recuperarsenha, catalogo, produto, carrinho, entrega, pagamento, meucadastro, meuspedidos, pedido, alterarsenha, ajudaeatendimento, paginapedido
 urlpatterns = [
     path('', views.index, name='index'),
-    # path('login', login, name='login'),
-    # path('cadastro', cadastro, name='cadastro'),
+    #path('login', login, name='login'),
+    #path('cadastro', cadastro, name='cadastro'),
     path('recuperarsenha', recuperarsenha, name='recuperarsenha'),
     path('catalogo', catalogo, name='catalogo'),
     path('produto', produto, name='produto'),
