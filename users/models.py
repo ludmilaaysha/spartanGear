@@ -1,5 +1,22 @@
-# from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.auth.models import User
 from django.db import models
+
+class PerfilUsuario(models.Model):
+    GENERO_CHOICES = [
+        ('M', 'Masculino'),
+        ('F', 'Feminino'),
+        ('N', 'Prefiro não informar'),
+    ]
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    data_nascimento = models.DateField(max_length=10, blank=True, null=True)
+    cpf = models.CharField(max_length=14, blank=True, null=True)
+    telefone = models.CharField(max_length=16, blank=True, null=True)
+    genero = models.CharField(max_length=1, choices=GENERO_CHOICES)
+
+    def __str__(self):
+        return self.user.username
+
 
 # class CustomUserManager(BaseUserManager):
 #     def create_user(self, email, senha=None, **extra_fields):

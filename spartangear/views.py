@@ -1,39 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+# from users.forms import EditCadastroForm, EditarPerfilUsuarioForm
+from users.models import PerfilUsuario
+from spartangear.models import Carrinho, Cor, ItemCarrinho, Produto, Tamanho
+from django.db.models import Q
+
 
 def index(request):
-    dados_produto = {
-        1: {"nome": "Tênis Gamma Force Nike Feminino", 
-            "preco": 600.00},
-            
-        2: {"nome": "Tênis Puma Carina Feminino", 
-            "preco": 300.00},
-    }
-    
-    return render(request, 'spartangear/index.html', {"produtos": dados_produto})
-
-def login(request):
-    return render(request, 'spartangear/login.html')
-
-def cadastro(request):
-    return render(request, 'spartangear/cadastro.html')
-
-def recuperarsenha(request):
-    return render(request, 'spartangear/recuperarsenha.html')
-
-def catalogo(request):
-    dados_produto = {
-        1: {"nome": "Tênis Gamma Force Nike Feminino", 
-            "preco": 600.00},
-            
-        2: {"nome": "Tênis Puma Carina Feminino", 
-            "preco": 300.00}
-    }
-
-
-    return render(request, 'spartangear/catalogo.html', {"produtos": dados_produto})
+    produtos = Produto.objects.all()
+    return render(request, 'spartangear/index.html', {"cards": produtos})
 
 def produto(request):
     return render(request, 'spartangear/paginaproduto.html')
@@ -55,12 +32,7 @@ def pagamento(request):
     else:
         messages.warning(request, "Realize o login para realizar pagamento")
 
-@login_required
-def meucadastro(request):
-    if request.user.is_authenticated:
-        return render(request, 'spartangear/meucadastro.html')
-    else:
-        messages.warning(request, "Realize o login para acessar seus dados")
+
 
 @login_required
 def meuspedidos(request):
@@ -76,14 +48,63 @@ def pedido(request):
         return render(request, 'spartangear/paginapedido.html')
     else:
         messages.warning(request, "Realize o login para visualizar o pedido")
-    
-@login_required
-def alterarsenha(request):
-    if request.user.is_authenticated:
-        # O usuário está autenticado
-        return render(request, 'spartangear/alterarsenha.html')
-    else:
-        messages.warning(request, "Realize o login para alterar a senha")
 
 def ajudaeatendimento(request):
     return render(request, 'spartangear/ajudaeatendimento.html')
+
+# def catalogo(request):
+#     produtos = Produto.objects.all()
+#     return render(request, 'spartangear/catalogo.html', {"cards": produtos})
+
+def catalogo(request):
+    produtos = Produto.objects.all()
+    nome_a_buscar = request.GET.get('buscar')
+
+    print(f"Nome a buscar: '{nome_a_buscar}'")
+    
+    if nome_a_buscar:
+        # Aplica filtros usando Q objects para busca em múltiplos campos
+        try:
+            nome_a_buscar_num = int(nome_a_buscar)
+            produtos = produtos.filter(
+                Q(nome__icontains=nome_a_buscar) |
+                Q(categorias__nome__icontains=nome_a_buscar) |
+                Q(cores__nome__icontains=nome_a_buscar) |
+                Q(ref=nome_a_buscar_num) |  # Se ref é um campo numérico
+                Q(esportes__nome__icontains=nome_a_buscar)
+            ).distinct()
+        except ValueError:
+            # Caso a conversão falhe, buscar como texto
+            produtos = produtos.filter(
+                Q(nome__icontains=nome_a_buscar) |
+                Q(categorias__nome__icontains=nome_a_buscar) |
+                Q(cores__nome__icontains=nome_a_buscar) |
+                Q(ref__icontains=nome_a_buscar) |  # Caso ref seja texto, mesmo se for numérico
+                Q(esportes__nome__icontains=nome_a_buscar)
+            ).distinct()
+    return render(request, 'spartangear/catalogo.html', {'cards': produtos})
+
+def produto(request, id):
+    produto = get_object_or_404(Produto, id=id)
+    cores = produto.cores.all()
+    tamanhos = produto.tamanhos.all()
+    return render(request, 'spartangear/paginaproduto.html', {'produto': produto, 'cores': cores, 'tamanhos': tamanhos,})
+
+def adicionar_ao_carrinho(request, produto_id):
+    produto = get_object_or_404(Produto, pk=produto_id)
+    quantidade = int(request.POST.get('quantidade', 1))
+    
+    if quantidade > produto.quantidade_estoque:
+        messages.error(request, "Quantidade solicitada excede o estoque disponível.")
+        return redirect('produto_detalhes', produto_id=produto_id)
+
+    # Adicionar ao carrinho
+    item_carrinho, created = ItemCarrinho.objects.get_or_create(produto=produto, quantidade=quantidade)
+    carrinho = get_object_or_404(Carrinho, usuario=request.user)
+    carrinho.itens.add(item_carrinho)
+
+    messages.success(request, "Produto adicionado ao carrinho.")
+    return redirect('carrinho')
+
+# há um tempo conversei com você sobre a dinâmica do carrinho de compras e você me disse para fazer um objeto para o produto, sem variações de cor ou tamanho definidas, e um objeto para o carrinho que o usuário adicionou, já com esses campos preenchidos. pode me instruir a fazer isso agora?
+

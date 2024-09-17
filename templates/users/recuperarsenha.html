@@ -197,7 +197,7 @@
 
 <body class="tela-recuperacao" style="background-color: #1e1e1e;">
         <h1 class="texto-titulo-nova-senha">CRIE UMA NOVA SENHA</h1>
-        <form id="passwordForm" class="conteudo-principal">
+        <form id="passwordForm" class="conteudo-principal" action="{url 'recuperarsenha'}" method="POST">
             {% csrf_token %}
             <div class="conteudo-central">
                 <!-- <div class="mb-3" style="align-self: stretch;">
@@ -212,13 +212,13 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <path d="M10 12C10 13.0609 9.57857 14.0783 8.82843 14.8284C8.07828 15.5786 7.06087 16 6 16C4.93913 16 3.92172 15.5786 3.17157 14.8284C2.42143 14.0783 2 13.0609 2 12C2 10.9391 2.42143 9.92172 3.17157 9.17157C3.92172 8.42143 4.93913 8 6 8C7.06087 8 8.07828 8.42143 8.82843 9.17157C9.57857 9.92172 10 10.9391 10 12ZM10 12H22V15M18 12V15" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            <input type="password" class="form-control" id="newPassword" placeholder="Digite sua nova senha" required>
+                            <input type="password" name="senha" class="form-control" id="newPassword" placeholder="Digite sua nova senha" required>
                         </div>
                         <div class="mb-3" style="flex: 1 0 0;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                 <path d="M10 12C10 13.0609 9.57857 14.0783 8.82843 14.8284C8.07828 15.5786 7.06087 16 6 16C4.93913 16 3.92172 15.5786 3.17157 14.8284C2.42143 14.0783 2 13.0609 2 12C2 10.9391 2.42143 9.92172 3.17157 9.17157C3.92172 8.42143 4.93913 8 6 8C7.06087 8 8.07828 8.42143 8.82843 9.17157C9.57857 9.92172 10 10.9391 10 12ZM10 12H22V15M18 12V15" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirme sua nova senha" required>
+                            <input type="password" name="confirmar_senha" class="form-control" id="confirmPassword" placeholder="Confirme sua nova senha" required>
                         </div>
                     </div>
                     <div id="passwordFeedback" class="form-text text-danger"></div> <!-- Feedback em tempo real -->
@@ -263,6 +263,9 @@
                     </div>
                 </div>
             </div>
+            {% if mensagem %}
+            {{mensagem}}
+            {% endif %}
             <button type="submit" class="btn btn-primary" id="submitButton" disabled style="display: flex; padding: 12px; justify-content: center; align-items: center; gap: 10px; align-self: stretch; border-radius: 4px; background: #3F3F3F; color: #FEFEFE; font-family: Inter; font-size: 14px; font-style: normal; font-weight: 600; line-height: normal; text-transform: uppercase;">
                 Alterar Senha
             </button>

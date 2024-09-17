@@ -14,91 +14,92 @@
 </head>
 
 <body>
-    {% include 'spartangear/header.html' %}
+    {% include 'spartangear/partials/_header.html' %}
     <div class="pagina-produto">
         <div class="principal-pagina-produto">
             <div class="imagens-produto">
-                <div class="image-container">
-                    <img id="mainImage" src="{% static 'images/imagem_tenis.jpg' %}" alt="Imagem principal" class="main-image">
-                </div>
-                <div style="width: 100%; overflow-x: auto;">
-                    <div class="carousel">
-                        <!-- {% for imagem in imagens %}
-                            <img src="{{ imagem.imagem_url }}" alt="Imagem do produto" onclick="changeImage(this)">
-                        {% endfor %} -->
-                        <div class="geral-imagem-pag-produto">
-                            <img src="{% static '/images/imagem_produto.jpg' %}" alt="Imagem 1" onclick="changeImage(this)">
-                        </div>
-                        <div class="geral-imagem-pag-produto">
-                            <img src="{% static '/images/imagem_tenis.jpg' %}" alt="Imagem 2" onclick="changeImage(this)">
-                        </div>
-                        <div class="geral-imagem-pag-produto">
-                            <img src="{% static '/images/shirt-product.jpg' %}" alt="Imagem 3" onclick="changeImage(this)">
-                        </div>
-                        <div class="geral-imagem-pag-produto">
-                            <img src="{% static '/images/imagem_produto.jpg' %}" alt="Imagem 4" onclick="changeImage(this)">
-                        </div>
-                        <div class="geral-imagem-pag-produto">
-                            <img src="{% static '/images/imagem_tenis.jpg' %}" alt="Imagem 5" onclick="changeImage(this)">
+                {% if produto.fotos.count == 1 %}
+                    <!-- Apenas uma imagem -->
+                    <div class="image-container">
+                        <img id="mainImage" src="{{ produto.fotos.first.imagem.url }}" alt="Imagem principal" class="main-image">
+                    </div>
+                {% else %}
+                    <!-- Mais de uma imagem -->
+                    <div class="image-container">
+                        <img id="mainImage" src="{{ produto.fotos.first.imagem.url }}" alt="Imagem principal" class="main-image">
+                    </div>
+                    <div style="width: 100%; overflow-x: auto;">
+                        <div class="carousel">
+                            {% for foto in produto.fotos.all %}
+                                <div class="geral-imagem-pag-produto">
+                                    <img src="{{ foto.imagem.url }}" alt="Imagem do produto" onclick="changeImage(this)">
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
-                </div>
+                {% endif %}
             </div>
             <div class="apresentacao-acoes-produtos">
                 <div class="box-nome-produto">
                     <p class="nome-produto">
-                        Tênis Nike Invincible 3 - Masculino
+                        {{ produto.nome }}
                     </p>
                     <div class="section-preco-produto">
+                        {% if produto.desconto > 0 %}
                         <p class="preco-produto-anterior">
-                            R$ 239,99
+                            R$ {{ produto.preco }}
                         </p>
                         <p class="preco-produto" style="text-align: start; font-size: 32;">
-                            R$ 219,99
+                            R$ {{ produto.preco_com_desconto }}
                         </p>
+                        {% else %}
+                        <p class="preco-produto" style="text-align: start; font-size: 32;">
+                            R$ {{ produto.preco }}
+                        </p>
+                        {% endif %}
                     </div>
                     <span class="referencia-pagina-produto">
-                        Ref.: 12345678
+                        Ref.: {{ produto.ref }}
                     </span>
                 </div>
-                <div class="acoes-produto">
+                <form class="acoes-produto" method="post" action="{% url 'adicionar_ao_carrinho' produto.id %}">
+                    {% csrf_token %}
                     <div class="variacoes-pagina-produto">
                         <div class="variacao-cor-pag-prod">
                             <span class="label-variacaoqtd-produto">Cor</span>
-                            <select class="form-select-produto" aria-label="Default select example">
-                                <option selected>Selecione a cor</option>
-                                <option value="Preto">Preto</option>
-                                <option value="Branco">Branco</option>
-                                <option value="Azul">Azul</option>
+                            <select name="cor" class="form-select-produto" aria-label="Default select example">
+                                {% for cor in cores %}
+                                <option value="{{ cor.id }}" {% if cor in produto.cores.all %} selected {% endif %}>
+                                    {{ cor.nome }}
+                                </option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="variacao-cor-pag-prod">
                             <span class="label-variacaoqtd-produto">Tamanho</span>
-                            <select class="form-select-produto" aria-label="Default select example">
+                            <select name="tamanho" class="form-select-produto" aria-label="Default select example">
                                 <option selected>Selecione o tamanho</option>
-                                <option value="36">36</option>
-                                <option value="37">37</option>
-                                <option value="38">38</option>
-                                <option value="39">39</option>
-                                <option value="40">40</option>
-                                <option value="40">41</option>
-                                <option value="41">42</option>
+                                {% for tamanho in tamanhos %}
+                                <option value="{{ cor.id }}" {% if tamanho in produto.tamanhos.all %} selected {% endif %}>
+                                    {{ tamanho.nome }}
+                                </option>
+                                {% endfor %}
                             </select>
                         </div>
                     </div>
                     <div class="secao-quantidade-pagina-produto">
                         <span class="label-variacaoqtd-produto">Quantidade</span>
-                        <div class="secao-quantidade-pag-produto">
-                            <button class="increase-decrease-qtd-produto">
+                        <div class="secao-quantidade-pag-produto" data-product-id="{{ produto.id }}">
+                            <button type="button" class="increase-decrease-qtd-produto decrease-btn" id="botao-diminuir">
                                 -
                             </button>
-                            <input type="number" class="qtd-produto-pagina" value="1">
-                            <button class="increase-decrease-qtd-produto">
+                            <input type="number" class="qtd-produto-pagina" name="quantidade" id="quantidade-{{ produto.id }}" min="0" max="{{ produto.quantidade_estoque }}" value="0">
+                            <button type="button" class="increase-decrease-qtd-produto increase-btn">
                                 +
                             </button>
                         </div>
                     </div>
-                    <button class="add-to-cart-btn-produto">
+                    <button type="submit" class="add-to-cart-btn-produto">
                         Adicionar ao carrinho
                     </button>
                     <div class="secao-calculo-frete-pagina-produto">
@@ -114,7 +115,7 @@
                             <span class="valor-frete">Valor: R$ 12,99</span> <!--aparecer apenas quando o frete estiver preenchido-->
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
         <div class="secao-descricao-produto">

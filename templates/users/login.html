@@ -13,13 +13,13 @@
     <link rel="icon" href="{% static '/images/favicon.svg' %}" type="image/svg+xml">
 </head>
 
-<body style="background-color: #1e1e1e;">
-    <header>
-    </header>
-    <div class="pagina-login" style="position: relative;">
+<body style="background-color: #1e1e1e; position: relative;">
+    <div style="position: absolute; top: 24px; left: 50%; transform: translateX(-50%); z-index: 8;">
         {% for message in messages %}
             {% include 'users/partials/_messages.html' %}
         {% endfor %}
+    </div>
+    <div class="pagina-login" ">
         <div class="principal-login">
             <div class="bem-vindo-login">
                 <div class="titulo-boas-vindas">
@@ -65,7 +65,7 @@
                                 </div>
                             <div class="sem-senha-login">
                                 <div class="text-esqueci-senha">
-                                    <a href="{% url 'recuperarsenha' %}" class="text-esqueci-senha-link" style="color: #a1a1a1;cursor: pointer;">
+                                    <a href="{% url 'email_recsenha' %}" class="text-esqueci-senha-link" style="color: #a1a1a1;cursor: pointer;">
                                         <h1 style="font-size: 12px; font-style: normal;">Esqueci a senha</h1>
                                     </a>
                                 </div>
@@ -92,43 +92,13 @@
                             </svg>
                         </span>
                         <span class="text-google-cadastro">
-                            Cadastrar com o Google
+                            Entrar com o Google
                         </span>
                     </button>
                 </form>                
             </div>
         </div>
     </div>
-    <!-- <script>
-        // Verifica se todos os campos estão preenchidos
-        function verificarCampos() {
-            const camposObrigatorios = document.querySelectorAll('input[required]');
-            const botaoCriarConta = document.getElementById('botao-criar-conta');
-            let todosPreenchidos = true;
-    
-            camposObrigatorios.forEach((campo) => {
-                if (!campo.value) {
-                    todosPreenchidos = false;
-                }
-            });
-    
-            botaoCriarConta.disabled = !todosPreenchidos;// Ativa ou desativa o botão
-        }
-    
-        // Adiciona eventos de input para todos os campos
-        document.querySelectorAll('input').forEach((campo) => {
-            campo.addEventListener('input', verificarCampos);
-        });
-    
-        // Redireciona ao clicar no botão "Criar conta"
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault(); // Impede o comportamento padrão do submit
-    
-            // Aqui você define para onde a pessoa será redirecionada após o preenchimento
-            window.location.href = "{% url 'index' %}"; // Redireciona para a página desejada
-
-        });
-    </script> -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

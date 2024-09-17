@@ -1,4 +1,7 @@
 from django import forms
+from .models import PerfilUsuario
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordChangeForm
 
 class LoginForms(forms.Form):
     email_login=forms.CharField(
@@ -136,3 +139,61 @@ class CadastroForms(forms.Form):
             self.add_error('confirmar_senha', 'As senhas não coincidem.')
         
         return cleaned_data
+    
+class EditarPerfilUsuarioForm(forms.Form):
+    cpf = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+            'placeholder': 'Digite seu CPF',
+            'class': 'campo-escrever',
+            'maxlength': '14',  # exemplo de atributo adicional
+        })
+    )
+
+    data_nascimento=forms.DateField(
+        label="Data de nascimento*",
+        required=False,
+        widget=forms.DateInput(
+            attrs={
+                "placeholder": 'DD/MM/AAAA',
+                "class": 'campo-escrever',
+                'type': 'date',
+            }
+        )
+    )
+
+    telefone=forms.CharField(
+        label="Número de telefone",
+        required=False,
+        max_length=11,
+        widget=forms.TextInput(
+            attrs={
+                # "class": 'caixa-digitavel',
+                "placeholder": '(99) 99999-9999',
+                # "class": 'campo-escrever',
+            }
+        )
+    )
+
+    genero=forms.ChoiceField(
+        label="Gênero*",
+        required=False,
+        choices=[
+            ('M', 'Masculino'),
+            ('F', 'Feminino'),
+            ('N', 'Prefiro não informar'),
+        ],
+        widget=forms.RadioSelect(
+            attrs={
+                "class": '',
+            }
+        )
+    )
+
+
+    def clean(self):
+        cleaned_data = super().clean()
+        telefone = cleaned_data.get("telefone")
+        nascimento = cleaned_data.get("nascimento")
+        genero = cleaned_data.get("genero")
+        cpf = cleaned_data.get("cpf")

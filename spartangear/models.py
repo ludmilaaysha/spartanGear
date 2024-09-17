@@ -1,45 +1,72 @@
 from django.db import models
-
-# Create your models here.
-class Produto(models.Model):
-    nome = models.CharField(max_length=200, null=False, blank=False, verbose_name='Nome')
-    preco = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Preço')
-    desconto_percentual = models.DecimalField(max_digits=4, decimal_places=2, help_text="Desconto percentual", verbose_name='Desconto (%)', blank=True)
-    descricao = models.TextField(null=False, blank=False, verbose_name='Descrição')
-    quantidade = models.PositiveIntegerField(verbose_name='Quantidade em Estoque')
-    variacao_cor = models.ManyToManyField('VariacaoCor', related_name='produtos_cor', verbose_name='Variações de Cor')
-    variacao_tamanho = models.ManyToManyField('VariacaoTamanho', related_name='produtos_tamanho', verbose_name='Variações de Tamanho')
-    categoria = models.ManyToManyField('Categoria', related_name='produtos', verbose_name='Categorias')
-    fotos = models.ImageField(upload_to='fotos_produtos/', blank=True, verbose_name='Fotos')
-
-    def preco_com_desconto(self):
-        preco = self.preco
-        if self.desconto_percentual and 0 <= self.desconto_percentual <= 100:
-            preco *= (1 - self.desconto_percentual / 100)
-        return preco
-
-    def __str__(self):
-        return self.nome
-
-    class Meta:
-        verbose_name = 'Produto'
-        verbose_name_plural = 'Produtos'
+import locale, random
+from django.contrib.auth.models import User
 
 
-class VariacaoCor(models.Model):
-    cor = models.CharField(max_length=10)
-
-    def __str__(self):
-        return self.cor
-
-class VariacaoTamanho(models.Model):
-    tamanho = models.CharField(max_length=10)
-
-    def __str__(self):
-        return self.tamanho
+# Definir o locale para o Brasil (ou outro local que use vírgula como separador decimal)
+locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 
 class Categoria(models.Model):
-    nome = models.CharField(max_length=255)
-
+    nome = models.CharField(max_length=255, unique=True)
+    
     def __str__(self):
         return self.nome
+
+class Cor(models.Model):
+    nome = models.CharField(max_length=50)
+    codigo_cor = models.CharField(max_length=20)
+    
+    def __str__(self):
+        return self.nome
+
+class Tamanho(models.Model):
+    nome = models.CharField(max_length=50)
+    
+    def __str__(self):
+        return self.nome
+
+class Esporte(models.Model):
+    nome = models.CharField(max_length=50)
+    
+    def __str__(self):
+        return self.nome
+
+class Foto(models.Model):
+    produto = models.ForeignKey('Produto', related_name='fotos', on_delete=models.CASCADE,)
+    imagem = models.ImageField(upload_to="produtos/%Y/%m/%d",)
+    
+    def __str__(self):
+        return f'Foto de {self.produto.nome}'
+    
+def gerar_id_unico():
+    return str(random.randint(100000, 999999))
+
+class Produto(models.Model):
+    ref = models.CharField(max_length=6, unique=True, default=gerar_id_unico, editable=False)
+    nome = models.CharField(max_length=255)
+    descricao = models.TextField()
+    preco = models.DecimalField(max_digits=10, decimal_places=2)
+    desconto = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    quantidade_estoque = models.PositiveIntegerField()
+    cores = models.ManyToManyField(Cor, related_name='produtos', blank=True)
+    tamanhos = models.ManyToManyField(Tamanho, related_name='produtos', blank=True)
+    esportes = models.ManyToManyField(Esporte, related_name='produtos', blank=False)
+    categorias = models.ManyToManyField(Categoria, related_name='produtos')
+    destaque = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return self.nome
+
+    def preco_com_desconto(self):
+        if self.desconto:
+            return locale.format_string("%.2f", self.preco - (self.preco * (self.desconto / 100)))
+        return locale.format_string("%.2f", self.preco)
+    
+class Carrinho(models.Model):
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+    itens = models.ManyToManyField('ItemCarrinho', related_name='carrinhos')
+
+class ItemCarrinho(models.Model):
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    quantidade = models.PositiveIntegerField(default=1)
+    

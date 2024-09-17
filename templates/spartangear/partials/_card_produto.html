@@ -14,24 +14,34 @@
 </head>
 
 <body>
-  <div class="card-produto">
-    <div class="cima-card-produto">
+  <a href="{% url 'produto' produto.id %}" class="card-produto">
+    <div class="cima-card- produto">
       <div class="miniatura-card-produto">
-        <img src="{{ produto.fotos.url }}" class="imagem-produto-card" alt="imagem"> <!-- Use produto.fotos.url -->
+        {% if produto.fotos.first %}
+            <img src="{{ produto.fotos.first.imagem.url }}" class="imagem-produto-card" alt="Foto do {{ produto.nome }}">
+        {% else %}
+            <img src="{% static 'images/no-image.png' %}" class="imagem-produto-card" alt="Imagem não disponível">
+        {% endif %}
       </div>
       <p class="nome-produto-card">
         {{ produto.nome }}
       </p>
     </div>
     <div class="preco-card-produto">
+      {% if produto.desconto > 0 %}
       <span class="preco-antes-desconto">
-        R$ 399,99
+        R$ {{ produto.preco }}
       </span>
+      <span class="preco-produto">
+        R$ {{ produto.preco_com_desconto }}
+      </span>
+      {% else %}
       <span class="preco-produto">
         R$ {{ produto.preco }}
       </span>
+      {% endif %}
     </div>
-  </div>
+  </a>
   
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>

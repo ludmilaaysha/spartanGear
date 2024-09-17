@@ -220,11 +220,15 @@
           </div>
           <div class="listagem-produtos-catalogo">
               <!--AQUI INICIAM OS PRODUTOS-->
-              {% for produto_id , info in produtos.items %}
-              <!--AQUI INICIA O CARD DO PRODUTO-->
-                {% include 'spartangear/partials/_card_produto.html' with produto=info %}
-              <!--AQUI FINALIZA O CARD DO PRODUTO-->
-              {% endfor %}
+              {% if cards %}
+                {% for produto in cards %}
+                <!--AQUI INICIA O CARD DO PRODUTO-->
+                  {% include 'spartangear/partials/_card_produto.html' with produto=produto %}
+                <!--AQUI FINALIZA O CARD DO PRODUTO-->
+                {% endfor %}
+              {% else %}
+                Não foram encontrados produtos para essa busca
+              {% endif %}
               <!--AQUI FINALIZAM OS PRODUTOS-->
           </div>
           <div class="paginacao-catalogo">
