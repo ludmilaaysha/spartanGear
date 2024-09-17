@@ -472,6 +472,104 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const oficialCartItems = document.getElementById('oficialCartItems');
+    const produtosNoCarrinho = [
+        { id: 1, nome: "Camiseta Masculina adidas Manga Curta Treino Básica", preco: 'R$ 50,00', imagem: "static/images/shirt-product.jpg", quantidade: 1, tamanho: "GG", cor: "preto" },
+        { id: 2, nome: "Tênis Nike Invincible 3 - Masculino", preco: 'R$ 150,00', imagem: "static/images/imagem_tenis.jpg", quantidade: 2, tamanho: "42", cor: "branco" }
+    ];
+    const modalConfirmarExclusao = document.getElementById('modalConfirmarExclusao');
+    const confirmarRemocao = document.getElementById('confirmarRemocao');
+    const cancelarRemocao = document.getElementById('cancelarRemocao');
+
+    let produtoAExcluir;
+        
+
+    // Função para remover item do carrinho
+    function removerItemDoCarrinho(produtoId) {
+        // Filtra o produto com base no ID
+        const indiceProduto = produtosNoCarrinho.findIndex(produto => produto.id === produtoId);
+        if (indiceProduto !== -1) {
+            produtosNoCarrinho.splice(indiceProduto, 1); // Remove o produto
+            atualizarCarrinho(); // Atualiza o carrinho no DOM
+        }
+    }
+
+    function tentarRemoverItem(produtoId) {
+        if (produtosNoCarrinho.length === 1) {
+            // Se for o último item, abre a modal de confirmação
+            produtoAExcluir = produtoId;
+            modalConfirmarExclusao.style.display = "flex"; // Exibe a modal
+        } else {
+            removerItemDoCarrinho(produtoId); // Remove diretamente se não for o último
+        }
+    }
+
+// tirar essa parte!!!!!!!
+    // Função para atualizar o carrinho com produtos
+    // function atualizarCarrinho() {
+    //     oficialCartItems.innerHTML = ''; // Limpa o conteúdo atual
+    
+    //     produtosNoCarrinho.forEach(produto => {
+    //         const itemDiv = document.createElement('div');
+    //         itemDiv.classList.add('card-prod-carrinho');
+    //         itemDiv.innerHTML = `
+    //             <div class="foto-produto-card-carrinho">
+    //                 <img src="${produto.imagem}" alt="${produto.nome}" class="img-card-produto">
+    //             </div>
+    //             <div class="info-card-carrinho">
+    //                 <div class="dados-card-carrinho">
+    //                     <div class="divs-mesma-medida">
+    //                         <h1 class="text-nome-prod"> ${produto.nome} </h1>
+    //                         <h1 class="text-tam-cor">Tamanho: ${produto.tamanho}</h1>
+    //                         <h1 class="text-tam-cor">Cor: ${produto.cor}</h1>
+    //                     </div>
+    //                     // <div class="botao-adicionar-card-carrinho" data-app="product.quantity">     
+    //                     //     <button class="aumentar-diminuir-quant-card" type="button" id="plus" value='-' onclick="process_geral(-1)" >-</button>
+    //                     //     <input class="quanti quant-card-carrinho" name="quanti" class="text" size="1" type="text" value="1" maxlength="5" />
+    //                     //     <button class="aumentar-diminuir-quant-card" type="button" id="minus" value='+' onclick="process_geral(1)">+</button>
+    //                     // </div> 
+    //                 </div>
+    //             </div>
+    //             <div class="valor-card-carrinho">
+    //                 <a href="#" class="remover-produto" data-id="${produto.id}">
+    //                     <div class="lixeirinha-carrinho-card">
+    //                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    //                             <path d="M27.3332 8H4.6665M25.1105 11.3333L24.4972 20.5333C24.2612 24.072 24.1438 25.8413 22.9905 26.92C21.8372 27.9987 20.0625 28 16.5158 28H15.4838C11.9372 28 10.1625 28 9.00917 26.92C7.85584 25.8413 7.73717 24.072 7.5025 20.5333L6.88917 11.3333M12.6665 14.6667L13.3332 21.3333M19.3332 14.6667L18.6665 21.3333" stroke="#C20000" stroke-width="2" stroke-linecap="round"/>
+    //                             <path d="M8.6665 8H8.81317C9.34977 7.98629 9.86973 7.81096 10.3051 7.49695C10.7404 7.18294 11.0708 6.74485 11.2532 6.24L11.2985 6.10267L11.4278 5.71467C11.5385 5.38267 11.5945 5.21733 11.6678 5.076C11.8121 4.79919 12.0192 4.55999 12.2725 4.37755C12.5258 4.1951 12.8182 4.07448 13.1265 4.02533C13.2825 4 13.4572 4 13.8065 4H18.1932C18.5425 4 18.7172 4 18.8732 4.02533C19.1814 4.07448 19.4739 4.1951 19.7272 4.37755C19.9805 4.55999 20.1876 4.79919 20.3318 5.076C20.4052 5.21733 20.4612 5.38267 20.5718 5.71467L20.7012 6.10267C20.8701 6.66436 21.2196 7.15468 21.6954 7.49768C22.1712 7.84069 22.7469 8.01724 23.3332 8" stroke="#C20000" stroke-width="2"/>
+    //                         </svg>
+    //                     </div>
+    //                 </a>
+    //                 <h1 class="text-valor-produto">${produto.preco}</h1>
+    //             </div>
+    //         `;
+    //         oficialCartItems.appendChild(itemDiv);
+    //       });
+
+        // Adiciona evento de clique para remover item
+    //     document.querySelectorAll('.remover-produto').forEach(btn => {
+    //         btn.addEventListener('click', (event) => {
+    //             event.preventDefault();
+    //             const produtoId = parseInt(btn.getAttribute('data-id'));
+    //             tentarRemoverItem(produtoId); // Tenta remover o produto
+    //         });
+    //     });
+    // }
+    
+    // Evento de confirmação na modal
+    confirmarRemocao.addEventListener('click', () => {
+        removerItemDoCarrinho(produtoAExcluir); // Remove o item
+        modalConfirmarExclusao.style.display = "none"; // Fecha a modal
+    });
+
+    // Evento de cancelamento na modal
+    cancelarRemocao.addEventListener('click', () => {
+        modalConfirmarExclusao.style.display = "none"; // Fecha a modal sem remover o item
+    });
+
+    atualizarCarrinho();
+});
+
 document.addEventListener('DOMContentLoaded', function () {
     const cardNumber = document.getElementById('card-number');
     const cardName = document.getElementById('card-name');

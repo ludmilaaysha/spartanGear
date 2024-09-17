@@ -106,5 +106,5 @@ def adicionar_ao_carrinho(request, produto_id):
     messages.success(request, "Produto adicionado ao carrinho.")
     return redirect('carrinho')
 
-# há um tempo conversei com você sobre a dinâmica do carrinho de compras e você me disse para fazer um objeto para o produto, sem variações de cor ou tamanho definidas, e um objeto para o carrinho que o usuário adicionou, já com esses campos preenchidos. pode me instruir a fazer isso agora?
-
+def paginapedido(request):
+    return render(request, 'spartangear/paginapedido.html')

@@ -2,10 +2,12 @@
 {% load static %}
 
 {% block content %}
+
 <div class="titulo-usuario">
     <p>Ajuda e Atendimento</p>
 </div>
-<!--AQUI INICIA A LISTAGEM DOS PEDIDOS NO PERÍODO SOLICITADO-->
+
+<!-- AQUI INICIA A LISTAGEM DOS PEDIDOS NO PERÍODO SOLICITADO -->
 <div class="central-ajuda" style="padding-bottom: 64px;">
     <div class="central-duvidas-frequentes">
         <p class="titulo-central">
@@ -13,6 +15,7 @@
         </p>
         <div class="accordion-duvidas">
             <div class="accordion accordion-flush" id="accordionFlushExample">
+                <!-- Primeira Pergunta -->
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
@@ -23,6 +26,8 @@
                     <div class="accordion-body">Você pode solicitar a troca ou devolução de um produto em até 30 dias após o recebimento. O item deve estar sem uso e em sua embalagem original. Basta entrar em contato com nossa equipe pelo telefone ou e-mail, e nós cuidamos do restante.</div>
                     </div>
                 </div>
+
+                <!-- Segunda Pergunta -->
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
@@ -33,6 +38,8 @@
                     <div class="accordion-body">Você pode acompanhar o status da sua entrega acessando "Meus Pedidos" na sua conta. Também enviamos atualizações por e-mail e SMS com o link de rastreamento.</div>
                     </div>
                 </div>
+
+                <!-- Terceira Pergunta -->
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingThree">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
@@ -43,6 +50,8 @@
                     <div class="accordion-body">Para alterar o endereço de entrega, acesse sua conta, vá até "Meus Endereços" e atualize os dados antes de finalizar a compra. Se o pedido já foi feito, entre em contato com nossa equipe o quanto antes para tentarmos ajustar o envio.</div>
                     </div>
                 </div>
+
+                <!-- Quarta Pergunta -->
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingFour">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
@@ -56,6 +65,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Outras opções de ajuda -->
     <div class="outras-opcoes-ajuda">
         <div class="encontrar-duvida">
             <p style="color: #909090; text-align: center; font-family: Inter; font-size: 24px; font-style: normal; font-weight: 600; line-height: normal;">
@@ -66,26 +77,50 @@
             </p>
         </div>
         <div class="botoes-outras-duvidas">
-            <button class="botao-duvida">
+            <!-- Botão Copiar Email -->
+            <button class="botao-duvida" onclick="copiarEmail()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
                     <path d="M3 15C2.5875 15 2.23438 14.8531 1.94063 14.5594C1.64687 14.2656 1.5 13.9125 1.5 13.5V4.5C1.5 4.0875 1.64687 3.73438 1.94063 3.44063C2.23438 3.14687 2.5875 3 3 3H15C15.4125 3 15.7656 3.14687 16.0594 3.44063C16.3531 3.73438 16.5 4.0875 16.5 4.5V13.5C16.5 13.9125 16.3531 14.2656 16.0594 14.5594C15.7656 14.8531 15.4125 15 15 15H3ZM9 9.75L3 6V13.5H15V6L9 9.75ZM9 8.25L15 4.5H3L9 8.25ZM3 6V4.5V13.5V6Z" fill="#FEFEFE"/>
                 </svg>
-                <p class="texto-botao-duvida">
-                    E-mail
-                </p>
+                <p class="texto-botao-duvida">E-mail</p>
             </button>
-            <button class="botao-duvida">
+
+            <!-- Botão de Telefone -->
+            <button class="botao-duvida" onclick="copiarTelefone()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
                     <path d="M14.4375 9C14.4375 7.5375 13.9281 6.29688 12.9094 5.27813C11.8906 4.25938 10.65 3.75 9.1875 3.75V2.25C10.125 2.25 11.0031 2.42813 11.8219 2.78438C12.6406 3.14063 13.3531 3.62188 13.9594 4.22813C14.5656 4.83438 15.0469 5.54688 15.4031 6.36563C15.7594 7.18438 15.9375 8.0625 15.9375 9H14.4375ZM11.4375 9C11.4375 8.375 11.2188 7.84375 10.7813 7.40625C10.3438 6.96875 9.8125 6.75 9.1875 6.75V5.25C10.225 5.25 11.1094 5.61563 11.8406 6.34688C12.5719 7.07813 12.9375 7.9625 12.9375 9H11.4375ZM15.15 15.75C13.5875 15.75 12.0438 15.4094 10.5188 14.7281C8.99375 14.0469 7.60625 13.0813 6.35625 11.8313C5.10625 10.5813 4.14063 9.19375 3.45938 7.66875C2.77813 6.14375 2.4375 4.6 2.4375 3.0375C2.4375 2.8125 2.5125 2.625 2.6625 2.475C2.8125 2.325 3 2.25 3.225 2.25H6.2625C6.4375 2.25 6.59375 2.30937 6.73125 2.42813C6.86875 2.54688 6.95 2.6875 6.975 2.85L7.4625 5.475C7.4875 5.675 7.48125 5.84375 7.44375 5.98125C7.40625 6.11875 7.3375 6.2375 7.2375 6.3375L5.41875 8.175C5.66875 8.6375 5.96563 9.08438 6.30938 9.51563C6.65313 9.94688 7.03125 10.3625 7.44375 10.7625C7.83125 11.15 8.2375 11.5094 8.6625 11.8406C9.0875 12.1719 9.5375 12.475 10.0125 12.75L11.775 10.9875C11.8875 10.875 12.0344 10.7906 12.2156 10.7344C12.3969 10.6781 12.575 10.6625 12.75 10.6875L15.3375 11.2125C15.5125 11.2625 15.6563 11.3531 15.7688 11.4844C15.8813 11.6156 15.9375 11.7625 15.9375 11.925V14.9625C15.9375 15.1875 15.8625 15.375 15.7125 15.525C15.5625 15.675 15.375 15.75 15.15 15.75ZM4.70625 6.75L5.94375 5.5125L5.625 3.75H3.95625C4.01875 4.2625 4.10625 4.76875 4.21875 5.26875C4.33125 5.76875 4.49375 6.2625 4.70625 6.75ZM11.4188 13.4625C11.9063 13.675 12.4031 13.8438 12.9094 13.9688C13.4156 14.0938 13.925 14.175 14.4375 14.2125V12.5625L12.675 12.2063L11.4188 13.4625Z" fill="#E8EAED"/>
                 </svg>
-                <p class="texto-botao-duvida">
-                    Telefone
-                </p>
+                <p class="texto-botao-duvida">Telefone</p>
             </button>
         </div>
     </div>
 </div>
-<!--AQUI FINALIZA A LISTAGEM DOS PEDIDOS-->
+
+<!-- Script para copiar o email -->
+<script>
+function copiarEmail() {
+    const email = 'spartan.gear@gmail.com';
+    
+    // Usa a API Clipboard para copiar o texto
+    navigator.clipboard.writeText(email).then(function() {
+        alert('Email copiado para a área de transferência!');
+    }).catch(function(error) {
+        console.error('Erro ao copiar o email: ', error);
+    });
+}
+
+function copiarTelefone() {
+    const telefone = '(12) 93456-7890'; // Substitua pelo número real que deseja copiar
+    
+    // Usa a API Clipboard para copiar o texto
+    navigator.clipboard.writeText(telefone).then(function() {
+        alert('Número de telefone copiado para a área de transferência!');
+    }).catch(function(error) {
+        console.error('Erro ao copiar o número de telefone: ', error);
+    });
+}
+
+</script>
+
+<!-- AQUI FINALIZA A LISTAGEM DOS PEDIDOS -->
 {% endblock %}
-
-

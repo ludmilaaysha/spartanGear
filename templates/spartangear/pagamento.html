@@ -7,92 +7,78 @@
         <div class="dados-cartao">
             <div class="opcoes-pagamento-bandeiras">
                 <div class="metodos-pagamento">
-                        <div class="titulo-opcao-metodos">
-                            <h1 class="texto-metodo">Cartão de crédito</h1>
-                        </div>
-                        <div class="titulo-opcao-metodos">
-                            <h1 class="texto-metodo">Cartão de débito</h1>
-                        </div>
+                    <div class="titulo-opcao-metodos">
+                        <h1 class="texto-metodo">Cartão de crédito</h1>
+                        <input type="radio" id="formaPagamentoCartaoCredito" name="formaPagamento" value="cartao" onchange="verificarFormaPagamento()">
+                    </div>
+                    <div class="titulo-opcao-metodos">
+                        <h1 class="texto-metodo">Cartão de débito</h1>
+                        <input type="radio" id="formaPagamentoCartaoDebito" name="formaPagamento" value="debito" onchange="verificarFormaPagamento()">
+                    </div>
                 </div>
-                <!-- <div class="bandeiras">
-                    <h1 class="text-band-aceitas">Bandeiras aceitas</h1>
+                <div class="bandeiras">
+                    <h1 class="text-band-aceitas"><b>Bandeiras aceitas</b></h1>
                     <div class="bandeiras-imagens">
                         <img src="{% static '/images/bandeira1.jpg' %}" class="img-bandeira1" style="width: 49.793px;height: 31.867px;">
-                        <img src="{% static '/images/bandeira2.' %}" class="img-bandeira1" style="width: 49.793px;height: 31.867px;">
+                        <img src="{% static '/images/bandeira2.jpg' %}" class="img-bandeira1" style="width: 49.793px;height: 31.867px;">
                         <img src="{% static '/images/bandeira3.jpg' %}" class="img-bandeira1" style="width: 49.793px;height: 31.867px;">
                         <img src="{% static '/images/bandeira4.jpg' %}" class="img-bandeira1" style="width: 49.793px;height: 31.867px;">
                     </div>
-                </div> -->
+                </div>
             </div>
+
             <div class="dados-cartao-preencher">
                 <div class="criada-para-add-parcelamento">
-                    <div class="card" id="card" style="all: unset; perspective: 1000px;">
-                        <div class="card-inner">
-                            <div class="card-pagamento" style="backface-visibility: hidden;">
-                                <div class="dados-no-cartao">
-                                    <h1 class="texto-no-cartao">Número do cartão</h1>
-                                    <h1 class="dado-do-cartao" id="card-number">**** **** **** ****</h1>
-                                </div>
-                                <div class="baixo-cartao-fake">
-                                    <div class="dados-no-cartao" style="flex: 1 0 0;">
-                                        <h1 class="texto-no-cartao">Nome do cartão</h1>
-                                        <h1 class="dado-do-cartao" id="card-name">Spartan A O Gear</h1>
-                                    </div>
-                                    <div class="dados-no-cartao">
-                                        <h1 class="texto-no-cartao">Data de exp.</h1>
-                                        <h1 class="dado-do-cartao" id="card-expiry">MM/YY</h1>
-                                    </div>
-                                </div>
+                    <div class="cartao">
+                        <div class="dados-no-cartao">
+                            <h1 class="texto-no-cartao">Número do cartão</h1>
+                            <h1 class="dado-do-cartao">1234 5678 7891 2345</h1>
+                        </div>
+                        <div class="baixo-cartao-fake">
+                            <div class="dados-no-cartao">
+                                <h1 class="texto-no-cartao">Nome do cartão</h1>
+                                <h1 class="dado-do-cartao">Spartan Gear</h1>
                             </div>
-                            <div class="card-pagamento-back" id="card-cvv" style="padding-inline: 0; backface-visibility: hidden;">
-                                <div class="faixa-tras-cartao" style="
-                                display: flex;
-                                height: 42px;
-                                flex-direction: column;
-                                align-items: flex-start;
-                                gap: 8px;
-                                flex-shrink: 0;
-                                align-self: stretch;
-                                background: linear-gradient(90deg, #7A7A7A 0.27%, #E0E0E0 100%);">
-                                </div>
-                                <div class="baixo-cartao-fake" style="justify-content: flex-end;">
-                                    <div class="dados-no-cartao" style="display: flex;
-                                    padding: 0px 40px;
-                                    justify-content: flex-end;
-                                    align-items: center;
-                                    gap: 8px;
-                                    align-self: stretch;">
-                                        <h1 class="texto-no-cartao" style="text-align: right; margin: 0;">CVV</h1>
-                                        <h1 class="dado-do-cartao" style="text-align: right; margin: 0;" id="card-expiry">***</h1>
-                                    </div>
-                                </div>
+                            <div class="dados-no-cartao">
+                                <h1 class="texto-no-cartao">Data de exp.</h1>
+                                <h1 class="dado-do-cartao">01/20</h1>
                             </div>
                         </div>
                     </div>
-                    <div class="campos-pagamento" style="padding-top: 8px; padding-left: 8px;">
-                        <label for="NCartao" class="titulo-dados-pagamento">Número de parcelas</label>
+
+                    <!-- Campos de Parcelamento -->
+                    <div id="opcoesParcelamento" class="campos-pagamento-parcelas" style="padding-top: 8px; padding-left: 8px; display: none;">
+                        <label for="parcelas" class="titulo-dados-pagamento">Número de parcelas</label>
                         <input type="number" class="text-resposta-pagamento" id="parcelas" name="parcelas" style="border: none; background: none; width: 100%;height: 100%;" required>
                     </div>
                 </div>
-                <form action="/enviar-dados" method="POST" class="formulario-cartao" id="payment-form">
+
+                <form action="/enviar-dados" method="POST" class="formulario-cartao">
+                    <!-- Campo Nome -->
                     <div class="campos-pagamento">
                         <label for="Nome" class="titulo-dados-pagamento">Nome</label>
                         <input type="text" class="text-resposta-pagamento" id="Nome" name="Nome" style="border: none; background: none; width: 100%;height: 100%;" required>
                     </div>
+
+                    <!-- Campo Número do Cartão -->
                     <div class="campos-pagamento">
                         <label for="NCartao" class="titulo-dados-pagamento">Número do Cartão</label>
-                        <input type="text" class="text-resposta-pagamento" maxlength='16' id="NCartao" name="NCartao" style="border: none; background: none; width: 100%;height: 100%;" required>
+                        <input type="text" class="text-resposta-pagamento" id="NCartao" name="NCartao" style="border: none; background: none; width: 100%;height: 100%;" required>
                     </div>
+
+                    <!-- Campo Data de Expiração e CVV -->
                     <div class="campo-pagamento-dois">
                         <div class="campos-pagamento">
                             <label for="dataExp" class="titulo-dados-pagamento">Data de exp.</label>
-                            <input type="text" class="text-resposta-pagamento" pattern="(0[1-9]|1[0-2])\/\d{2}" maxlength="5" id="dataExp" name="dataExp" style="border: none;background: none; width: 100%;height: 100%;" required>
+                            <input type="date" class="text-resposta-pagamento" id="dataExp" name="dataExp" style="border: none;background: none; width: 100%;height: 100%;" required>
                         </div>
                         <div class="campos-pagamento">
                             <label for="CVV" class="titulo-dados-pagamento">CVV</label>
-                            <input type="text" pattern="\d{1,3}" maxlength="3" class="text-resposta-pagamento" id="CVV" name="CVV" style="border: none; background: none; width: 100%;height: 100%;" required>
+                            <input type="text" class="text-resposta-pagamento" id="CVV" name="CVV" style="border: none; background: none; width: 100%;height: 100%;" required>
                         </div>
                     </div>
+
+                    <!-- Campo CPF do Titular -->
                     <div class="campos-pagamento">
                         <label for="CPF" class="titulo-dados-pagamento">CPF do titular</label>
                         <input type="number" class="text-resposta-pagamento" id="CPF" name="CPF" style="border: none;background: none; width: 100%;height: 100%;" required>
@@ -100,107 +86,55 @@
                 </form>
             </div>
         </div>
+
         <div class="botoes-voltar-continuar">
+            <!-- Botão Voltar -->
             <button type="button" class="botao-voltar" onclick="window.location.href='{% url 'entrega' %}'" style="cursor: pointer;">
                 <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.292892 6.79289C-0.0976315 7.18342 -0.0976315 7.81658 0.292892 8.20711L6.65685 14.5711C7.04738 14.9616 7.68054 14.9616 8.07107 14.5711C8.46159 14.1805 8.46159 13.5474 8.07107 13.1569L2.41421 7.5L8.07107 1.84315C8.46159 1.45262 8.46159 0.819457 8.07107 0.428932C7.68054 0.0384078 7.04738 0.0384078 6.65685 0.428932L0.292892 6.79289ZM17 6.5L1 6.5V8.5L17 8.5V6.5Z" fill="#1E1E1E"/>
                 </svg>
                 <h1 class="texto-botao-voltar">VOLTAR</h1>
             </button>
-        
-            <button type="button" class="botao-continuar" data-bs-toggle="modal" data-bs-target="#exampleModal" style="border: none; cursor: pointer;">
+
+            <!-- Botão Finalizar Compra -->
+            <button type="button" onclick="redirecionarComAlerta()" class="btn btn-primary" style="
+                border: none; 
+                cursor: pointer;
+                all:unset;
+                cursor: pointer;
+                display: flex;
+                padding: 22px 32px;
+                justify-content: center;
+                align-items: center;
+                gap: 16px;
+                flex: 1 0 0;
+                border-radius: 8px;
+                background: #C20000;">
                 <h1 class="texto-botao-continuar">FINALIZAR COMPRA</h1>
                 <svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M17.2071 8.20711C17.5976 7.81658 17.5976 7.18342 17.2071 6.79289L10.8431 0.428932C10.4526 0.0384078 9.81946 0.0384078 9.42893 0.428932C9.03841 0.819457 9.03841 1.45262 9.42893 1.84315L15.0858 7.5L9.42893 13.1569C9.03841 13.5474 9.03841 14.1805 9.42893 14.5711C9.81946 14.9616 10.4526 14.9616 10.8431 14.5711L17.2071 8.20711ZM16.5 6.5L0.5 6.5V8.5L16.5 8.5V6.5Z" fill="#FEFEFE"/>
+                    <path d="M17.2071 8.20711C17.5976 7.81658 17.5976 7.18342 17.2071 6.79289L10.8431 0.428932C10.4526 0.0384078 9.81946 0.0384078 9.42893 0.428932C9.03841 0.819457 9.03841 1.45262 9.42893 1.84315L15.0858 7.5L9.42893 13.1569C9.03841 13.5474 9.03841 14.1805 9.42893 14.5711C9.81946 14.9616 10.4526 14.9616 10.8431 14.5711L17.2071 8.20711ZM0.5 8.5H16.5V6.5H0.5V8.5Z" fill="white"/>
                 </svg>
             </button>
-        
-            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Compra finalizada com sucesso!</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body" style="align-items: center; text-align: center;">
-                            Obrigada por comprar conosco! Fique à vontade para continuar rolando pelo site. <br>Você também pode visualizar atualizações do seu pedido na aba "Meus pedidos", em seu perfil.
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" style="text-transform: uppercase; border: 1px solid #1e1e1e; font-family: Inter; font-size: 14px; color:#1e1e1e; background-color: #fefefe; font-weight: 700;" data-bs-dismiss="modal">Fechar</button>
-                            <button type="button" class="btn btn-primary" style="text-transform: uppercase; border: none; background-color: #c20000; color: #fefefe; font-family: Inter; font-size: 14px; font-weight: 700;">Mostrar pedido</button>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <!-- Button trigger modal -->
-            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                Launch demo modal
-            </button> -->
-            
-            <!-- Modal -->
-            <!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                        ...
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>  -->
         </div>        
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const cardNumber = document.getElementById('card-number');
-            const cardName = document.getElementById('card-name');
-            const cardExpiry = document.getElementById('card-expiry');
-            const cardCvv = document.getElementById('card-cvv');
-            const card = document.getElementById('card');
+        function verificarFormaPagamento() {
+            var formaPagamentoCredito = document.getElementById("formaPagamentoCartaoCredito");
+            var opcoesParcelamento = document.getElementById("opcoesParcelamento");
 
-            const cvvInput = document.getElementById('cvv');
-            const numberInput = document.getElementById('NCartao');
-            const nameInput = document.getElementById('Nome');
-            const expiryInput = document.getElementById('dataExp');
-            
-            numberInput.addEventListener('input', function () {
-                const value = this.value.replace(/\s+/g, '').replace(/(.{4})/g, '$1 ').trim();
-                cardNumber.textContent = value || '**** **** **** ****';
-            });
-            
-            nameInput.addEventListener('input', function () {
-                cardName.textContent = this.value || 'John Doe';
-            });
-            
-            expiryInput.addEventListener('input', function () {
-                cardExpiry.textContent = this.value || 'MM/YY';
-            });
+            if (formaPagamentoCredito.checked) {
+                opcoesParcelamento.style.display = "block"; // Mostra as opções de parcelamento
+            } else {
+                opcoesParcelamento.style.display = "none";  // Oculta as opções de parcelamento
+            }
+        }
 
-            document.addEventListener('DOMContentLoaded', function () {
-
-    
-            cvvInput.addEventListener('focus', function () {
-                card.classList.add('flip');
-            });
-            
-            cvvInput.addEventListener('blur', function () {
-                card.classList.remove('flip');
-            });
-            
-            cvvInput.addEventListener('input', function () {
-                cardCvv.textContent = this.value || '***';
-            });
-        });
-    })
+        function redirecionarComAlerta() {
+            alert('Compra finalizada com sucesso!');
+            // Adicione aqui a lógica para redirecionar após finalizar a compra
+            window.location.href = '/pagina-de-sucesso';
+        }
     </script>
+
 {% endblock %}

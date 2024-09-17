@@ -90,19 +90,6 @@
         </div>
         <!--as máscaras devem ser removidas depois, ao incluir os dados no backend-->
     </div>
-    <!-- <div class="generos">
-        <label for="id_genero" class="titulo-genero">
-            Gênero
-        </label>
-        <div class="opcoes-generos">
-            {% for choice in perfil.genero.field.widget.choices %}
-            <div class="caixa-genero">
-                <input type="radio" id="id_genero_{{ forloop.counter }}" name="{{ perfil.genero.name }}" value="{{ choice.0 }}" {% if choice.0 == perfil.genero.value %}checked{% endif %}>
-                <label class="texto-generos" for="id_genero_{{ forloop.counter }}">{{ choice.1 }}</label>
-            </div>
-            {% endfor %}
-        </div>
-    </div> -->
     <div class="edit-mode" id="btnsSaveCancel" style="display: flex; align-items: flex-start; gap: 24px; align-self: stretch;">
         <button id="cancel-btn" class="botao-cancelar-usuario" style="padding: 16px 48px; justify-content: center; align-items: center; gap: 10px; flex: 1 0 0;">
             Cancelar
