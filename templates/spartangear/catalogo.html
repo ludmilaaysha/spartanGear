@@ -1,0 +1,246 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Cadastro Usuário</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">  <!-- Link para o arquivo CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="{% static '/images/favicon.svg' %}" type="image/svg+xml">
+</head>
+
+<body>
+  {% include 'spartangear/partials/_header.html' %}
+  <div class="principal-maior-catalogo">
+    <div class="identificacao-pagina-catalogo">
+        <div class="breadcrumb-caminho-pagina">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">Início</a></li>
+                  <li class="breadcrumb-item"><a href="#">Homens</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Calçados</li>
+                </ol>
+            </nav>            
+        </div>
+        <span class="nome-pagina-catalogo">Calçados masculinos</span><!--aqui vai o nome da página que o usuário clicou-->
+    </div>
+    <div class="conteudo-principal-catalogo">
+      <form class="filtros-catalogo w-320px" method="post">
+        <div class="selecao-filtros">
+          <span">Filtros selecionados</span>
+          <div class="filtros-aplicados">
+            <!-- Botões de filtros aplicados aparecerão aqui -->
+          </div>
+          <button id="limpar-filtros" style="display: none;">Limpar todos os filtros</button>
+        </div>
+        <!--aqui irá um accordion com todos os possíveis filtros-->
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                Tipo
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+              <div class="accordion-body">
+                <label><input type="checkbox" class="filtro" value="Roupas"> Roupas</label><br>
+                <label><input type="checkbox" class="filtro" value="Calçados"> Calçados</label><br>
+                <label><input type="checkbox" class="filtro" value="Acessórios"> Acessórios</label><br>
+                <label><input type="checkbox" class="filtro" value="Equipamentos"> Equipamentos</label><br>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                Esporte
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+              <div class="accordion-body">
+                <label><input type="checkbox" class="filtro" value="Futebol"> Futebol</label><br>
+                <label><input type="checkbox" class="filtro" value="Corrida"> Corrida</label><br>
+                <label><input type="checkbox" class="filtro" value="Academia/Fitnes"> Academia/Fitnes</label><br>
+                <label><input type="checkbox" class="filtro" value="Basquete"> Basquete</label><br>
+                <label><input type="checkbox" class="filtro" value="Natação"> Natação</label><br>
+                <label><input type="checkbox" class="filtro" value="Ciclismo"> Ciclismo</label><br>
+                <label><input type="checkbox" class="filtro" value="Tênis"> Tênis</label><br>
+                <label><input type="checkbox" class="filtro" value="Vôlei"> Vôlei</label><br>
+                <label><input type="checkbox" class="filtro" value="Vôlei"> Tênis</label><br>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                Gênero
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+              <div class="accordion-body">
+                <label><input type="checkbox" class="filtro" value="Feminino"> Feminino</label><br>
+                <label><input type="checkbox" class="filtro" value="Masculino"> Masculino</label><br>
+                <label><input type="checkbox" class="filtro" value="Unissex"> Unissex</label><br>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+                Tamanho
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
+              <div class="accordion-body">
+                <label><input type="checkbox" class="filtro" value="P"> P</label><br>
+                <label><input type="checkbox" class="filtro" value="M"> M</label><br>
+                <label><input type="checkbox" class="filtro" value="G"> G</label><br>
+                <label><input type="checkbox" class="filtro" value="GG"> GG</label><br>
+                <label><input type="checkbox" class="filtro" value="33"> 33</label><br>
+                <label><input type="checkbox" class="filtro" value="34"> 34</label><br>
+                <label><input type="checkbox" class="filtro" value="35"> 35</label><br>
+                <label><input type="checkbox" class="filtro" value="36"> 36</label><br>
+                <label><input type="checkbox" class="filtro" value="37"> 37</label><br>
+                <label><input type="checkbox" class="filtro" value="38"> 38</label><br>
+                <label><input type="checkbox" class="filtro" value="39"> 39</label><br>
+                <label><input type="checkbox" class="filtro" value="40"> 40</label><br>
+                <label><input type="checkbox" class="filtro" value="41"> 41</label><br>
+                <label><input type="checkbox" class="filtro" value="42"> 42</label><br>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
+                Cor
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
+              <div class="accordion-body">
+                <label ><input type="checkbox" class="filtro" value="Branco"> Branco</label>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <circle cx="5" cy="5" r="4.5" fill="white" stroke="#A1A1A1"/>
+                </svg>
+                <br>
+
+                <label ><input type="checkbox" class="filtro" value="Preto"> Preto</label>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <circle cx="5" cy="5" r="5" fill="#000"/>
+                </svg>
+                <br>
+
+                <label ><input type="checkbox" class="filtro" value="Cinza"> Cinza</label>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <circle cx="5" cy="5" r="5" fill="#a1a1a1"/>
+                </svg>
+                <br>
+
+                <label ><input type="checkbox" class="filtro" value="Marrom"> Marrom</label>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <circle cx="5" cy="5" r="5" fill="brown"/>
+                </svg>
+                <br>
+
+                <label ><input type="checkbox" class="filtro" value="Azul"> Azul</label>
+                <svg xmlns="http://wwwr.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <circle cx="5" cy="5" r="5" fill="blue"/>
+                </svg>
+                <br>
+
+                <label ><input type="checkbox" class="filtro" value="Vermelho"> Vermelho</label>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <circle cx="5" cy="5" r="5" fill="red"/>
+                </svg>
+                <br>
+
+                <label ><input type="checkbox" class="filtro" value="Verde"> Verde</label>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <circle cx="5" cy="5" r="5" fill="green"/>
+                </svg>
+                <br>
+
+                <label ><input type="checkbox" class="filtro" value="Amarelo"> Amarelo</label>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <circle cx="5" cy="5" r="5" fill="yellow"/>
+                </svg>
+                <br>
+
+                <label ><input type="checkbox" class="filtro" value="Laranja"> Laranja</label>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <circle cx="5" cy="5" r="5" fill="orange"/>
+                </svg>
+                <br>
+
+                <label ><input type="checkbox" class="filtro" value="Roxo"> Roxo</label>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <circle cx="5" cy="5" r="5" fill="purple"/>
+                </svg>
+                <br>
+
+                <label ><input type="checkbox" class="filtro" value="Rosa"> Rosa</label>
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                  <circle cx="5" cy="5" r="5" fill="pink"/>
+                </svg>
+                <br>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="principal-produtos-catalogo">
+          <div class="top-principal-catalogo">
+              <span class="detalhes-top-catalogo" style="color: #3F3F3F; margin-right: 16px;">
+                  10.250 produtos encontrados <!--aqui vai número variável de acordo com backend-->
+              </span>
+              <div class="dropdown-ordenar-por">
+                  <span class="detalhes-top-catalogo">
+                      Ordenar por
+                  </span>
+                  <select class="form-select" aria-label="Default select example">
+                      <option selected>Selecionar</option>
+                      <option value="1">Relevância</option>
+                      <option value="2">Maior preço</option>
+                      <option value="3">Menor preço</option>
+                  </select>
+                  <!-- <div class="btn-group">
+                      <button id="dropdownButton-unique" class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Relevância
+                      </button>
+                      <ul class="dropdown-menu" id="dropdownMenu-unique">
+                          <li><a class="dropdown-item" href="#">Relevância</a></li>
+                          <li><a class="dropdown-item" href="#">Maior preço</a></li>
+                          <li><a class="dropdown-item" href="#">Menor preço</a></li>
+                      </ul>
+                  </div> -->
+              </div>
+          </div>
+          <div class="listagem-produtos-catalogo">
+              <!--AQUI INICIAM OS PRODUTOS-->
+              {% if cards %}
+                {% for produto in cards %}
+                <!--AQUI INICIA O CARD DO PRODUTO-->
+                  {% include 'spartangear/partials/_card_produto.html' with produto=produto %}
+                <!--AQUI FINALIZA O CARD DO PRODUTO-->
+                {% endfor %}
+              {% else %}
+                Não foram encontrados produtos para essa busca
+              {% endif %}
+              <!--AQUI FINALIZAM OS PRODUTOS-->
+          </div>
+          <div class="paginacao-catalogo">
+              <!--aqui entra um componente de paginação-->
+          </div>
+      </div>
+  </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{% static '/js/script.js' %}"></script>
+</body>
+</html>

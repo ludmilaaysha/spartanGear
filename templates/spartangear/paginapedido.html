@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spartan Gear | Artigos esportivos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}"> <!-- Link para o arquivo CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="{% static '/images/favicon.svg' %}" type="image/svg+xml">
+
+    <style>
+        
+
+    </style>
+
+<body>
+    {% include 'spartangear/partials/_header.html' %}
+    <div class="pagina-pedido">
+        <div class="topo-pagina-pedido">
+            <div class="titulo-pagina-pedido">
+                <span class="data-pagina-pedido">
+                    10 de set. de 2024
+                </span>
+                <div class="titulo-icone-pagina-pedido">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <path d="M20 11.6665C23.5362 11.6665 26.9276 13.0713 29.4281 15.5718C31.9286 18.0723 33.3333 21.4637 33.3333 24.9999C33.3333 28.5361 31.9286 31.9275 29.4281 34.428C26.9276 36.9285 23.5362 38.3332 20 38.3332C16.4638 38.3332 13.0724 36.9285 10.5719 34.428C8.07141 31.9275 6.66666 28.5361 6.66666 24.9999C6.66666 21.4637 8.07141 18.0723 10.5719 15.5718C13.0724 13.0713 16.4638 11.6665 20 11.6665ZM20 14.9999C17.3478 14.9999 14.8043 16.0534 12.9289 17.9288C11.0536 19.8042 9.99999 22.3477 9.99999 24.9999C9.99999 27.652 11.0536 30.1956 12.9289 32.0709C14.8043 33.9463 17.3478 34.9999 20 34.9999C22.6522 34.9999 25.1957 33.9463 27.0711 32.0709C28.9464 30.1956 30 27.652 30 24.9999C30 22.3477 28.9464 19.8042 27.0711 17.9288C25.1957 16.0534 22.6522 14.9999 20 14.9999ZM20 17.4999L22.2033 21.9665L27.1333 22.6832L23.5667 26.1582L24.4083 31.0682L20 28.7499L15.5917 31.0665L16.4333 26.1582L12.8667 22.6815L17.7967 21.9649L20 17.4999ZM30 3.33321V8.33321L27.7283 10.2299C25.8438 9.23948 23.7854 8.62315 21.6667 8.41488V3.33321H30ZM18.3333 3.33154V8.41488C16.2153 8.62284 14.1575 9.2386 12.2733 10.2282L9.99999 8.33321V3.33321L18.3333 3.33154Z" fill="#C20000"/>
+                    </svg>
+                    <div class="identificacao-pedido-pag">
+                        <span class="nome-pedido">
+                            Pedido
+                        </span>
+                        <span class="numero-pedido">
+                            #123456
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="setas-pedido-anterior-posterior">
+                <button class="seta-pag-pedido">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="15" viewBox="0 0 10 15" fill="none">
+                        <path d="M8.72115 14.1918C8.91847 13.9945 9.02932 13.7268 9.02932 13.4477C9.02932 13.1686 8.91847 12.901 8.72115 12.7036L3.51121 7.49365L8.72115 2.28371C8.91288 2.0852 9.01896 1.81933 9.01657 1.54337C9.01417 1.2674 8.90348 1.00342 8.70833 0.808273C8.51319 0.613129 8.2492 0.502438 7.97324 0.50004C7.69727 0.497642 7.43141 0.603729 7.2329 0.795453L1.27883 6.74952C1.08152 6.94689 0.970673 7.21456 0.970673 7.49365C0.970673 7.77273 1.08152 8.0404 1.27883 8.23777L7.2329 14.1918C7.43028 14.3892 7.69794 14.5 7.97703 14.5C8.25612 14.5 8.52378 14.3892 8.72115 14.1918Z" fill="#1E1E1E"/>
+                    </svg>
+                </button>
+                <button class="seta-pag-pedido">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="15" viewBox="0 0 10 15" fill="none">
+                        <path d="M1.27885 0.808162C1.08153 1.00554 0.970685 1.2732 0.970685 1.55229C0.970685 1.83138 1.08153 2.09904 1.27885 2.29641L6.48879 7.50635L1.27885 12.7163C1.08712 12.9148 0.981036 13.1807 0.983434 13.4566C0.985832 13.7326 1.09652 13.9966 1.29167 14.1917C1.48681 14.3869 1.7508 14.4976 2.02676 14.5C2.30273 14.5024 2.56859 14.3963 2.7671 14.2045L8.72117 8.25048C8.91848 8.05311 9.02933 7.78544 9.02933 7.50635C9.02933 7.22727 8.91848 6.9596 8.72117 6.76223L2.7671 0.808162C2.56972 0.610846 2.30206 0.5 2.02297 0.5C1.74388 0.5 1.47622 0.610846 1.27885 0.808162Z" fill="#1E1E1E"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="principal-gerais-pag-pedido">
+            <div class="infos-principais-pag-pedido">
+                <div class="secao-pag-pedido">
+                    <div class="titulo-secao-pag-pedido">
+                        <span class="texto-titulo-secao-pag-produto">
+                            Status do pedido
+                        </span>
+                    </div>
+                    <div class="bloco-dentro-secao-pag-pedido" style="background-color: #ffeaea;">
+                        <div class="info-status-pedido">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 16 15" fill="none">
+                                <path d="M5 9.9L5.6 10.5L8 8.1L10.4 10.5L11 9.9L8.6 7.5L11 5.1L10.4 4.5L8 6.9L5.6 4.5L5 5.1L7.4 7.5L5 9.9Z" fill="#C20000"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15 7.5C15 11.366 11.866 14.5 8 14.5C4.13401 14.5 1 11.366 1 7.5C1 3.63401 4.13401 0.5 8 0.5C11.866 0.5 15 3.63401 15 7.5ZM14 7.5C14 10.8137 11.3137 13.5 8 13.5C4.68629 13.5 2 10.8137 2 7.5C2 4.18629 4.68629 1.5 8 1.5C11.3137 1.5 14 4.18629 14 7.5Z" fill="#C20000"/>
+                                <path d="M5 9.9L5.6 10.5L8 8.1L10.4 10.5L11 9.9L8.6 7.5L11 5.1L10.4 4.5L8 6.9L5.6 4.5L5 5.1L7.4 7.5L5 9.9Z" stroke="#C20000" stroke-width="0.3" stroke-linejoin="round"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15 7.5C15 11.366 11.866 14.5 8 14.5C4.13401 14.5 1 11.366 1 7.5C1 3.63401 4.13401 0.5 8 0.5C11.866 0.5 15 3.63401 15 7.5ZM14 7.5C14 10.8137 11.3137 13.5 8 13.5C4.68629 13.5 2 10.8137 2 7.5C2 4.18629 4.68629 1.5 8 1.5C11.3137 1.5 14 4.18629 14 7.5Z" stroke="#C20000" stroke-width="0.3" stroke-linejoin="round"/>
+                            </svg>
+                            <span class="status-pedido">Cancelado</span>
+                        </div>
+                        <span class="data-e-hora-atualizacao-status">
+                            10/09/2024 às 23h59
+                        </span>
+                    </div>
+                </div>
+                <div class="secao-pag-pedido">
+                    <div class="titulo-secao-pag-pedido">
+                        <span class="texto-titulo-secao-pag-produto">
+                            Pagamento
+                        </span>
+                    </div>
+                    <div class="bloco-dentro-secao-pag-pedido">
+                        <p class="subsecao-pagamento">Total</p>
+                        <p class="subresultado-subsecao-pagamento">R$ 900,00</p>
+                    </div>
+                    <div class="bloco-dentro-secao-pag-pedido">
+                        <p class="subsecao-pagamento">Frete</p>
+                        <p class="subresultado-subsecao-pagamento">R$ 12,00</p>
+                    </div>
+                    <div class="bloco-dentro-secao-pag-pedido">
+                        <p class="subsecao-pagamento">Descontos</p>
+                        <p class="subresultado-subsecao-pagamento">R$ 200,00</p>
+                    </div>
+                    <div class="bloco-dentro-secao-pag-pedido">
+                        <p class="subsecao-pagamento" style="color: #1e1e1e">Subotal</p>
+                        <p class="subresultado-subsecao-pagamento" style="color: #1E1E1E; font-size: 14px; font-weight: 700;">R$ 712,00</p>
+                    </div>
+                </div>
+                <div class="secao-pag-pedido">
+                    <div class="titulo-secao-pag-pedido">
+                        <span class="texto-titulo-secao-pag-produto">
+                            Produtos
+                        </span>
+                    </div>
+                    <div class="bloco-dentro-secao-pag-pedido">
+                        <div class="infos-cima-produto-cart-popup">
+                            <div class="img-produto-cart-popup">
+                                <img src="{% static 'images/imagem_tenis.jpg' %}" class="imagem-produto-card">
+                            </div>
+                            <div class="detalhes-produto-cart-popup">
+                                <p class="nome-produto-cart-popup">
+                                    Tênis adidas Grand Court 2.0 - Masculino
+                                </p>
+                                <div style="display: flex; flex-direction: column; align-items: flex-start; align-self: stretch; gap: 0px">
+                                    <span class="variacao-produto-cart-popup">
+                                        Tamanho: 36
+                                    </span>
+                                    <span class="variacao-produto-cart-popup">
+                                        Cor: Branca
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="qtd-produto-pedido">
+                            1
+                        </span>
+                        <span class="preco-produto-pedido">
+                            R$ 300,00
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="infos-compra-pag-pedido">
+                <div class="bloco-dentro-secao-pag-pedido">
+                    <span class="identif-pag-pedido-titulo">
+                        Comprador
+                    </span>
+                    <span class="identif-pag-pedido-result">
+                        Spartan Gear Oliveira da Silva
+                    </span>
+                </div>
+                <div class="bloco-dentro-secao-pag-pedido">
+                    <span class="identif-pag-pedido-titulo">
+                        CPF
+                    </span>
+                    <span class="identif-pag-pedido-result">
+                        123.456.789-00
+                    </span>
+                </div>
+                <div class="bloco-dentro-secao-pag-pedido">
+                    <span class="identif-pag-pedido-titulo">
+                        Endereço
+                    </span>
+                    <span class="identif-pag-pedido-result">
+                        Rua das Palmeiras, 12 - 15 Sul - Brasília, DF
+                    </span>
+                </div>
+                <div class="bloco-dentro-secao-pag-pedido">
+                    <span class="identif-pag-pedido-titulo">
+                        Pagamento
+                    </span>
+                    <span class="identif-pag-pedido-result">
+                        Cartão Visa xxxx xxxx xxxx23
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static '/js/script.js' %}"></script>
+</body>
+</html>

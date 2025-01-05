@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spartan Gear | Artigos esportivos</title>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">  <!-- Link para o arquivo CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="{% static '/images/favicon.svg' %}" type="image/svg+xml">
+    <style>
+        .div-a-sem-linha{
+          text-decoration: none;
+          color:#FEFEFE
+      }
+      
+    </style>
+</head>
+
+<body>
+    {% include 'spartangear/partials/_header.html' %}
+    <div class="conteudo-pagina-carrinho">
+        <!-- Modal de confirmação -->
+        <div id="modalConfirmarExclusao" class="modalConfExcl">
+            <div class="textos-modal-excluir">
+                <h1 class="texto-conf-exc">Confirmar Exclusão?</h1>
+                <h1 class="texto-centro-exc">Você está prestes a remover o último item do carrinho. Se fizer isso, será redirecionado para a nossa página inicial. Tem certeza que deseja continuar?</h1>
+            </div>
+            <div class="modal-parte-botoes">
+                <button id="cancelarRemocao" class="btn-cancelar-exclusao" style="width: 100%;">Não excluir</button>
+                <a href="{% url 'index' %}" style="all: unset; display: flex; flex: 1 0 0; width: 100%;"><button id="confirmarRemocao" class="btn-confirmar-exclusao">Excluir</button></a>
+            </div>
+        </div>
+        <div class="scroll-produtos-carrinho">
+            <div class="lista-produtos-carrinho" id="oficialCartItems" >
+               <!--AQUI INICIAM OS PRODUTOS-->
+              
+              <!--AQUI FINALIZAM OS PRODUTOS-->
+            </div>
+        </div>
+        <div class="total-pagar-carrinho">
+            <div class="preco-produto-carrinho">
+                <h1 class="texto-dentro-taxas-carrinho">Total em produtos</h1>
+                <h1 class="texto-valores-taxas-carrinho">R$ 300,00</h1>
+            </div>
+            <div class="parte-do-frete">
+                <div class="frete-texto">
+                    <h1 class="texto-dentro-taxas-carrinho">Frete</h1>
+                    <h1 class="texto-valores-taxas-carrinho" id="resultado">R$ --</h1>
+                </div>
+                <form class="calculo-frete" method="post">
+                    <div class="calculadora-CEP">
+                        <div class="caixa-digitavel-frete">
+                            <input type="cep" id="cep" name="cep" class="text-digit-cep" placeholder="Digite seu CEP"  style="border: none; background: none; width: 100%; height: 100%;"> 
+                        </div>
+                        <button type="button" id="botao-calcular" onclick="calcularFrete()" class="botao-calcula-frete">
+                            <h1 class="text-botao-calcular" style="cursor: pointer;">Calcular</h1>
+                        </button>
+                    </div>
+                    <a href="https://buscacepinter.correios.com.br/app/endereco/index.php">
+                        <h1 style="cursor: pointer;" class="text-nao-sei-cep">Não sei meu CEP</h1>
+                    </a>
+                </form>
+            </div>
+            <div class="total-carrinho">
+                <div class="prazo-entrega">
+                    <h1 class="texto-dentro-taxas-carrinho">Prazo de entrega</h1>
+                    <h1 class="text-prazo-dias">de 4 a 5 dias úteis</h1>
+                </div>
+                <div class="total-geral-carrinho">
+                    <h1 class="texto-dentro-taxas-carrinho">Total:</h1>
+                    <h1 class="texto-valores-taxas-carrinho" style="font-size: 24px;">R$ 320,00</h1>
+                </div>
+            </div>
+            <div class="divs-mesma-medida">
+                <a href="{% url 'entrega' %}" style="width: 100%; text-decoration: none;">
+                <button type="button" class="botao-finalizar" style="cursor: pointer; border:none; width: 100%;">
+                    <h1 class="text-finalizar">Finalizar compra</h1>
+                </button>
+                </a>
+                <a href="{% url 'index' %}" style="width: 100%; text-decoration: none;">
+                <button type="button" class="botao-comprar-mais"  onclick="window.history.back();" style="cursor: pointer; width: 100%;">
+                    <h1 class="texto-dentro-taxas-carrinho">Escolher mais produtos</h1>
+                </button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static '/js/script.js' %}"></script>
+    <script >
+    function process_geral(quant){
+    var classValue = parseInt(document.querySelector('.quanti').value);
+    classValue+=quant;
+    if(classValue < 1){
+        document.querySelector("input.quanti").value = 1;
+    }else{ 
+        document.querySelector("input.quanti").value = classValue;    
+    }
+}  
+        </script>
+
+        <script>
+            function calcularFrete() {
+                // Pegando o valor do CEP inserido pelo usuário
+                let cep = document.getElementById("cep").value;
+            
+                // Simulando o cálculo de frete sem o peso
+                if (cep === "") {
+                    alert("Por favor, insira o CEP.");
+                    return;
+                }
+            
+                let frete = 20;  // Exemplo: valor fixo de frete
+                document.getElementById("resultado").innerHTML = "R$ " + frete.toFixed(2);
+            }
+        </script>
+
+        <style>
+             .button {
+            font-size: 20px;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .number {
+            font-size: 20px;
+            margin: 10px;
+        }
+            </style>
+
+</body>
+</html>

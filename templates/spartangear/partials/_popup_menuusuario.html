@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Cadastro Usuário</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">  <!-- Link para o arquivo CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="{% static '/images/favicon.svg' %}" type="image/svg+xml">
+</head>
+
+<body>
+    <div class="opcoes-usuario-popup" id="popupUserOptions">
+        <a href="{% url 'meucadastro' %}" class="opcao-menu">
+            <div class="opcao-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="15" viewBox="0 0 11 15" fill="none">
+                    <path d="M0.357178 14.189C0.357178 12.825 0.899013 11.5169 1.86349 10.5524C2.82796 9.58794 4.13606 9.04611 5.50003 9.04611C6.864 9.04611 8.17211 9.58794 9.13658 10.5524C10.1011 11.5169 10.6429 12.825 10.6429 14.189H9.35718C9.35718 13.166 8.9508 12.1849 8.22745 11.4616C7.50409 10.7382 6.52301 10.3318 5.50003 10.3318C4.47706 10.3318 3.49598 10.7382 2.77262 11.4616C2.04927 12.1849 1.64289 13.166 1.64289 14.189H0.357178ZM5.50003 8.40325C3.36896 8.40325 1.64289 6.67718 1.64289 4.54611C1.64289 2.41504 3.36896 0.688965 5.50003 0.688965C7.63111 0.688965 9.35718 2.41504 9.35718 4.54611C9.35718 6.67718 7.63111 8.40325 5.50003 8.40325ZM5.50003 7.11754C6.92075 7.11754 8.07146 5.96682 8.07146 4.54611C8.07146 3.12539 6.92075 1.97468 5.50003 1.97468C4.07932 1.97468 2.92861 3.12539 2.92861 4.54611C2.92861 5.96682 4.07932 7.11754 5.50003 7.11754Z" fill="#1E1E1E" stroke="#1E1E1E" stroke-width="0.225" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <p class="opcao-texto">Meu Cadastro</p>
+        </a>
+        <a href="{% url 'meuspedidos' %}" class="opcao-menu">
+            <div class="opcao-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+                    <path d="M12.1478 6.87567L4.85239 2.7069M9.53393 1.21343L14.7449 4.19098C15.0641 4.3733 15.3294 4.63678 15.5139 4.95471C15.6984 5.27263 15.7955 5.63369 15.7954 6.00127V10.8767C15.7955 11.2442 15.6984 11.6053 15.5139 11.9232C15.3294 12.2411 15.0641 12.5046 14.7449 12.6869L9.53393 15.6645C9.21905 15.8444 8.8627 15.939 8.50007 15.939C8.13744 15.939 7.78109 15.8444 7.46622 15.6645L2.25524 12.6869C1.93607 12.5046 1.67078 12.2411 1.48628 11.9232C1.30179 11.6053 1.20465 11.2442 1.20471 10.8767V6.00127C1.20465 5.63369 1.30179 5.27263 1.48628 4.95471C1.67078 4.63678 1.93607 4.3733 2.25524 4.19098L7.46622 1.21343C7.78109 1.03357 8.13744 0.938965 8.50007 0.938965C8.8627 0.938965 9.21905 1.03357 9.53393 1.21343Z" stroke="#1E1E1E" stroke-width="1.32643" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1.72534 5.31201L7.5116 8.42817C7.81526 8.59164 8.15474 8.6772 8.4996 8.6772C8.84447 8.6772 9.18394 8.59164 9.4876 8.42817L15.2739 5.31201M8.4996 8.95969V15.734" stroke="#1E1E1E" stroke-width="1.32643" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <p class="opcao-texto">Meus Pedidos</p>
+        </a>
+        <a href="{% url 'alterarsenha' %}" class="opcao-menu">
+            <div class="opcao-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="9" viewBox="0 0 19 9" fill="none">
+                    <path d="M7.85012 4.43916C7.85012 5.31437 7.50244 6.15374 6.88357 6.77261C6.2647 7.39148 5.42534 7.73916 4.55012 7.73916C3.67491 7.73916 2.83554 7.39148 2.21667 6.77261C1.5978 6.15374 1.25012 5.31437 1.25012 4.43916C1.25012 3.56395 1.5978 2.72458 2.21667 2.10571C2.83554 1.48684 3.67491 1.13916 4.55012 1.13916C5.42534 1.13916 6.2647 1.48684 6.88357 2.10571C7.50244 2.72458 7.85012 3.56395 7.85012 4.43916ZM7.85012 4.43916H17.7501V6.91416M14.4501 4.43916V6.91416" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <p class="opcao-texto">Alterar Senha</p>
+        </a>
+        <a href="{% url 'ajudaeatendimento' %}" class="opcao-menu">
+            <div class="opcao-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18" fill="none">
+                    <path d="M12.8748 8.86948C12.8748 8.63593 12.8748 8.51916 12.9099 8.41521C13.0118 8.11282 13.2812 7.99604 13.5512 7.8732C13.8536 7.73482 14.0047 7.66598 14.1553 7.65383C14.3254 7.64033 14.4961 7.67678 14.6419 7.75845C14.835 7.86645 14.97 8.07299 15.1077 8.24039C15.7442 9.01392 16.0628 9.40069 16.1789 9.82661C16.2734 10.1709 16.2734 10.5313 16.1789 10.8749C16.0095 11.4972 15.4728 12.0183 15.0753 12.5016C14.8721 12.7479 14.7702 12.8715 14.6419 12.9437C14.4936 13.0259 14.3243 13.0623 14.1553 13.0483C14.0047 13.0362 13.8536 12.9673 13.5505 12.8289C13.2805 12.7061 13.0118 12.5893 12.9099 12.2869C12.8748 12.183 12.8748 12.0662 12.8748 11.8333V8.86948ZM6.12496 8.86948C6.12496 8.57518 6.11686 8.31126 5.87926 8.10472C5.79286 8.02979 5.67812 7.97782 5.44929 7.8732C5.14623 7.7355 4.99503 7.66598 4.84451 7.65383C4.39429 7.61738 4.15197 7.92517 3.89278 8.24106C3.25559 9.01392 2.93699 9.40069 2.82022 9.82728C2.72627 10.1704 2.72627 10.5324 2.82022 10.8755C2.99032 11.4972 3.52761 12.019 3.9245 12.5016C4.17492 12.8053 4.41454 13.0827 4.84451 13.0483C4.99503 13.0362 5.14623 12.9673 5.44929 12.8289C5.67879 12.725 5.79286 12.6724 5.87926 12.5974C6.11686 12.3909 6.12496 12.127 6.12496 11.8333V8.86948Z" stroke="#1E1E1E" stroke-width="1.34997" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14.8998 7.98885V6.97637C14.8998 4.36687 12.482 2.25146 9.49987 2.25146C6.51778 2.25146 4.09998 4.36687 4.09998 6.97637V7.98885M14.8998 12.7138C14.8998 15.7512 12.1998 15.7512 9.49987 15.7512" stroke="#1E1E1E" stroke-width="1.34997" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <p class="opcao-texto">Ajuda e Atendimento</p>
+        </a>
+        <a href="{% url 'logout' %}" class="opcao-menu">
+            <div class="opcao-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
+                    <path d="M6.84718 12.0109L4.35718 9.43945M4.35718 9.43945L6.84718 6.86802M4.35718 9.43945H12.0715M6.92861 3.43945L13.7857 3.44117C14.732 3.44202 15.5 4.20917 15.5 5.15545V13.7226C15.5 14.1773 15.3194 14.6133 14.9979 14.9348C14.6764 15.2563 14.2404 15.4369 13.7857 15.4369L6.92861 15.4395" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <p class="opcao-texto">Sair</p>
+        </a>
+    </div>
+</body>
+</html>
